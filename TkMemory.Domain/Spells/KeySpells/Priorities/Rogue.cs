@@ -69,10 +69,10 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         public static readonly BuffKeySpell[] Cunning =
         {
             new BuffKeySpell("Baekho's Cunning 1", "Baekho's Cunning", 3000, 938, 150),
-            new BuffKeySpell("Baekho's Cunning 2", "Baekho's Cunning", 4200, 938, 150),
-            new BuffKeySpell("Baekho's Cunning 3", "Baekho's Cunning", 15634, 938, 150),
-            new BuffKeySpell("Baekho's Cunning 4", "Baekho's Cunning", 46658, 938, 150),
-            new BuffKeySpell("Baekho's Cunning 5", "Baekho's Cunning", 117667, 938, 150)
+            new BuffKeySpell("Baekho's Cunning 2", "Baekho's Cunning", 4200, 788, 150),
+            new BuffKeySpell("Baekho's Cunning 3", "Baekho's Cunning", 15634, 638, 150),
+            new BuffKeySpell("Baekho's Cunning 4", "Baekho's Cunning", 46658, 488, 150),
+            new BuffKeySpell("Baekho's Cunning 5", "Baekho's Cunning", 117667, 338, 150)
         };
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
             new HealKeySpell("Maro's Remedy", "Kwi-Sin Maro's Remedy", 1000, 1500),
             new HealKeySpell("Maro's Remedy", "Ming Ken Maro's Remedy", 1000, 1500),
             new HealKeySpell("Maro's Remedy", "Ohaeng Maro's Remedy", 1000, 1500),
-            new HealKeySpell("Soothe", "Soothe", 3, 50) 
+            new HealKeySpell("Soothe", "Soothe", 3, 50)
         };
 
         /// <summary>
@@ -325,7 +325,7 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
             /// 11,650 damage at 0 AC.
             /// </summary>
             public static readonly KeySpell Death = new KeySpell("Death Trap", "Death Trap", 1520);
-            
+
             /// <summary>
             /// Puts target to sleep for 1.3x damage on next attack.
             /// </summary>

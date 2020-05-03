@@ -21,14 +21,14 @@ namespace TkMemory.Application
 {
     internal class Program
     {
-        public static async Task Main(string[] args)
+        public static async Task Main()
         {
             try
             {
-                var bot = new DemoBot();
-                await bot.AutoHunt();
+                //var demo = new PoetDemo();
+                var demo = new RogueDemo();
+                await demo.AutoHunt();
             }
-
             catch (Exception ex)
             {
                 TkBotFactory.Terminate(ex);

@@ -22,7 +22,7 @@ namespace TkMemory.Integration.TkClient.Infrastructure
     {
         public const string DefaultEncoding = "UTF-16";
 
-        public static class SubPaths
+        public static class SubPaths // TODO: Add missing sub-paths
         {
             public static readonly string[] Mage =
             {
@@ -46,6 +46,7 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             {
                 "Rogue",
                 "Baekho",
+                "Marauder",
                 "Merchant",
                 "Spy",
                 "Ranger"

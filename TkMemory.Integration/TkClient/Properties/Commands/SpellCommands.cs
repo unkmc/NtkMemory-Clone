@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System.Threading.Tasks;
 using Serilog;
 using Serilog.Events;
+using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Npcs;
 using TkMemory.Integration.TkClient.Properties.Status.KeySpells;
@@ -48,16 +48,15 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
             if (spell.Cost == 0)
             {
                 // Do not bother checking to see if a mana restoration item is needed.
+                await caster.Activity.WaitForCommandCooldown();
             }
-
-            else if (isLowCostSpell)
+            else if (isLowCostSpell && !await ItemCommands.RestoreMinorManaForSpell(caster, spell))
             {
-                await ItemCommands.RestoreMinorManaForSpell(caster, spell);
+                return false;
             }
-
-            else
+            else if (!await ItemCommands.RestoreMajorManaForSpell(caster, spell))
             {
-                await ItemCommands.RestoreMajorManaForSpell(caster, spell);
+                return false;
             }
 
             caster.Send($"{Keys.Esc}Z");
@@ -69,7 +68,6 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
                 await Task.Delay(SecondaryInputDelay);
                 caster.Send(secondaryInput);
             }
-
             else
             {
                 caster.Send(spell.Letter);
@@ -214,28 +212,6 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
             }
 
             return false;
-        }
-
-        public static async Task<bool> CastRage(
-            TkClient caster,
-            KeySpell spell,
-            RageStatus status)
-        {
-            if (status.IsActive)
-            {
-                return false;
-            }
-
-            var didCastSpell = await CastSpell(caster, spell);
-
-            // ReSharper disable once InvertIf
-            if (didCastSpell)
-            {
-                status.ResetStatusCooldown();
-                status.CurrentRageLevel++;
-            }
-
-            return didCastSpell;
         }
 
         #endregion Public Methods

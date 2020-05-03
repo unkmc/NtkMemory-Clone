@@ -14,12 +14,12 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System;
-using System.Configuration;
-using System.Diagnostics;
 using AutoHotkey.Interop;
 using Serilog;
 using Serilog.Events;
+using System;
+using System.Configuration;
+using System.Diagnostics;
 using TkMemory.Integration.AutoHotkey;
 using TkMemory.Integration.TkClient;
 
@@ -33,6 +33,8 @@ namespace TkMemory.Application
         #region Fields
 
         private const int DefaultCommandCooldown = 333;
+        private const int MaxErrorCount = 10;
+        private static int _errorCount;
 
         #endregion Fields
 
@@ -85,6 +87,14 @@ namespace TkMemory.Application
         /// <param name="ex">The exception that was thrown.</param>
         public static void LogException(Exception ex)
         {
+            _errorCount++;
+
+            if (_errorCount >= MaxErrorCount)
+            {
+                Log.Fatal("Unfortunately, it looks like things are not going very well. The number of errors so far indicates that there is a serious bug that needs to be fixed, so I am going to call it quits here for now. Please contact the developer for support.");
+                Terminate();
+            }
+
             Log.Error($"{ex.GetType()}: {ex.Message}\n{ex.StackTrace}");
         }
 

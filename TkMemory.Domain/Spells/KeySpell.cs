@@ -84,17 +84,13 @@ namespace TkMemory.Domain.Spells
                 .Replace("Call of the Wild (", string.Empty)
                 .Replace(")", string.Empty);
 
-            if (string.Equals(UnalignedName, alignedName, StringComparison.OrdinalIgnoreCase))
+            if (string.IsNullOrWhiteSpace(alignedName) ||
+                string.Equals(UnalignedName, alignedName, StringComparison.OrdinalIgnoreCase))
             {
-                alignedName = string.Empty;
+                return UnalignedName;
             }
 
-            if (!string.IsNullOrWhiteSpace(alignedName))
-            {
-                alignedName = $" ({alignedName})";
-            }
-
-            return UnalignedName + alignedName;
+            return $"{UnalignedName} ({alignedName})";
         }
 
         #endregion Private Methods

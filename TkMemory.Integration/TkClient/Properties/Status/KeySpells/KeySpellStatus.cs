@@ -31,9 +31,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
     {
         #region Fields
 
-        protected const int RequiredInactiveCount = 3;
         private const int CooldownInMilliseconds = 1000;
-
         protected readonly string[] Aliases;
         protected readonly TkActivity Activity;
         private DateTime _timeOfPreviousCasting;

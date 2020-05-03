@@ -96,7 +96,7 @@ namespace TkMemory.Integration.AutoHotkey
         {
             if (PreviousValue != CurrentValue)
             {
-                Log.Debug($"'{name}' was toggled from '{PreviousValue}' to '{CurrentValue}'.");
+                Log.Information($"'{name}' was toggled from '{PreviousValue}' to '{CurrentValue}'.");
             }
         }
 

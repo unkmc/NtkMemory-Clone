@@ -14,6 +14,8 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using Serilog;
+using System;
 using System.Collections.Generic;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Activity;
@@ -31,7 +33,9 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
     {
         #region Fields
 
-        private int _inactiveCount;
+        protected const int RequiredInactiveCount = 3;
+        protected DateTime LatestInactivity;
+        protected int InactiveCount;
 
         #endregion Fields
 
@@ -44,7 +48,8 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
         /// <param name="aliases">A list of all unaligned and aligned names of the buff.</param>
         public BuffStatus(TkActivity activity, IEnumerable<KeySpell> aliases) : base(activity, aliases)
         {
-            _inactiveCount = RequiredInactiveCount;
+            LatestInactivity = DateTime.Now.AddMilliseconds(-activity.DefaultCommandCooldown);
+            InactiveCount = RequiredInactiveCount;
         }
 
         #endregion Constructors
@@ -65,12 +70,21 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
 
             if (isActive)
             {
-                _inactiveCount = 0;
+                InactiveCount = 0;
                 return true;
             }
 
-            _inactiveCount++;
-            return _inactiveCount < RequiredInactiveCount;
+            if ((DateTime.Now - LatestInactivity).TotalMilliseconds < Activity.DefaultCommandCooldown)
+            {
+                return true;
+            }
+
+            InactiveCount++;
+            LatestInactivity = DateTime.Now;
+
+            Log.Verbose($"{Aliases[0]} inactivity counter is at {InactiveCount}.");
+
+            return InactiveCount < RequiredInactiveCount;
         }
 
         #endregion Protected Methods

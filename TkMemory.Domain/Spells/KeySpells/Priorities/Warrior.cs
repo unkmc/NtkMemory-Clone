@@ -200,12 +200,12 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         /// </summary>
         public static readonly BuffKeySpell[] Rage =
         {
-            new BuffKeySpell("Chung Ryong's Rage 1", "Chung Ryong's Rage", 2000, 120, 938),
-            new BuffKeySpell("Chung Ryong's Rage 2", "Chung Ryong's Rage", 7200, 120, 938),
-            new BuffKeySpell("Chung Ryong's Rage 3", "Chung Ryong's Rage", 18050, 120, 938),
-            new BuffKeySpell("Chung Ryong's Rage 4", "Chung Ryong's Rage", 33800, 120, 938),
-            new BuffKeySpell("Chung Ryong's Rage 5", "Chung Ryong's Rage", 72200, 120, 938),
-            new BuffKeySpell("Chung Ryong's Rage 6", "Chung Ryong's Rage", 145800, 120, 938)
+            new BuffKeySpell("Chung Ryong's Rage 1", "Chung Ryong's Rage", 2000, 938, 120),
+            new BuffKeySpell("Chung Ryong's Rage 2", "Chung Ryong's Rage", 7200, 818, 120),
+            new BuffKeySpell("Chung Ryong's Rage 3", "Chung Ryong's Rage", 18050, 698, 120),
+            new BuffKeySpell("Chung Ryong's Rage 4", "Chung Ryong's Rage", 33800, 578, 120),
+            new BuffKeySpell("Chung Ryong's Rage 5", "Chung Ryong's Rage", 72200, 458, 120),
+            new BuffKeySpell("Chung Ryong's Rage 6", "Chung Ryong's Rage", 145800, 338, 120)
         };
 
         /// <summary>

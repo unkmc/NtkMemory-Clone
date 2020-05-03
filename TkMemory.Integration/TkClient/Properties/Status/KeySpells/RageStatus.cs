@@ -14,8 +14,11 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using Serilog;
 using System;
+using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TkMemory.Domain.Spells;
 
 namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
@@ -28,11 +31,19 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
     {
         #region Fields
 
-        private const int LagFactorInSeconds = 2;
+        private const int RequiredDurationInactiveCount = RequiredInactiveCount * 3; // It is 2 to 2.5 minutes without rage if you pull the trigger too soon on this one, so wait longer to make sure it counts.
+        private const string DottedLine = "------------------------";
+
+        private static readonly Regex NumbersRegex = new Regex(@"([0-9]+)", RegexOptions.None);
 
         private readonly int _maxRageLevel;
         private readonly BuffKeySpell[] _rageLevels;
         private readonly TkClient _self;
+
+        private int _currentRageLevel;
+        private bool _recastPending;
+        private DateTime _latestDurationInactivity;
+        private int _durationInactiveCount;
 
         #endregion Fields
 
@@ -48,83 +59,202 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
             _self = self;
             _rageLevels = rageLevels;
             _maxRageLevel = GetMaxRageLevel();
+            _currentRageLevel = GetCurrentRageLevel();
+
+            Log.Debug($"Starting rage level is {_currentRageLevel}.");
+
+            _latestDurationInactivity = DateTime.Now.AddMilliseconds(-self.Activity.DefaultCommandCooldown);
+            _durationInactiveCount = RequiredDurationInactiveCount;
         }
 
         #endregion Constructors
 
-        #region Properties
-
-        /// <summary>
-        /// Gets the Rage/Cunning level that is currently active on the Rogue or Warrior.
-        /// </summary>
-        public int CurrentRageLevel { get; internal set; }
-
-        #endregion Properties
-
         #region Protected Methods
 
         /// <summary>
-        /// This is way of dealing with lag. A status effect can remain active for a brief
-        /// period after the status box shows it as having expired. This method forces a
-        /// status to show as inactive three times in a row to be considered truly inactive.
-        /// Essentially, this enforces an artificial delay of three command cycles in between
-        /// detecting an inactive status effect and recasting that status effect to avoid
-        /// redundant casting.
+        /// Rages sure are complex. Each rage creates two entries in the status box with
+        /// identical descriptions. We have to analyze both to figure out if the spell
+        /// can be recast to increase its level, and we also have to keep track of which
+        /// rage level we are on since there is currently no way to reliably pull that
+        /// from the application's memory. And on top of all of that, we have to take the
+        /// same InactiveCount precautions for lag that we do with any other BuffStatus.
         /// </summary>
         protected override bool CheckIfActive()
         {
-            var isActive = base.CheckIfActive();
-
-            if (!isActive)
-            {
-                CurrentRageLevel = 0;
-                return false;
-            }
-
-            if (CurrentRageLevel == _maxRageLevel)
+            if (IsCoolingDown())
             {
                 return true;
             }
 
-            var nextRageLevel = _rageLevels[CurrentRageLevel]; // CurrentRageLevel is 1-indexed and therefore equivalent to the 0-indexed next level
-            var remainingAethers = GetRemainingAethers();
-            var aetherCeilingForNextCasting = nextRageLevel.Duration - nextRageLevel.Aethers - LagFactorInSeconds;
+            if (HasAethersRemaining())
+            {
+                if (_recastPending)
+                {
+                    _recastPending = false;
+                    _currentRageLevel = GetCurrentRageLevel();
 
-            return remainingAethers >= aetherCeilingForNextCasting;
+                    Log.Debug($"Current rage level is now {_currentRageLevel}.");
+                }
+
+                InactiveCount = 0;
+                return true;
+            }
+
+            if ((DateTime.Now - LatestInactivity).TotalMilliseconds < Activity.DefaultCommandCooldown)
+            {
+                return true;
+            }
+
+            InactiveCount++;
+            LatestInactivity = DateTime.Now;
+
+            Log.Verbose($"{Aliases[0]} inactivity counter is at {InactiveCount}.");
+
+            if (InactiveCount < RequiredInactiveCount)
+            {
+                return true;
+            }
+
+            if (GetRemainingDuration() == 0)
+            {
+                if ((DateTime.Now - _latestDurationInactivity).TotalMilliseconds < Activity.DefaultCommandCooldown)
+                {
+                    return true;
+                }
+
+                _durationInactiveCount++;
+                _latestDurationInactivity = DateTime.Now;
+
+                Log.Verbose($"{Aliases[0]} inactivity counter is at {_durationInactiveCount}.");
+
+                if (_durationInactiveCount < RequiredDurationInactiveCount)
+                {
+                    return true;
+                }
+
+                _currentRageLevel = 0;
+                _recastPending = true;
+
+                Log.Information($"Current rage level is now {_currentRageLevel}.");
+
+                return false;
+            }
+
+            _durationInactiveCount = 0;
+
+            if (_currentRageLevel == _maxRageLevel)
+            {
+                return true;
+            }
+
+            _recastPending = true;
+            return false;
         }
 
         #endregion Protected Methods
 
         #region Private Methods
 
-        private int GetMaxRageLevel()
+        private int GetCurrentRageLevel()
         {
-            var maxRageLevel = _rageLevels.FirstOrDefault(x => x.Cost <= _self.Self.Mana.Max);
-            return maxRageLevel == null
-                ? -1
-                : Convert.ToInt32(maxRageLevel.DisplayName[maxRageLevel.DisplayName.Length - 1]);
-        }
+            var remainingDuration = GetRemainingDuration();
 
-        private int GetRemainingAethers()
-        {
-            var spellName = Aliases[0];
-
-            var activeStatusEffects = Activity.ActiveStatusEffects
-                .Split(new[] { System.Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            var rage = activeStatusEffects.FirstOrDefault(x => x.TrimStart().StartsWith(spellName));
-
-            if (string.IsNullOrWhiteSpace(rage))
+            if (remainingDuration == 0)
             {
                 return 0;
             }
 
-            var remainingAethers = rage
-                .Replace(spellName, string.Empty)
-                .Replace("s", string.Empty)
-                .Trim();
+            var currentRage = _rageLevels
+                .Where(spell => spell.Duration > remainingDuration)
+                .OrderBy(spell => spell.Duration)
+                .First();
 
-            return Convert.ToInt32(remainingAethers);
+            var currentRageLevel = Convert.ToInt32(NumbersRegex.Match(currentRage.DisplayName).Groups[1].Value);
+
+            return currentRageLevel > _maxRageLevel
+                ? _maxRageLevel
+                : currentRageLevel;
+        }
+
+        private int GetMaxRageLevel()
+        {
+            var maxRage = _rageLevels
+                .Where(spell => spell.Cost <= _self.Self.Mana.Max)
+                .OrderByDescending(spell => spell.Cost)
+                .FirstOrDefault();
+
+            if (maxRage == null)
+            {
+                return 0;
+            }
+
+            var maxRageLevel = Convert.ToInt32(NumbersRegex.Match(maxRage.DisplayName).Groups[1].Value);
+            Log.Debug($"Maximum rage possible with current max mana of {_self.Self.Mana.Max:N0} is level {maxRageLevel} at a cost of {maxRage.Cost:N0} mana.");
+
+            return maxRageLevel;
+        }
+
+        /// <summary>
+        /// Rage/Cunning is unique in that it appears in the status box twice. Above the dotted line is the remaining duration
+        /// of the spell. Below the dotted line is the remaining aethers. This checks to see is there is a Rage/Cunning entry
+        /// specifically below the dotted line.
+        /// </summary>
+        private bool HasAethersRemaining()
+        {
+            var spellName = Aliases[0];
+            var statusBoxText = Activity.ActiveStatusEffects;
+
+            if (string.IsNullOrWhiteSpace(statusBoxText) || !statusBoxText.Contains(DottedLine))
+            {
+                return false;
+            }
+
+            var textBelowDottedLine = statusBoxText
+                .Split(new[] { DottedLine }, StringSplitOptions.RemoveEmptyEntries)[1];
+
+            var aetherStatuses = textBelowDottedLine
+                .Split(new[] { System.Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            return aetherStatuses.Any(aetherStatus =>
+                CultureInfo.InvariantCulture.CompareInfo.IndexOf(
+                    aetherStatus.Replace("'", string.Empty),
+                    spellName.Replace("'", string.Empty),
+                    CompareOptions.OrdinalIgnoreCase) >= 0);
+        }
+
+        /// <summary>
+        /// Rage/Cunning is unique in that it appears in the status box twice. Above the dotted line is the remaining duration
+        /// of the spell. Below the dotted line is the remaining aethers. This checks to see is there is a Rage/Cunning entry
+        /// specifically above the dotted line and returns the number of seconds in that entry.
+        /// </summary>
+        private int GetRemainingDuration()
+        {
+            var spellName = Aliases[0];
+            var statusBoxText = Activity.ActiveStatusEffects;
+
+            if (string.IsNullOrWhiteSpace(statusBoxText))
+            {
+                return 0;
+            }
+
+            var textAboveDottedLine = statusBoxText
+                .Split(new[] { DottedLine }, StringSplitOptions.RemoveEmptyEntries)[0];
+
+            var durationStatuses = textAboveDottedLine
+                .Split(new[] { System.Environment.NewLine, "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            var rageDuration = durationStatuses.FirstOrDefault(durationStatus =>
+                CultureInfo.InvariantCulture.CompareInfo.IndexOf(
+                    durationStatus.Replace("'", string.Empty),
+                    spellName.Replace("'", string.Empty),
+                    CompareOptions.OrdinalIgnoreCase) >= 0);
+
+            if (rageDuration == null)
+            {
+                return 0;
+            }
+
+            return Convert.ToInt32(NumbersRegex.Match(rageDuration).Groups[1].Value);
         }
 
         #endregion Private Methods

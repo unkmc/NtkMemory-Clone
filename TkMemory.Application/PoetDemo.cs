@@ -14,10 +14,10 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System;
-using System.Threading.Tasks;
 using AutoHotkey.Interop;
 using Serilog;
+using System;
+using System.Threading.Tasks;
 using TkMemory.Integration.AutoHotkey;
 using TkMemory.Integration.TkClient;
 using TkMemory.Integration.TkClient.Properties.Commands.Peasant;
@@ -29,7 +29,7 @@ namespace TkMemory.Application
     /// <summary>
     /// A sample bot to demonstrate and test the mechanics of using the TkMemory library.
     /// </summary>
-    internal class DemoBot
+    internal class PoetDemo
     {
         #region Fields
 
@@ -50,7 +50,7 @@ namespace TkMemory.Application
         /// <summary>
         /// Initializes settings and defines hotkeys.
         /// </summary>
-        public DemoBot()
+        public PoetDemo()
         {
             TkBotFactory.Initialize();
 
@@ -122,7 +122,6 @@ namespace TkMemory.Application
                     if (await _poet.Commands.Mana.InspireGroup(75)) continue;
                     await _poet.Commands.HardenBody();
                 }
-
                 catch (Exception ex)
                 {
                     TkBotFactory.LogException(ex);

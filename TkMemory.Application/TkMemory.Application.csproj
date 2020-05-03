@@ -76,8 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RogueDemo.cs" />
     <Compile Include="TkBotFactory.cs" />
-    <Compile Include="DemoBot.cs" />
+    <Compile Include="PoetDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
