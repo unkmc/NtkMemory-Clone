@@ -1115,7 +1115,7 @@
         </CheatEntry>
         <CheatEntry>
           <ID>468</ID>
-          <Description>"NPC Target UID"</Description>
+          <Description>"Auto-Target UID"</Description>
           <LastState Value="3221225529" RealAddress="006FEC64"/>
           <Color>000000</Color>
           <VariableType>4 Bytes</VariableType>
@@ -1123,7 +1123,7 @@
         </CheatEntry>
         <CheatEntry>
           <ID>470</ID>
-          <Description>"Player Target UID"</Description>
+          <Description>"Target Lock UID"</Description>
           <LastState Value="1523" RealAddress="006FEC60"/>
           <Color>000000</Color>
           <VariableType>4 Bytes</VariableType>

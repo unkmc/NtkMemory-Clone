@@ -25,7 +25,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
         public const string Home = "{Home}";
         public const string Space = "{Space}";
         public const string Tab = "{Tab}";
-        public const string V = "v";
+        public const string V = "{v}";
 
         public const string AltUp = "{Alt up}";
         public const string AltDown = "{Alt down}";

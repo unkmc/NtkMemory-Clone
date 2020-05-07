@@ -38,28 +38,19 @@ namespace TkMemory.Integration.TkClient.Properties
         public TkTargeting(ClassMemory classMemory)
         {
             _classMemory = classMemory;
-        }       
+        }
 
         #endregion Constructors
 
         #region Properties
 
         /// <summary>
-        /// The current NPC-specific "tab" or "v" target of the player.
+        /// The current auto-target target ("Tab" targeting by default).
         /// </summary>
-        public uint Npc
+        public uint AutoTarget
         {
-            get => _classMemory.Read<uint>(TkAddresses.Self.TargetUids.Npc);
-            set => _classMemory.Write(value, TkAddresses.Self.TargetUids.Npc);
-        }
-
-        /// <summary>
-        /// The current player-specific "tab" or "v" target of the player.
-        /// </summary>
-        public uint Player
-        {
-            get => _classMemory.Read<uint>(TkAddresses.Self.TargetUids.Player);
-            set => _classMemory.Write(value, TkAddresses.Self.TargetUids.Player);
+            get => _classMemory.Read<uint>(TkAddresses.Self.TargetUids.AutoTarget);
+            set => _classMemory.Write(value, TkAddresses.Self.TargetUids.AutoTarget);
         }
 
         /// <summary>
@@ -69,6 +60,15 @@ namespace TkMemory.Integration.TkClient.Properties
         {
             get => _classMemory.Read<uint>(TkAddresses.Self.TargetUids.Spell);
             set => _classMemory.Write(value, TkAddresses.Self.TargetUids.Spell);
+        }
+
+        /// <summary>
+        /// The current target lock target ("V" targeting by default).
+        /// </summary>
+        public uint TargetLock
+        {
+            get => _classMemory.Read<uint>(TkAddresses.Self.TargetUids.TargetLock);
+            set => _classMemory.Write(value, TkAddresses.Self.TargetUids.TargetLock);
         }
 
         #endregion Properties

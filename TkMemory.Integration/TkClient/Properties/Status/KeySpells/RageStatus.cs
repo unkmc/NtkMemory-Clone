@@ -249,12 +249,9 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
                     spellName.Replace("'", string.Empty),
                     CompareOptions.OrdinalIgnoreCase) >= 0);
 
-            if (rageDuration == null)
-            {
-                return 0;
-            }
-
-            return Convert.ToInt32(NumbersRegex.Match(rageDuration).Groups[1].Value);
+            return rageDuration == null
+                ? 0
+                : Convert.ToInt32(NumbersRegex.Match(rageDuration).Groups[1].Value);
         }
 
         #endregion Private Methods

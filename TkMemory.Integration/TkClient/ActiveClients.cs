@@ -63,15 +63,19 @@ namespace TkMemory.Integration.TkClient
                     case TkClient.BasePath.Mage:
                         Mages.Add(tkClientFactory.BuildMage());
                         break;
+
                     case TkClient.BasePath.Poet:
                         Poets.Add(tkClientFactory.BuildPoet());
                         break;
+
                     case TkClient.BasePath.Rogue:
                         Rogues.Add(tkClientFactory.BuildRogue());
                         break;
+
                     case TkClient.BasePath.Warrior:
                         Warriors.Add(tkClientFactory.BuildWarrior());
                         break;
+
                     default:
                         throw new Exception($"Invalid path '{tkClientFactory.TkSelf.Path}' could not be classified into a base path.");
                 }
@@ -310,9 +314,11 @@ namespace TkMemory.Integration.TkClient
                 case 0:
                     sb.Append($"No active {_processName} {type} clients were found.");
                     break;
+
                 case 1:
                     sb.Append($"Only one active {_processName} {type} client was found.");
                     break;
+
                 default:
                     sb.Append($"Only {count} active {_processName} {type} clients were found.");
                     break;
@@ -321,7 +327,7 @@ namespace TkMemory.Integration.TkClient
             throw new IndexOutOfRangeException(sb.ToString());
         }
 
-        private void ThrowNullReferenceException(string name)
+        private static void ThrowNullReferenceException(string name)
         {
             throw new NullReferenceException($"Could not find an active TK client for named '{name}'.");
         }

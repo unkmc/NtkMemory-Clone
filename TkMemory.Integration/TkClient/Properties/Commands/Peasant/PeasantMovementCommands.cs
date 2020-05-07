@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 namespace TkMemory.Integration.TkClient.Properties.Commands.Peasant
@@ -8,7 +9,6 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Peasant
     /// </summary>
     public class PeasantMovementCommands
     {
-
         #region Fields
 
         private readonly TkClient _self;
@@ -65,6 +65,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Peasant
         /// <param name="target">The multibox target to follow.</param>
         /// <param name="distance">The maximum distance from the target that is allowed before movement commands will be sent.</param>
         /// <returns>True if a movement command is sent; false otherwise.</returns>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public async Task<bool> Follow(TkClient target, uint distance)
         {
             await _self.Activity.WaitForMovementCooldown();

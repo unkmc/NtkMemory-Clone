@@ -17,6 +17,7 @@
 using AutoHotkey.Interop;
 using Serilog;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TkMemory.Integration.AutoHotkey;
 using TkMemory.Integration.TkClient;
@@ -26,6 +27,7 @@ namespace TkMemory.Application
     /// <summary>
     /// A sample bot to demonstrate and test the mechanics of using the TkMemory library.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     internal class RogueDemo
     {
         #region Fields
@@ -94,6 +96,8 @@ namespace TkMemory.Application
         /// rearranged to tweak the logic, or commands can be added/removed for significantly
         /// different bot behavior.
         /// </summary>
+        ///
+        [SuppressMessage("ReSharper", "EnforceIfStatementBraces")]
         public async Task AutoHunt()
         {
             Log.Information($"Starting AutoHunt for {_rogue.Self.Name}...");

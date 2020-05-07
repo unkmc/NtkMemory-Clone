@@ -14,25 +14,24 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using NUnit.Framework;
 using System;
-using System.Threading.Tasks;
+using System.Configuration;
+using TkMemory.Integration.TkClient;
 
-namespace TkMemory.Application
+namespace TkMemory.Tests.Integration
 {
-    internal class Program
+    [TestFixture]
+    internal class SendTests
     {
-        public static async Task Main()
+        [Explicit]
+        [TestCase("{Esc}{v}{Home}{Esc}")]
+        public void SendKeystrokes(string keystrokes)
         {
-            try
-            {
-                var demo = new PoetDemo();
-                //var demo = new RogueDemo();
-                await demo.AutoHunt();
-            }
-            catch (Exception ex)
-            {
-                TkBotFactory.Terminate(ex);
-            }
+            var clients = new ActiveClients(ConfigurationManager.AppSettings["ProcessName"]);
+            var tkMemory = clients.GetPoet();
+            tkMemory.Send(keystrokes);
+            Console.WriteLine($"Sent keystrokes: \"{keystrokes}\"");
         }
     }
 }

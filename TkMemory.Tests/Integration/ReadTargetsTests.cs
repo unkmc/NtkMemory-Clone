@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using NUnit.Framework;
 using System;
 using System.Configuration;
-using NUnit.Framework;
 using TkMemory.Integration.TkClient;
 
 namespace TkMemory.Tests.Integration
@@ -28,12 +28,12 @@ namespace TkMemory.Tests.Integration
         public void ReadTargets()
         {
             var clients = new ActiveClients(ConfigurationManager.AppSettings["ProcessName"]);
-            var tkMemory = clients.GetRogue();
+            var tkMemory = clients.GetPoet();
 
             Console.WriteLine("----------TargetUids----------");
-            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.Spell}");
-            Console.WriteLine($"TargetUidTab = {tkMemory.Targeting.Npc}");
-            Console.WriteLine($"TargetUidV = {tkMemory.Targeting.Player}");
+            Console.WriteLine($"Spell Target UID = {tkMemory.Targeting.Spell}");
+            Console.WriteLine($"Auto-Target UID = {tkMemory.Targeting.AutoTarget}");
+            Console.WriteLine($"Target Lock UID = {tkMemory.Targeting.TargetLock}");
         }
     }
 }

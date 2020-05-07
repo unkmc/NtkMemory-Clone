@@ -14,15 +14,14 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using AutoHotkey.Interop;
+using AutoHotkey.Interop.ClassMemory;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
-using AutoHotkey.Interop;
-using AutoHotkey.Interop.ClassMemory;
-using Serilog;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties;
 using TkMemory.Integration.TkClient.Properties.Activity;
@@ -50,12 +49,14 @@ namespace TkMemory.Integration.TkClient
 
         private readonly AutoHotkeyEngine _ahk = AutoHotkeyEngine.Instance;
         private readonly DateTime _botStartTime;
+
         /// <summary>Matches all capital letters not enclosed between braces.</summary>
         private readonly Regex _controlSendRegex = new Regex(@"[A-Z](?![^{}]*})");
-        private readonly string _npcTargetingKey;
+
         private readonly int _processId;
         private readonly uint _startingExp;
 
+        private string _autoTargetingKey;
         private int _manaRestorationItemUsageCount;
         private int _previousGroupSize;
         private uint _previousLastGroupMemberUid;
@@ -79,10 +80,6 @@ namespace TkMemory.Integration.TkClient
             Npcs = new List<Npc>();
             Self = new TkSelf(classMemory);
             Targeting = new TkTargeting(classMemory);
-
-            _npcTargetingKey = IsTabVSwapOff()
-                ? Keys.Tab
-                : Keys.V;
 
             _processId = Convert.ToInt32(classMemory.ToString().Replace("_classMemory", string.Empty));
             _botStartTime = DateTime.Now;
@@ -305,7 +302,7 @@ namespace TkMemory.Integration.TkClient
         /// <summary>
         /// Scans the current screen for NPCs and adds any that are not already in the bot's NPC
         /// list to that list. By default, this happens no more often than once every 10 seconds,
-        /// but it can also be done on command by setting the overriding that cooldown feature.
+        /// but it can also be done on command by using the override parameter.
         /// </summary>
         /// <param name="targetableSpell">Any targetable spell.</param>
         /// <param name="overrideCooldown">Set to true for an on-demand scan regardless of current
@@ -315,7 +312,7 @@ namespace TkMemory.Integration.TkClient
         {
             if (targetableSpell == null)
             {
-                throw new ArgumentNullException(nameof(targetableSpell), "NPC list update failed because a non-null targetable spell was not provided.");
+                throw new ArgumentNullException(nameof(targetableSpell), "Failed to update the on-screen NPC list because a non-null targetable spell was not provided.");
             }
 
             if (!overrideCooldown && (DateTime.Now - _timeOfPreviousNpcScan).TotalSeconds < NpcScanCooldownInSeconds)
@@ -323,11 +320,16 @@ namespace TkMemory.Integration.TkClient
                 return false;
             }
 
+            if (string.IsNullOrWhiteSpace(_autoTargetingKey))
+            {
+                _autoTargetingKey = await GetAutoTargetingKey();
+                Log.Debug($"Auto-targeting key set to \"{_autoTargetingKey}\".");
+            }
+
             _timeOfPreviousNpcScan = DateTime.Now;
-            await Activity.WaitForCommandCooldown();
-            Send(Keys.Esc + _npcTargetingKey);
+            Send(Keys.Esc + _autoTargetingKey);
             await Task.Delay(TargetingDelayInMilliseconds);
-            var firstUid = Targeting.Npc;
+            var firstUid = Targeting.AutoTarget;
 
             if (firstUid == Self.Uid)
             {
@@ -339,9 +341,9 @@ namespace TkMemory.Integration.TkClient
 
             for (var i = 0; i < MaxEntitiesToScan - 1; i++)
             {
-                Send(_npcTargetingKey);
+                Send(_autoTargetingKey);
                 await Task.Delay(TargetingDelayInMilliseconds);
-                var uid = Targeting.Npc;
+                var uid = Targeting.AutoTarget;
 
                 if (uid == firstUid)
                 {
@@ -361,7 +363,7 @@ namespace TkMemory.Integration.TkClient
             return true;
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Internal Methods
 
@@ -384,12 +386,34 @@ namespace TkMemory.Integration.TkClient
             }
         }
 
-        private bool IsTabVSwapOff()
+        /// <summary>
+        /// Shift + F11 will swap the target lock and auto-target keys,
+        /// so we have to figure out which one to use.
+        /// </summary>
+        private async Task<string> GetAutoTargetingKey()
         {
-            Send($"{Keys.Esc}v{Keys.Home}{Keys.Esc}");
-            Thread.Sleep(TargetingDelayInMilliseconds);
-            var playerTargetUid = Targeting.Player;
-            return playerTargetUid == Self.Uid;
+            Targeting.AutoTarget = 0;
+            Targeting.TargetLock = 0;
+
+            Send($"{Keys.Esc}{Keys.Tab}{Keys.Home}{Keys.Esc}");
+            await Task.Delay(TargetingDelayInMilliseconds);
+            var autoTargetUid = Targeting.AutoTarget;
+            var targetLockUid = Targeting.TargetLock;
+
+            Log.Debug($"Auto-target after {Keys.Tab} keystroke is: {autoTargetUid}");
+            Log.Debug($"Target lock after {Keys.Tab} keystroke is: {targetLockUid}");
+
+            if (autoTargetUid > 0)
+            {
+                return Keys.Tab;
+            }
+
+            if (targetLockUid > 0)
+            {
+                return Keys.V;
+            }
+
+            throw new Exception("Tab targeting failed, so auto-target key could not be determined.");
         }
 
         #endregion Private Methods

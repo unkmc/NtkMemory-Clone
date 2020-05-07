@@ -112,7 +112,7 @@ namespace TkMemory.Integration.TkClient
             public static class Spells
             {
                 public static int PositionOffset = 0x148;
-                
+
                 public static readonly Address DisplayName = new Address(0x6DD490, new[] { 0x16A83C });
             }
 
@@ -125,8 +125,8 @@ namespace TkMemory.Integration.TkClient
 
             public static class TargetUids
             {
-                public static readonly Address Npc = new Address(0x6FEC64);
-                public static readonly Address Player = new Address(0x6FEC60);
+                public static readonly Address AutoTarget = new Address(0x6FEC64);
+                public static readonly Address TargetLock = new Address(0x6FEC60);
                 public static readonly Address Spell = new Address(0x6FEC58);
             }
 

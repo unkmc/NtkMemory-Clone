@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using NUnit.Framework;
 using System;
 using System.Configuration;
-using NUnit.Framework;
 using TkMemory.Integration.TkClient;
 
 namespace TkMemory.Tests.Integration
@@ -45,13 +45,13 @@ namespace TkMemory.Tests.Integration
             var clients = new ActiveClients(ConfigurationManager.AppSettings["ProcessName"]);
             var tkMemory = clients.GetMage();
 
-            tkMemory.Targeting.Npc = 12211;
-            Assert.AreEqual(tkMemory.Targeting.Npc, 12211);
-            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.Npc}");
+            tkMemory.Targeting.AutoTarget = 12211;
+            Assert.AreEqual(tkMemory.Targeting.AutoTarget, 12211);
+            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.AutoTarget}");
 
-            tkMemory.Targeting.Npc = 831791;
-            Assert.AreEqual(tkMemory.Targeting.Npc, 831791);
-            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.Npc}");
+            tkMemory.Targeting.AutoTarget = 831791;
+            Assert.AreEqual(tkMemory.Targeting.AutoTarget, 831791);
+            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.AutoTarget}");
         }
 
         [Test, Explicit]
@@ -60,13 +60,13 @@ namespace TkMemory.Tests.Integration
             var clients = new ActiveClients(ConfigurationManager.AppSettings["ProcessName"]);
             var tkMemory = clients.GetMage();
 
-            tkMemory.Targeting.Player = 12211;
-            Assert.AreEqual(tkMemory.Targeting.Player, 12211);
-            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.Player}");
+            tkMemory.Targeting.TargetLock = 12211;
+            Assert.AreEqual(tkMemory.Targeting.TargetLock, 12211);
+            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.TargetLock}");
 
-            tkMemory.Targeting.Player = 831791;
-            Assert.AreEqual(tkMemory.Targeting.Player, 831791);
-            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.Player}");
+            tkMemory.Targeting.TargetLock = 831791;
+            Assert.AreEqual(tkMemory.Targeting.TargetLock, 831791);
+            Console.WriteLine($"TargetUidSpell = {tkMemory.Targeting.TargetLock}");
         }
     }
 }

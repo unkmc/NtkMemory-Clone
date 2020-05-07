@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using AutoHotkey.Interop.ClassMemory;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoHotkey.Interop.ClassMemory;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Commands.Poet;
 using TkMemory.Integration.TkClient.Properties.Npcs;
@@ -66,11 +66,11 @@ namespace TkMemory.Integration.TkClient
         #endregion Properties
 
         #region Public Methods
-        
+
         /// <summary>
         /// Scans the current screen for NPCs and adds any that are not already in the bot's NPC
         /// list to that list. By default, this happens no more often than once every 10 seconds,
-        /// but it can also be done on command by setting the overriding that cooldown feature.
+        /// but it can also be done on command by using the override parameter.
         /// </summary>
         /// <param name="targetableSpell">Any targetable spell.</param>
         /// <param name="overrideCooldown">Set to true for an on-demand scan regardless of current
