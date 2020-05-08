@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -45,14 +46,14 @@ namespace TkMemory.Integration.TkClient
         /// ".exe" extension).</param>
         public ActiveClients(string processName)
         {
-            _processName = processName;
+            _processName = Path.GetFileNameWithoutExtension(processName);
 
             Mages = new List<MageClient>();
             Poets = new List<PoetClient>();
             Rogues = new List<RogueClient>();
             Warriors = new List<WarriorClient>();
 
-            var clients = Process.GetProcessesByName(processName);
+            var clients = Process.GetProcessesByName(_processName);
 
             foreach (var client in clients)
             {
@@ -329,7 +330,7 @@ namespace TkMemory.Integration.TkClient
 
         private static void ThrowNullReferenceException(string name)
         {
-            throw new NullReferenceException($"Could not find an active TK client for named '{name}'.");
+            throw new NullReferenceException($"Could not find an active TK client for a character named '{name}'.");
         }
 
         private void ThrowNullReferenceException(string type, string name)

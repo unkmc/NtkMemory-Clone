@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using NUnit.Framework;
 using System;
 using System.Configuration;
-using NUnit.Framework;
 using TkMemory.Integration.TkClient;
 
 namespace TkMemory.Tests.Integration
