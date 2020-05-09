@@ -104,6 +104,11 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
         /// <returns>True if the spell was cast; false otherwise.</returns>
         public async Task<bool> Rage()
         {
+            if (RageSpell == null)
+            {
+                return false;
+            }
+
             return await SpellCommands.CastAetheredSpell(Self, RageSpell, RageStatus);
         }
 

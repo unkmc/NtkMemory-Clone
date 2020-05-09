@@ -93,7 +93,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
                     _recastPending = false;
                     _currentRageLevel = GetCurrentRageLevel();
 
-                    Log.Debug($"Current rage level is now {_currentRageLevel}.");
+                    Log.Information($"Current rage level is now {_currentRageLevel}.");
                 }
 
                 InactiveCount = 0;

@@ -25,8 +25,8 @@ namespace TkMemory.Application
         {
             try
             {
-                var demo = new PoetDemo();
-                //var demo = new RogueDemo();
+                //var demo = new PoetDemo();
+                var demo = new RogueDemo();
                 await demo.AutoHunt();
             }
             catch (Exception ex)
