@@ -12,8 +12,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectArtifacts", "ProjectArtifacts", "{F1E3C221-FA6D-47B2-9B36-98B39BBA24F0}"
 	ProjectSection(SolutionItems) = preProject
 		ProjectArtifacts\CommonAssemblyInfo.cs = ProjectArtifacts\CommonAssemblyInfo.cs
-		ProjectArtifacts\CTK.png = ProjectArtifacts\CTK.png
 		ProjectArtifacts\NexusTK.CT = ProjectArtifacts\NexusTK.CT
+		ProjectArtifacts\tk.png = ProjectArtifacts\tk.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Domain", "TkMemory.Domain\TkMemory.Domain.csproj", "{C7597364-60B7-48DA-B358-08DB41F03197}"
