@@ -17,11 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text;
-
-// ReSharper disable UnusedMember.Global
 
 namespace TkMemory.Integration.TkClient
 {
@@ -29,6 +28,7 @@ namespace TkMemory.Integration.TkClient
     /// Provides information about all clients currently running on the same PC as the bot
     /// and to which base path the player from each client belongs.
     /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class ActiveClients
     {
         #region Fields
@@ -42,8 +42,8 @@ namespace TkMemory.Integration.TkClient
         /// <summary>
         /// Examines every active client and sorts each by the base path of the its player.
         /// </summary>
-        /// <param name="processName">The name of the executable of the client (excluding the
-        /// ".exe" extension).</param>
+        /// <param name="processName">The name of the executable of the client (with or
+        /// without the ".exe" extension).</param>
         public ActiveClients(string processName)
         {
             _processName = Path.GetFileNameWithoutExtension(processName);

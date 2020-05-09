@@ -40,10 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoHotkey.Interop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoHotkey.Interop.ClassMemory.1.1.0\lib\net461\AutoHotkey.Interop.dll</HintPath>
+      <HintPath>..\packages\AutoHotkey.Interop.ClassMemory.1.1.4\lib\net461\AutoHotkey.Interop.dll</HintPath>
     </Reference>
     <Reference Include="AutoHotkey.Interop.ClassMemory, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoHotkey.Interop.ClassMemory.1.1.0\lib\net461\AutoHotkey.Interop.ClassMemory.dll</HintPath>
+      <HintPath>..\packages\AutoHotkey.Interop.ClassMemory.1.1.4\lib\net461\AutoHotkey.Interop.ClassMemory.dll</HintPath>
     </Reference>
     <Reference Include="Costura, Version=3.3.3.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.3.3.3\lib\net40\Costura.dll</HintPath>
