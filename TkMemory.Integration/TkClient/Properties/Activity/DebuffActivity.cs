@@ -39,13 +39,9 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
             paralyzeDebuffs.AddRange(Mage.Paralyze);
             paralyzeDebuffs.AddRange(Mage.MassParalyze);
 
-            var scourgeDebuffs = new List<BuffKeySpell>();
-            scourgeDebuffs.AddRange(Poet.Scourge);
-            scourgeDebuffs.AddRange(Mage.MagisBane);
-
             Blindness = new DebuffStatus(activity, Mage.Blind);
             Paralysis = new DebuffStatus(activity, paralyzeDebuffs);
-            Scourge = new DebuffStatus(activity, scourgeDebuffs);
+            Scourge = new DebuffStatus(activity, Poet.Scourge);
             Venom = new DebuffStatus(activity, Mage.Venom);
             Vex = new DebuffStatus(activity, Mage.Vex);
         }

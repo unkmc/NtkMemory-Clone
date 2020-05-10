@@ -42,7 +42,6 @@ namespace TkMemory.Domain.Spells.KeySpells
             Hellfire = GetAetheredKeySpellByPriority(Priorities.Mage.Hellfire);
             Incineration = GetAetheredKeySpellByPriority(Priorities.Mage.Incineration);
             Inferno = GetAetheredKeySpellByPriority(Priorities.Mage.Inferno);
-            MagisBane = GetBuffKeySpellByPriority(Priorities.Mage.MagisBane);
             Paralyze = GetBuffKeySpellByPriority(Priorities.Mage.Paralyze);
             MassParalyze = GetBuffKeySpellByPriority(Priorities.Mage.MassParalyze);
             Sleep = GetBuffKeySpellByPriority(Priorities.Mage.Sleep);

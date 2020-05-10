@@ -23,9 +23,7 @@ using TkMemory.Integration.AutoHotkey;
 using TkMemory.Integration.TkClient;
 using TkMemory.Integration.TkClient.Properties.Commands.Peasant;
 
-// ReSharper disable once CyclomaticComplexity
-
-namespace TkMemory.Application
+namespace TkMemory.Application.Demo
 {
     /// <summary>
     /// A sample bot to demonstrate and test the mechanics of using the TkMemory library.
@@ -62,7 +60,7 @@ namespace TkMemory.Application
 
             _isBotRunning = new AutoHotkeyToggle("^F2", "isBotRunning", true);
             _isBotPaused = new AutoHotkeyToggle("F2", "isBotPaused", false);
-            _shouldEsunaExternalGroupMembers = new AutoHotkeyToggle("F12", "shouldEsunaExternalGroupMembers", false);
+            _shouldEsunaExternalGroupMembers = new AutoHotkeyToggle("PrintScreen", "shouldEsunaExternalGroupMembers", false);
             _shouldRing = new AutoHotkeyToggle("NumpadDiv", "shouldRing", false);
             _shouldGate = new AutoHotkeyToggle("^NumpadDiv", "shouldGate", false);
             _shouldReturn = new AutoHotkeyToggle("!NumpadDiv", "shouldReturn", false);
@@ -77,9 +75,7 @@ namespace TkMemory.Application
                 _shouldReturn
             };
 
-            var ahk = AutoHotkeyEngine.Instance;
-            ahk.LoadToggles(toggles);
-            ahk.LoadScript("NumpadAdd::Send {Ctrl down},{Ctrl up}");
+            AutoHotkeyEngine.Instance.LoadToggles(toggles);
         }
 
         #endregion Constructors
@@ -91,6 +87,7 @@ namespace TkMemory.Application
         /// rearranged to tweak the logic, or commands can be added/removed for significantly
         /// different bot behavior.
         /// </summary>
+        [SuppressMessage("ReSharper", "CyclomaticComplexity")]
         [SuppressMessage("ReSharper", "EnforceIfStatementBraces")]
         public async Task AutoHunt()
         {

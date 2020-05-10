@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 using TkMemory.Integration.AutoHotkey;
 using TkMemory.Integration.TkClient;
 
-namespace TkMemory.Application
+namespace TkMemory.Application.Demo
 {
     /// <summary>
     /// A sample bot to demonstrate and test the mechanics of using the TkMemory library.
@@ -82,9 +82,7 @@ namespace TkMemory.Application
                 _shouldAmbushOnMelee
             };
 
-            var ahk = AutoHotkeyEngine.Instance;
-            ahk.LoadToggles(toggles);
-            ahk.LoadScript("NumpadAdd::Send {Ctrl down},{Ctrl up}");
+            AutoHotkeyEngine.Instance.LoadToggles(toggles);
         }
 
         #endregion Constructors
@@ -96,7 +94,6 @@ namespace TkMemory.Application
         /// rearranged to tweak the logic, or commands can be added/removed for significantly
         /// different bot behavior.
         /// </summary>
-        ///
         [SuppressMessage("ReSharper", "EnforceIfStatementBraces")]
         public async Task AutoHunt()
         {

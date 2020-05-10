@@ -14,7 +14,6 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System.Linq;
 using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Commands.Caster;
@@ -203,32 +202,20 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         #region Paralyze
 
         /// <summary>
-        /// Casts the Paralyze debuff on a target. It can be cast a specified number of times to mitigate
-        /// the risk presented by the failure rate.
+        /// Casts the Paralyze debuff on a target.
         /// </summary>
         /// <param name="target">The NPC to target for the debuff.</param>
-        /// <param name="numberOfAttempts">The number of times to attempt to cast the spell.</param>
         /// <returns>True if the spell was cast; false otherwise.</returns>
-        public async Task<bool> Paralyze(Npc target, int numberOfAttempts = 3)
+        public async Task<bool> Paralyze(Npc target) // TODO: Figure out how to compensate for the failure rate
         {
-            var didCast = new bool[numberOfAttempts];
-
-            for (var i = 0; i < numberOfAttempts; i++)
-            {
-                didCast[i] = await StatusCommands.CastStatus(_self, target, target.Activity.Paralyze, _paralyzeSpell);
-                await Task.Delay(50);
-            }
-
-            return didCast.Contains(true);
+            return await StatusCommands.CastStatus(_self, target, target.Activity.Paralyze, _paralyzeSpell);
         }
 
         /// <summary>
         /// Iterates through the NPCs in the Mage's vicinity and casts Paralyze on the first NPC found to be eligible
-        /// for it. The method will exit and return true as soon as the spell is cast once. If no eligible NPCs are found,
-        /// the method will return false. It can be cast a specified number of times to mitigate the risk presented by
-        /// the failure rate.
+        /// for it. The method will exit and return true as soon as the spell is cast once. If no eligible NPCs are
+        /// found, the method will return false.
         /// </summary>
-        /// <param name="numberOfAttempts">The number of times to attempt to cast the spell per target.</param>
         /// <returns>True if the spell was cast; false otherwise.</returns>
         public async Task<bool> ParalyzeNpcs(int numberOfAttempts = 3)
         {
@@ -236,7 +223,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
             // the list backwards to properly handle removals from the list further downstream.
             for (var i = _self.Npcs.Count - 1; i >= 0; i--)
             {
-                if (await Paralyze(_self.Npcs[i], numberOfAttempts))
+                if (await Paralyze(_self.Npcs[i]))
                 {
                     return true;
                 }

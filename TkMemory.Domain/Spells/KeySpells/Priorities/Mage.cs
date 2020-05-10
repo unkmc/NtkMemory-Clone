@@ -171,14 +171,6 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         };
 
         /// <summary>
-        /// Non-targetable scourge on a random NPC within range. (Exclusive to ClassicTK)
-        /// </summary>
-        public static readonly BuffKeySpell[] MagisBane =
-        {
-            new BuffKeySpell("Magi's Bane", "Magi's Bane", 120, 187) // TODO: Verify cost and duration
-        };
-
-        /// <summary>
         /// Mass paralyze 3x3 grouping.
         /// </summary>
         public static readonly BuffKeySpell[] MassParalyze =

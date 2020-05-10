@@ -16,6 +16,7 @@
 
 using System;
 using System.Threading.Tasks;
+using TkMemory.Application.Demo;
 
 namespace TkMemory.Application
 {
@@ -25,8 +26,10 @@ namespace TkMemory.Application
         {
             try
             {
+                var demo = new MageDemo();
                 //var demo = new PoetDemo();
-                var demo = new RogueDemo();
+                //var demo = new RogueDemo();
+                //var demo = new WarriorDemo();
                 await demo.AutoHunt();
             }
             catch (Exception ex)
