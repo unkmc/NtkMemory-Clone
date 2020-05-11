@@ -31,7 +31,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
     {
         #region Fields
 
-        private const int CooldownInMilliseconds = 1000;
+        private const int DefaultCooldownInMilliseconds = 1000;
         protected readonly string[] Aliases;
         protected readonly TkActivity Activity;
         private DateTime _timeOfPreviousCasting;
@@ -49,7 +49,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
         {
             Aliases = aliases.Select(buff => buff.AlignedName).ToArray();
             Activity = activity;
-            _timeOfPreviousCasting = DateTime.Now.AddMilliseconds(-CooldownInMilliseconds);
+            _timeOfPreviousCasting = DateTime.Now.AddMilliseconds(-DefaultCooldownInMilliseconds);
         }
 
         #endregion Constructors
@@ -86,9 +86,9 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
         /// redundant casting. If it is still inactive after one second, it is assumed to
         /// have failed and is recast.
         /// </summary>
-        protected bool IsCoolingDown()
+        protected bool IsCoolingDown(int cooldown = DefaultCooldownInMilliseconds)
         {
-            return (DateTime.Now - _timeOfPreviousCasting).TotalMilliseconds <= CooldownInMilliseconds;
+            return (DateTime.Now - _timeOfPreviousCasting).TotalMilliseconds <= cooldown;
         }
 
         /// <summary>

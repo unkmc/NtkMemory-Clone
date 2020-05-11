@@ -36,16 +36,22 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
 
         #endregion Constructors
 
+        #region Properties
+
+        public int Cooldown { get; set; }
+
+        #endregion Properties
+
         #region Protected Methods
 
         /// <summary>
-        /// Invisible should always be considered inactive because it needs to be cast so frequently that routine
-        /// lag causes excessive delays between castings. This does cause redundant attempts to cast, but that
-        /// is less detrimental than the alternative.
+        /// Invisible needs to be cast so often that it does not work very well to try to
+        /// detect it in the status effects window to decide when to cast it or not. Casting
+        /// at set intervals is more efficient.
         /// </summary>
         protected override bool CheckIfActive()
         {
-            return false;
+            return IsCoolingDown(Cooldown);
         }
 
         #endregion Protected Methods

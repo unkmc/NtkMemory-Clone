@@ -68,8 +68,8 @@ namespace TkMemory.Application.Demo
             _shouldTaunt = new AutoHotkeyToggleWithPrerequisite("7", "shouldTaunt", false, _shouldUpdateNpcs);
             _shouldLethalStrikeOnAethers = new AutoHotkeyToggle("8", "shouldLethalStrikeOnAethers", false);
             _shouldDesperateAttackOnAethers = new AutoHotkeyToggle("9", "shouldDesperateAttackOnAethers", false);
-            _shouldAutoMelee = new AutoHotkeyToggle("0", "shouldAutoMelee", false);
-            _shouldAmbushOnMelee = new AutoHotkeyToggle("-", "shouldAmbushOnMelee", false);
+            _shouldAutoMelee = new AutoHotkeyToggle("0", "shouldAutoMelee", true);
+            _shouldAmbushOnMelee = new AutoHotkeyToggle("-", "shouldAmbushOnMelee", true);
 
             var toggles = new[]
             {
@@ -121,6 +121,7 @@ namespace TkMemory.Application.Demo
                     if (await LethalStrike(85)) continue;
                     if (await DesperateAttack(85)) continue;
                     if (await TauntNpcs()) continue;
+                    if (await Invisible()) continue;
                     await Melee();
                 }
                 catch (Exception ex)
@@ -145,6 +146,16 @@ namespace TkMemory.Application.Demo
             }
 
             return await _rogue.Commands.Attacks.DesperateAttack(minimumVitaPercent);
+        }
+
+        private async Task<bool> Invisible()
+        {
+            if (_shouldAutoMelee.Value)
+            {
+                return await _rogue.Commands.Buffs.Invisible(_shouldAmbushOnMelee.Value);
+            }
+
+            return false;
         }
 
         private async Task<bool> LethalStrike(double minimumVitaPercent = 80)

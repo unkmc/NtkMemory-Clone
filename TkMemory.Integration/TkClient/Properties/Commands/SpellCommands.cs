@@ -45,10 +45,9 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
                 return false;
             }
 
-            if (spell.Cost == 0)
+            if (spell.Cost == 0) // For spells like Ambush and Invisible.
             {
-                // Do not bother checking to see if a mana restoration item is needed.
-                await caster.Activity.WaitForCommandCooldown();
+                await caster.Activity.WaitForMeleeCooldown();
             }
             else if (isLowCostSpell && !await ItemCommands.RestoreMinorManaForSpell(caster, spell))
             {
@@ -127,6 +126,11 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
             KeySpell spell,
             InvisibleStatus status)
         {
+            if (status.IsActive)
+            {
+                return false;
+            }
+
             var didCastSpell = await CastSpell(caster, spell, true);
 
             if (didCastSpell)

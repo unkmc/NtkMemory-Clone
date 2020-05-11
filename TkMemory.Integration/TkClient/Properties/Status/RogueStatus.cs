@@ -14,8 +14,6 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System.Collections.Generic;
-using TkMemory.Domain.Spells;
 using TkMemory.Domain.Spells.KeySpells.Priorities;
 using TkMemory.Integration.TkClient.Properties.Status.KeySpells;
 
@@ -37,15 +35,10 @@ namespace TkMemory.Integration.TkClient.Properties.Status
         /// <param name="self">All game client data for the Rogue.</param>
         public RogueStatus(TkClient self) : base(self.Activity)
         {
-            var mightBuffs = new List<BuffKeySpell>();
-            mightBuffs.AddRange(Caster.Valor);
-            mightBuffs.AddRange(Rogue.Might);
-
             DesperateAttack = new BuffStatus(Activity, Rogue.DesperateAttack);
             Invisible = new InvisibleStatus(Activity, Rogue.Invisible);
             LethalStrike = new BuffStatus(Activity, Rogue.LethalStrike);
             Fury = new BuffStatus(Activity, Rogue.Fury);
-            Might = new BuffStatus(Activity, mightBuffs);
             Rage = new RageStatus(self, Rogue.Cunning);
             ShadowFigure = new BuffStatus(Activity, Rogue.ShadowFigure);
         }
@@ -68,11 +61,6 @@ namespace TkMemory.Integration.TkClient.Properties.Status
         /// Gets the status of the Lethal Strike key spell.
         /// </summary>
         public BuffStatus LethalStrike { get; }
-
-        /// <summary>
-        /// Gets the status of the Might/Valor buff.
-        /// </summary>
-        public BuffStatus Might { get; }
 
         /// <summary>
         /// Gets the status of the Shadow Figure buff.

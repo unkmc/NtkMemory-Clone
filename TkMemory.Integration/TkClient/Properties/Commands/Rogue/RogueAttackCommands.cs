@@ -66,9 +66,14 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Rogue
         /// and performs a physical attack on that target.
         /// </summary>
         /// <returns>True if the spell was cast; false otherwise.</returns>
-        public async Task<bool> Ambush()
+        public async Task Ambush()
         {
-            return await SpellCommands.CastSpell(Self, _ambushSpell, true);
+            await Self.Activity.WaitForMeleeCooldown();
+
+            if (await SpellCommands.CastSpell(Self, _ambushSpell, true))
+            {
+                Self.Activity.ResetCommandCooldown();
+            }
         }
 
         /// <summary>
@@ -113,37 +118,15 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Rogue
         /// <param name="shouldAmbush">Toggle for ambushing versus using a normal physical attack.</param>
         public async Task Melee(bool shouldAmbush)
         {
-            var attackDelegate = shouldAmbush && _ambushSpell != null
-                ? Ambush()
-                : Task.Run(Melee);
-
-            await Self.Activity.WaitForMeleeCooldown();
-
-            if (!await _self.Commands.Buffs.Invisible())
+            if (shouldAmbush && _ambushSpell != null)
             {
-                await attackDelegate;
+                await Ambush();
+                return;
             }
 
-            Self.Activity.ResetCommandCooldown();
-            await Self.Activity.WaitForMeleeCooldown();
-            await attackDelegate;
-
-            Self.Activity.ResetCommandCooldown();
-            await Self.Activity.WaitForMeleeCooldown();
-            await attackDelegate;
-
-            Self.Activity.ResetCommandCooldown();
+            await Melee();
         }
 
         #endregion Public Methods
-
-        #region Private Methods
-
-        private new void Melee()
-        {
-            Self.Send($"{Keys.Esc}{Keys.Space}");
-        }
-
-        #endregion Private Methods
     }
 }
