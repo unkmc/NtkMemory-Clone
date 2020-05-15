@@ -218,7 +218,7 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         {
             // Duration is actually random; 24 seconds was arbitrarily chosen
             new BuffKeySpell("Venom", "Venom", 60, 24),
-            new BuffKeySpell("Venom", "Spirit's Leech", 60, 24),
+            new BuffKeySpell("Venom", "Spirit Leech", 60, 24),
             new BuffKeySpell("Venom", "Snake Bite", 60, 24),
             new BuffKeySpell("Venom", "Corruption", 60, 24)
         };
