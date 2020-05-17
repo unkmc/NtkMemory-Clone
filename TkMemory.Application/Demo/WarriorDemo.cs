@@ -34,6 +34,7 @@ namespace TkMemory.Application.Demo
 
         private readonly WarriorClient _warrior;
         private readonly ActiveClients _clients;
+        private readonly AutoHotkeyEngine _ahk;
 
         private readonly AutoHotkeyBool _shouldUpdateNpcs;
         private readonly AutoHotkeyToggle _isBotRunning;
@@ -64,7 +65,7 @@ namespace TkMemory.Application.Demo
 
             _shouldUpdateNpcs = new AutoHotkeyBool("shouldUpdateNpcs", false);
             _isBotRunning = new AutoHotkeyToggle("^F4", "isBotRunning", true);
-            _isBotPaused = new AutoHotkeyToggle("F4", "isBotPaused", false);
+            _isBotPaused = new AutoHotkeySuspendToggle("F4", "isBotPaused", false);
             _shouldSpotTrapsOnAethers = new AutoHotkeyToggle("F6", "shouldSpotTrapsOnAethers", false);
             _shouldTaunt = new AutoHotkeyToggleWithPrerequisite("F7", "shouldTaunt", false, _shouldUpdateNpcs);
             _shouldWhirlwindOnAethers = new AutoHotkeyToggle("F8", "shouldWhirlwindOnAethers", true);
@@ -82,7 +83,8 @@ namespace TkMemory.Application.Demo
                 _shouldSpotTrapsOnAethers
             };
 
-            AutoHotkeyEngine.Instance.LoadToggles(toggles);
+            _ahk = AutoHotkeyEngine.Instance;
+            _ahk.LoadToggles(toggles);
         }
 
         #endregion Constructors
@@ -133,6 +135,7 @@ namespace TkMemory.Application.Demo
             }
 
             Log.Information($"Shutting down Warrior bot for {_warrior.Self.Name}...");
+            _ahk.ExecRaw("Suspend");
             TkBotFactory.Terminate(_warrior);
         }
 

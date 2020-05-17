@@ -34,6 +34,7 @@ namespace TkMemory.Application.Demo
 
         private readonly RogueClient _rogue;
         private readonly ActiveClients _clients;
+        private readonly AutoHotkeyEngine _ahk;
 
         private readonly AutoHotkeyBool _shouldUpdateNpcs;
         private readonly AutoHotkeyToggle _isBotRunning;
@@ -64,7 +65,7 @@ namespace TkMemory.Application.Demo
 
             _shouldUpdateNpcs = new AutoHotkeyBool("shouldUpdateNpcs", false);
             _isBotRunning = new AutoHotkeyToggle("^F3", "isBotRunning", true);
-            _isBotPaused = new AutoHotkeyToggle("F3", "isBotPaused", false);
+            _isBotPaused = new AutoHotkeySuspendToggle("F3", "isBotPaused", false);
             _shouldTaunt = new AutoHotkeyToggleWithPrerequisite("7", "shouldTaunt", false, _shouldUpdateNpcs);
             _shouldLethalStrikeOnAethers = new AutoHotkeyToggle("8", "shouldLethalStrikeOnAethers", false);
             _shouldDesperateAttackOnAethers = new AutoHotkeyToggle("9", "shouldDesperateAttackOnAethers", false);
@@ -82,7 +83,8 @@ namespace TkMemory.Application.Demo
                 _shouldAmbushOnMelee
             };
 
-            AutoHotkeyEngine.Instance.LoadToggles(toggles);
+            _ahk = AutoHotkeyEngine.Instance;
+            _ahk.LoadToggles(toggles);
         }
 
         #endregion Constructors
@@ -131,6 +133,7 @@ namespace TkMemory.Application.Demo
             }
 
             Log.Information($"Shutting down  bot for {_rogue.Self.Name}...");
+            _ahk.ExecRaw("Suspend");
             TkBotFactory.Terminate(_rogue);
         }
 

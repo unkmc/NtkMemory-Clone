@@ -27,8 +27,8 @@ namespace TkMemory.Application
             try
             {
                 //var demo = new MageDemo();
-                var demo = new PoetDemo();
-                //var demo = new RogueDemo();
+                //var demo = new PoetDemo();
+                var demo = new RogueDemo();
                 //var demo = new WarriorDemo();
                 await demo.AutoHunt();
             }
