@@ -71,6 +71,15 @@ namespace TkMemory.Integration.TkClient.Properties.Npcs
             _timeLastCast = DateTime.Now;
         }
 
+        /// <summary>
+        /// Manually set the timer such that the debuff will be considered inactive the
+        /// next time it is considered for casting.
+        /// </summary>
+        public void SetInactive()
+        {
+            _timeLastCast = DateTime.Now.AddSeconds(-_duration);
+        }
+
         #endregion Public Methods
     }
 }

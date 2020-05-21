@@ -69,11 +69,11 @@ namespace TkMemory.Application.Demo
             _isBotPaused = new AutoHotkeySuspendToggle("F1", "isBotPaused", false);
             _shouldEsunaExternalGroupMembers = new AutoHotkeyToggle("PrintScreen", "shouldEsunaExternalGroupMembers", false);
             _shouldHeal = new AutoHotkeyToggle("`", "shouldHeal", true);
-            _shouldBlind = new AutoHotkeyToggle("1", "shouldBlind", false);
-            _shouldParalyze = new AutoHotkeyToggle("2", "shouldParalyze", false);
-            _shouldVenom = new AutoHotkeyToggle("3", "shouldVenom", false);
+            _shouldBlind = new AutoHotkeyToggle("1", "shouldBlind", true);
+            _shouldParalyze = new AutoHotkeyToggle("2", "shouldParalyze", true);
+            _shouldVenom = new AutoHotkeyToggle("3", "shouldVenom", true);
             _shouldVex = new AutoHotkeyToggle("4", "shouldVex", true);
-            _shouldZap = new AutoHotkeyToggle("5", "shouldZap", false);
+            _shouldZap = new AutoHotkeyToggle("5", "shouldZap", true);
             _shouldUpdateNpcs = new AutoHotkeyToggle("6", "shouldUpdateNpcs", false);
 
             var toggles = new[]
@@ -128,10 +128,10 @@ namespace TkMemory.Application.Demo
                     if (await UpdateNpcs()) continue;
                     if (await BlindNpcs()) continue;
                     if (await VexNpcs()) continue;
-                    if (await ParalyzeNpcs()) continue;
                     if (await VenomNpcs()) continue;
                     if (await _mage.Commands.Asv.ValorGroup()) continue;
-                    await ZapNpcs();
+                    if (await ParalyzeNpcs(true)) continue;
+                    await ZapNpcs(); // Will never get to this point if Paralyze is toggled on and its ignoreEligibility is set to true.
                 }
                 catch (Exception ex)
                 {
@@ -189,14 +189,14 @@ namespace TkMemory.Application.Demo
             _mage.MarkExternalGroupMembersForEsuna();
         }
 
-        private async Task<bool> ParalyzeNpcs()
+        private async Task<bool> ParalyzeNpcs(bool ignoreEligibility = false)
         {
             if (!_shouldParalyze.Value)
             {
                 return false;
             }
 
-            return await _mage.Commands.Debuffs.ParalyzeNpcs();
+            return await _mage.Commands.Debuffs.ParalyzeNpcs(ignoreEligibility);
         }
 
         [SuppressMessage("ReSharper", "InvertIf")]

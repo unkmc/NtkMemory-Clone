@@ -44,8 +44,11 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         /// <param name="self">The game client data for the Mage.</param>
         public MageManaCommands(MageClient self) : base(self)
         {
-            _mageInvokeOrb = new KeySpell(Self.Inventory.KeyItems.InvokeOrb);
-            _mageInvokeStatus = self.Status.MageInvoke;
+            if (Self.Inventory.KeyItems.InvokeOrb != null)
+            {
+                _mageInvokeOrb = new KeySpell(Self.Inventory.KeyItems.InvokeOrb);
+                _mageInvokeStatus = self.Status.MageInvoke;
+            }
 
             if (InvokeSpell == null && _mageInvokeOrb == null)
             {
@@ -90,7 +93,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
 
             if (didInvoke)
             {
-                _mageInvokeStatus.ResetStatusCooldown();
+                _mageInvokeStatus?.ResetStatusCooldown();
             }
 
             return didInvoke;
