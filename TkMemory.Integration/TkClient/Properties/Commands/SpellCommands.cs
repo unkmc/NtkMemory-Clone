@@ -45,7 +45,11 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
                 return false;
             }
 
-            if (spell.Cost == 0) // For spells like Ambush and Invisible.
+            if (spell.IsOrbSpell)
+            {
+                await caster.Activity.WaitForCommandCooldown();
+            }
+            else if (spell.Cost == 0) // For spells like Ambush and Invisible.
             {
                 await caster.Activity.WaitForMeleeCooldown();
             }
@@ -58,7 +62,11 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
                 return false;
             }
 
-            caster.Send($"{Keys.Esc}Z");
+            var spellOrItemKey = spell.IsOrbSpell
+                ? "u"
+                : "Z";
+
+            caster.Send($"{Keys.Esc}{spellOrItemKey}");
 
             if (!string.IsNullOrWhiteSpace(secondaryInput))
             {

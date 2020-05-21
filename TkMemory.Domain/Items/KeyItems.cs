@@ -24,7 +24,7 @@ using TkMemory.Domain.Infrastructure;
 namespace TkMemory.Domain.Items
 {
     /// <summary>
-    /// A collection of items most likely to be of relevance to a bot.
+    /// A collection of items most likely to be of relevance to a trainer.
     /// </summary>
     public class KeyItems
     {
@@ -44,19 +44,26 @@ namespace TkMemory.Domain.Items
         {
             _inventory = inventory;
 
-            Axe = GetItemByPriority(Priorities.Axe);
-            MajorManaRestoration = GetRestorationByPriorityAndQuantity(Priorities.RestoreManaMajor);
-            MiningPick = GetItemByPriority(Priorities.MiningPick);
-            MinorManaRestoration = GetRestorationByPriorityAndQuantity(Priorities.RestoreManaMinor);
-            Mount = GetMountByPriority(Priorities.Mount);
-            Ring = GetItemByPriority(Priorities.Rings);
-            VitaRestoration = GetRestorationByPriorityAndQuantity(Priorities.RestoreVita);
-            YellowScroll = GetItemByPriority(Priorities.YellowScroll);
+            Axe = GetItemByPriority(Priorities.Peasant.Axe);
+            MajorManaRestoration = GetRestorationByPriorityAndQuantity(Priorities.Peasant.RestoreManaMajor);
+            MiningPick = GetItemByPriority(Priorities.Peasant.MiningPick);
+            MinorManaRestoration = GetRestorationByPriorityAndQuantity(Priorities.Peasant.RestoreManaMinor);
+            Mount = GetMountByPriority(Priorities.Peasant.Mount);
+            Ring = GetItemByPriority(Priorities.Peasant.Rings);
+            VitaRestoration = GetRestorationByPriorityAndQuantity(Priorities.Peasant.RestoreVita);
+            YellowScroll = GetItemByPriority(Priorities.Peasant.YellowScroll);
+
+            InvokeOrb = GetItemByPriority(Priorities.Mage.Invoke);
+            RippleOrb = GetItemByPriority(Priorities.Mage.Ripple);
+            ScourgeOrb = GetItemByPriority(Priorities.Mage.Scourge);
+            SulSlashOrb = GetItemByPriority(Priorities.Mage.SulSlash);
         }
 
         #endregion Constructors
 
         #region Properties
+
+        #region Peasant
 
         /// <summary>
         /// An axe that can be used for the woodcutting skill.
@@ -100,6 +107,32 @@ namespace TkMemory.Domain.Items
         /// </summary>
         public Item YellowScroll { get; }
 
+        #endregion Peasant
+
+        #region Mage
+
+        /// <summary>
+        /// An orb that can be used to cast Invoke.
+        /// </summary>
+        public Item InvokeOrb { get; }
+
+        /// <summary>
+        /// An orb that can be used to cast Ripple.
+        /// </summary>
+        public Item RippleOrb { get; }
+
+        /// <summary>
+        /// An orb that can be used to cast Scourge.
+        /// </summary>
+        public Item ScourgeOrb { get; }
+
+        /// <summary>
+        /// An orb that can be used to cast Sul Slash.
+        /// </summary>
+        public Item SulSlashOrb { get; }
+
+        #endregion Mage
+
         #endregion Properties
 
         #region Public Methods
@@ -122,32 +155,14 @@ namespace TkMemory.Domain.Items
 
         #endregion Public Methods
 
-        #region Protected Methods
-
-        protected Restoration GetRestorationByPriorityAndQuantity(IEnumerable<Restoration> priorityList)
-        {
-            var itemsByPriorityThenQuantity = priorityList.Select(restoration => from i in _inventory
-                where string.Equals(i.Name, restoration.Name, StringComparison.OrdinalIgnoreCase)
-                orderby i.Quantity
-                select new Restoration(restoration.Name, restoration.RestoreAmount, Index.Parse(i.Letter), i.Quantity));
-
-            var firstItemInList = itemsByPriorityThenQuantity
-                .Select(x => x.FirstOrDefault())
-                .FirstOrDefault(y => y != null);
-
-            return firstItemInList;
-        }
-
-        #endregion Protected Methods
-
         #region Private Methods
 
         private Item GetMountByPriority(IEnumerable<string> priorityList)
         {
             return (from mount in priorityList
-                from item in _inventory
-                where CultureInfo.InvariantCulture.CompareInfo.IndexOf(item.Name, mount, CompareOptions.OrdinalIgnoreCase) >= 0
-                select item
+                    from item in _inventory
+                    where CultureInfo.InvariantCulture.CompareInfo.IndexOf(item.Name, mount, CompareOptions.OrdinalIgnoreCase) >= 0
+                    select item
             ).FirstOrDefault();
         }
 
@@ -160,10 +175,25 @@ namespace TkMemory.Domain.Items
         private Item GetItemByPriority(IEnumerable<string> priorityList)
         {
             return (from itemName in priorityList
-                from item in _inventory
-                where CultureInfo.InvariantCulture.CompareInfo.IndexOf(itemName, item.Name, CompareOptions.OrdinalIgnoreCase) >= 0
-                select new Item(Index.Parse(item.Letter), itemName, item.Quantity)
+                    from item in _inventory
+                    where CultureInfo.InvariantCulture.CompareInfo.IndexOf(itemName, item.Name, CompareOptions.OrdinalIgnoreCase) >= 0
+                    select new Item(Index.Parse(item.Letter), itemName, item.Quantity)
             ).FirstOrDefault();
+        }
+
+        private Restoration GetRestorationByPriorityAndQuantity(IEnumerable<Restoration> priorityList)
+        {
+            var itemsByPriorityThenQuantity = priorityList.Select(restoration =>
+                from i in _inventory
+                where string.Equals(i.Name, restoration.Name, StringComparison.OrdinalIgnoreCase)
+                orderby i.Quantity
+                select new Restoration(restoration.Name, restoration.RestoreAmount, Index.Parse(i.Letter), i.Quantity));
+
+            var firstItemInList = itemsByPriorityThenQuantity
+                .Select(x => x.FirstOrDefault())
+                .FirstOrDefault(y => y != null);
+
+            return firstItemInList;
         }
 
         #endregion Private Methods

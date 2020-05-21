@@ -14,28 +14,13 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System;
-using System.Threading.Tasks;
-using TkMemory.Application.Demo;
-
-namespace TkMemory.Application
+namespace TkMemory.Domain.Items.Priorities
 {
-    internal class Program
+    internal class Mage
     {
-        public static async Task Main()
-        {
-            try
-            {
-                //var demo = new MageDemo();
-                var demo = new PoetDemo();
-                //var demo = new RogueDemo();
-                //var demo = new WarriorDemo();
-                await demo.AutoHunt();
-            }
-            catch (Exception ex)
-            {
-                TkBotFactory.Terminate(ex);
-            }
-        }
+        public const string Invoke = "Fragile Orb of Mage Invoke";
+        public const string Ripple = "Fragile Orb of Ripple";
+        public const string Scourge = "Fragile Orb of Scourge";
+        public const string SulSlash = "Fragile Orb of Sul Slash";
     }
 }

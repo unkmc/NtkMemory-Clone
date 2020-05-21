@@ -54,6 +54,15 @@ namespace TkMemory.Integration.TkClient.Properties
         }
 
         /// <summary>
+        /// The current target of the player for using any targetable item (e.g. Mage orbs).
+        /// </summary>
+        public uint Item
+        {
+            get => _classMemory.Read<uint>(TkAddresses.Self.TargetUids.Item);
+            set => _classMemory.Write(value, TkAddresses.Self.TargetUids.Item);
+        }
+
+        /// <summary>
         /// The current target of the player for casting any targetable spell.
         /// </summary>
         public uint Spell

@@ -14,8 +14,8 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System.Threading.Tasks;
 using Serilog;
+using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Infrastructure;
 using TkMemory.Integration.TkClient.Properties.Status.KeySpells;
@@ -49,11 +49,6 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
 
             InvokeSpell = self.Spells.KeySpells.Invoke;
             InvokeStatus = self.Status.Invoke;
-
-            if (InvokeSpell == null)
-            {
-                Log.Warning($"{self.Self.Name} does not have an Invoke spell. Mana restoration item consumption will be very high.");
-            }
         }
 
         /// <summary>
@@ -85,7 +80,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
         /// <param name="manaPercentFloor">The mana percent threshold below which the spell
         /// is eligible to be cast.</param>
         /// <returns>True if the spell was cast; false otherwise.</returns>
-        public async Task<bool> Invoke(double manaPercentFloor = 10)
+        public virtual async Task<bool> Invoke(double manaPercentFloor = 10)
         {
             if (Self.Self.Mana.Percent > manaPercentFloor.EvaluateAsPercentage())
             {

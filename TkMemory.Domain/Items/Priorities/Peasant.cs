@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-namespace TkMemory.Domain.Items
+namespace TkMemory.Domain.Items.Priorities
 {
-    internal class Priorities
+    internal class Peasant
     {
         public const string Axe = "Axe";
 
@@ -76,7 +76,7 @@ namespace TkMemory.Domain.Items
             new Restoration("Rich Wine", 350),
             new Restoration("Sonhi Pipe", 450),
             new Restoration("Ogre Drought", 325),
-            new Restoration("Iron Statue", 250), 
+            new Restoration("Iron Statue", 250),
             new Restoration("Rice Wine", 30),
             new Restoration("Memory Blossom", 30),
             new Restoration("Root Liquor", 30),

@@ -36,6 +36,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         private readonly KeySpell _paralyzeSpell;
         private readonly KeySpell _sleepSpell;
         private readonly KeySpell _venomSpell;
+        private readonly KeySpell _scourgeOrb;
         private readonly MageClient _self;
 
         #endregion Fields
@@ -55,6 +56,10 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
             _paralyzeSpell = self.Spells.KeySpells.Paralyze;
             _sleepSpell = self.Spells.KeySpells.Sleep;
             _venomSpell = self.Spells.KeySpells.Venom;
+
+            _scourgeOrb = self.Inventory.KeyItems.ScourgeOrb == null
+                ? null
+                : new KeySpell(self.Inventory.KeyItems.ScourgeOrb);
         }
 
         #endregion Constructors
@@ -303,6 +308,25 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         }
 
         #endregion Venom
+
+        #region Scourge Orb
+
+        /// <summary>
+        /// Casts a curse (i.e. Vex or Scourge) on a target.
+        /// </summary>
+        /// <param name="target">The NPC to target for the debuff.</param>
+        /// <returns>True if the spell was cast; false otherwise.</returns>
+        public override async Task<bool> Curse(Npc target)
+        {
+            if (_scourgeOrb == null)
+            {
+                return await base.Curse(target);
+            }
+
+            return await StatusCommands.CastStatus(_self, target, target.Activity.Curse, _scourgeOrb);
+        }
+
+        #endregion Scourge Orb
 
         #endregion Public Methods
     }

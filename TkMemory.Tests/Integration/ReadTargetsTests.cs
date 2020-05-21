@@ -28,11 +28,12 @@ namespace TkMemory.Tests.Integration
         public void ReadTargets()
         {
             var clients = new ActiveClients(ConfigurationManager.AppSettings["ProcessName"]);
-            var tkMemory = clients.GetPoet();
+            var tkMemory = clients.GetMage();
 
             Console.WriteLine("----------TargetUids----------");
-            Console.WriteLine($"Spell Target UID = {tkMemory.Targeting.Spell}");
             Console.WriteLine($"Auto-Target UID = {tkMemory.Targeting.AutoTarget}");
+            Console.WriteLine($"Item/Orb Target UID = {tkMemory.Targeting.Item}");
+            Console.WriteLine($"Spell Target UID = {tkMemory.Targeting.Spell}");
             Console.WriteLine($"Target Lock UID = {tkMemory.Targeting.TargetLock}");
         }
     }

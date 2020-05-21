@@ -192,13 +192,14 @@ namespace TkMemory.Integration.TkClient
         /// <param name="targetUid">The UID of the target.</param>
         /// <param name="targetableSpell">Any targetable spell.</param>
         /// <returns>True if the target is off-screen; false otherwise.</returns>
-        public async Task<bool> IsTargetOffScreen(uint targetUid, Spell targetableSpell)
+        public async Task<bool> IsTargetOffScreen(uint targetUid, KeySpell targetableSpell)
         {
             if (targetableSpell == null)
             {
                 throw new ArgumentNullException(nameof(targetableSpell), "Cannot determine whether or not a target is off-screen without a targetable spell.");
             }
 
+            Targeting.Item = targetUid;
             Targeting.Spell = targetUid;
 
             if (targetUid == Self.Uid)
@@ -206,10 +207,19 @@ namespace TkMemory.Integration.TkClient
                 return false;
             }
 
-            var keys = $"{Keys.Esc}Z{targetableSpell.Letter}{Keys.Esc}";
+            var spellOrItemKey = targetableSpell.IsOrbSpell
+                ? "u"
+                : "Z";
+
+            var keys = $"{Keys.Esc}{spellOrItemKey}{targetableSpell.Letter}{Keys.Esc}";
             Send(keys);
 
             await Task.Delay(20);
+
+            if (targetableSpell.IsOrbSpell)
+            {
+                return Targeting.Item == Self.Uid;
+            }
 
             return Targeting.Spell == Self.Uid;
         }

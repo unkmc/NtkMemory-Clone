@@ -15,6 +15,7 @@
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
 using System;
+using TkMemory.Domain.Items;
 
 namespace TkMemory.Domain.Spells
 {
@@ -36,6 +37,18 @@ namespace TkMemory.Domain.Spells
         {
             UnalignedName = unalignedName;
             Cost = cost;
+            IsOrbSpell = false;
+        }
+
+        /// <summary>
+        /// Initialize a key spell that is cast by using an orb item.
+        /// </summary>
+        /// <param name="orb">The orb item used to cast the spell.</param>
+        public KeySpell(Item orb) : base(Infrastructure.Index.Parse(orb.Letter, 'A'), orb.Name)
+        {
+            UnalignedName = orb.Name;
+            Cost = 0;
+            IsOrbSpell = true;
         }
 
         #endregion Constructors
@@ -56,6 +69,11 @@ namespace TkMemory.Domain.Spells
         /// The original name of the spell when no alignment has been chosen.
         /// </summary>
         public string UnalignedName { get; }
+
+        /// <summary>
+        /// True if the spell is cast by using an orb item; false if it is a traditional spell.
+        /// </summary>
+        public bool IsOrbSpell { get; }
 
         #endregion Properties
 

@@ -30,8 +30,8 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
     {
         #region Fields
 
+        protected readonly KeySpell CurseSpell;
         private readonly KeySpell _cureParalysisSpell;
-        private readonly KeySpell _curseSpell;
         private readonly KeySpell _purgeSpell;
         private readonly KeySpell _removeCurseSpell;
         private readonly TkClient _self;
@@ -49,7 +49,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
             _self = self;
 
             _cureParalysisSpell = self.Spells.KeySpells.CureParalysis;
-            _curseSpell = self.Spells.KeySpells.Curse;
+            CurseSpell = self.Spells.KeySpells.Curse;
             _purgeSpell = self.Spells.KeySpells.Purge;
             _removeCurseSpell = self.Spells.KeySpells.RemoveCurse;
         }
@@ -63,7 +63,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
             _self = self;
 
             _cureParalysisSpell = self.Spells.KeySpells.CureParalysis;
-            _curseSpell = self.Spells.KeySpells.Curse;
+            CurseSpell = self.Spells.KeySpells.Curse;
             _purgeSpell = self.Spells.KeySpells.Purge;
             _removeCurseSpell = self.Spells.KeySpells.RemoveCurse;
         }
@@ -136,9 +136,9 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
         /// </summary>
         /// <param name="target">The NPC to target for the debuff.</param>
         /// <returns>True if the spell was cast; false otherwise.</returns>
-        public async Task<bool> Curse(Npc target)
+        public virtual async Task<bool> Curse(Npc target)
         {
-            return await StatusCommands.CastStatus(_self, target, target.Activity.Curse, _curseSpell);
+            return await StatusCommands.CastStatus(_self, target, target.Activity.Curse, CurseSpell);
         }
 
         /// <summary>

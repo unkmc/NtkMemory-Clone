@@ -45,9 +45,10 @@
     </Compile>
     <Compile Include="Infrastructure\Index.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Items\Priorities\Mage.cs" />
     <Compile Include="Items\Restoration.cs" />
     <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\Priorities.cs" />
+    <Compile Include="Items\Priorities\Peasant.cs" />
     <Compile Include="Items\KeyItems.cs" />
     <Compile Include="Infrastructure\Letter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

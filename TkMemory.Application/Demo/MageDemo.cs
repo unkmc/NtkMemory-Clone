@@ -72,7 +72,7 @@ namespace TkMemory.Application.Demo
             _shouldBlind = new AutoHotkeyToggle("1", "shouldBlind", false);
             _shouldParalyze = new AutoHotkeyToggle("2", "shouldParalyze", false);
             _shouldVenom = new AutoHotkeyToggle("3", "shouldVenom", false);
-            _shouldVex = new AutoHotkeyToggle("4", "shouldVex", false);
+            _shouldVex = new AutoHotkeyToggle("4", "shouldVex", true);
             _shouldZap = new AutoHotkeyToggle("5", "shouldZap", false);
             _shouldUpdateNpcs = new AutoHotkeyToggle("6", "shouldUpdateNpcs", false);
 
@@ -126,8 +126,8 @@ namespace TkMemory.Application.Demo
                     if (await _mage.Commands.Asv.HardenArmorGroup()) continue;
                     if (await HealGroupIfEligible()) continue;
                     if (await UpdateNpcs()) continue;
-                    if (await VexNpcs()) continue;
                     if (await BlindNpcs()) continue;
+                    if (await VexNpcs()) continue;
                     if (await ParalyzeNpcs()) continue;
                     if (await VenomNpcs()) continue;
                     if (await _mage.Commands.Asv.ValorGroup()) continue;

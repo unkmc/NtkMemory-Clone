@@ -14,6 +14,7 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TkMemory.Domain.Items;
 
@@ -55,6 +56,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Peasant
         /// blood sibling, respectively.
         /// </summary>
         /// <returns>True if an item was used; false otherwise.</returns>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public virtual async Task<bool> UseRing()
         {
             return await ItemCommands.UseItem(_self, _ring);
@@ -64,6 +66,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Peasant
         /// Consumes one Yellow scroll to teleport the item user to his/her home.
         /// </summary>
         /// <returns>True if an item was used; false otherwise.</returns>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public virtual async Task<bool> UseYellowScroll()
         {
             return await ItemCommands.UseItem(_self, _yellowScroll);

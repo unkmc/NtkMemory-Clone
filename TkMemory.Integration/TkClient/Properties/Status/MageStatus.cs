@@ -39,7 +39,9 @@ namespace TkMemory.Integration.TkClient.Properties.Status
             Doze = new BuffStatus(activity, Mage.Doze);
             Hellfire = new BuffStatus(activity, Mage.Hellfire);
             Inferno = new BuffStatus(activity, Mage.Inferno);
+            MageInvoke = new BuffStatus(activity, Mage.MageInvoke);
             Sleep = new BuffStatus(activity, Mage.Sleep);
+            SulSlash = new BuffStatus(activity, Mage.SulSlash);
         }
 
         #endregion Constructors
@@ -62,9 +64,19 @@ namespace TkMemory.Integration.TkClient.Properties.Status
         public BuffStatus Inferno { get; }
 
         /// <summary>
+        /// Gets the status of the Mage Invoke orb spell.
+        /// </summary>
+        public BuffStatus MageInvoke { get; }
+
+        /// <summary>
         /// Gets the status of the Sleep key spell.
         /// </summary>
         public BuffStatus Sleep { get; }
+
+        /// <summary>
+        /// Gets the status of the Sul Slash orb spell.
+        /// </summary>
+        public BuffStatus SulSlash { get; }
 
         #endregion Properties
     }

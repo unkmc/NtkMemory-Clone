@@ -16,6 +16,7 @@
 
 using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
+using TkMemory.Integration.TkClient.Infrastructure;
 using TkMemory.Integration.TkClient.Properties.Commands.Peasant;
 using TkMemory.Integration.TkClient.Properties.Npcs;
 using TkMemory.Integration.TkClient.Properties.Status.KeySpells;
@@ -35,6 +36,8 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         private readonly BuffStatus _hellfireStatus;
         private readonly KeySpell _infernoSpell;
         private readonly BuffStatus _infernoStatus;
+        private readonly KeySpell _sulSlashOrb;
+        private readonly BuffStatus _sulSlashStatus;
         private readonly MageClient _self;
 
         #endregion Fields
@@ -53,6 +56,14 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
             _hellfireStatus = self.Status.Hellfire;
             _infernoSpell = self.Spells.KeySpells.Inferno;
             _infernoStatus = self.Status.Inferno;
+
+            if (self.Inventory.KeyItems.SulSlashOrb == null)
+            {
+                return;
+            }
+
+            _sulSlashOrb = new KeySpell(self.Inventory.KeyItems.SulSlashOrb);
+            _sulSlashStatus = self.Status.SulSlash;
         }
 
         #endregion Constructors
@@ -154,6 +165,26 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         }
 
         #endregion Inferno
+
+        #region Sul Slash
+
+        /// <summary>
+        /// Casts the Sul Slash attack spell on the target in front of the caster.
+        /// </summary>
+        /// <param name="minimumVitaPercent">Vita percent threshold below which the spell
+        /// will not be cast.</param>
+        /// <returns>True if the spell was cast; false otherwise.</returns>
+        public async Task<bool> SulSlash(double minimumVitaPercent = 80)
+        {
+            if (Self.Self.Vita.Percent < minimumVitaPercent.EvaluateAsPercentage())
+            {
+                return false;
+            }
+
+            return await SpellCommands.CastAetheredSpell(Self, _sulSlashOrb, _sulSlashStatus);
+        }
+
+        #endregion Sul Slash
 
         #endregion Public Methods
     }

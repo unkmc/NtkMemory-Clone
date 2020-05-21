@@ -103,11 +103,6 @@ namespace TkMemory.Domain.Spells.KeySpells
         public AetheredKeySpell Inferno { get; }
 
         /// <summary>
-        /// Non-targetable scourge on a random NPC within range. (Exclusive to ClassicTK)
-        /// </summary>
-        public BuffKeySpell MagisBane { get; }
-
-        /// <summary>
         /// Mass paralyze 3x3 grouping.
         /// </summary>
         public BuffKeySpell MassParalyze { get; }

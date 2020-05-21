@@ -36,7 +36,6 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Rogue
         private readonly BuffStatus _desperateAttackStatus;
         private readonly KeySpell _lethalStrikeSpell;
         private readonly BuffStatus _lethalStrikeStatus;
-        private readonly RogueClient _self;
 
         #endregion Fields
 
@@ -48,8 +47,6 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Rogue
         /// <param name="self">The game client data for the Rogue.</param>
         public RogueAttackCommands(RogueClient self) : base(self)
         {
-            _self = self;
-
             _ambushSpell = self.Spells.KeySpells.Ambush;
             _desperateAttackSpell = self.Spells.KeySpells.DesperateAttack;
             _desperateAttackStatus = self.Status.DesperateAttack;

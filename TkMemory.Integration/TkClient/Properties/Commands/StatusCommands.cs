@@ -87,6 +87,17 @@ namespace TkMemory.Integration.TkClient.Properties.Commands
                 return false;
             }
 
+            if (statusEffectSpell != null && statusEffectSpell.IsOrbSpell) // TODO: Probably remove this delay once you figure out how to read the curse status of NPCs. It will then cast spells too rapidly, but the negative effects of doing so will have been eliminated.
+            {
+                // Fragile Orb of Scourge has aethers that are too short to appear in the status effects window and therefore require an additional manual delay.
+                await caster.Activity.WaitForMeleeCooldown();
+                caster.Activity.ResetCommandCooldown();
+                await caster.Activity.WaitForMeleeCooldown();
+                caster.Activity.ResetCommandCooldown();
+                await caster.Activity.WaitForMovementCooldown();
+                caster.Activity.ResetCommandCooldown();
+            }
+
             if (!await CastStatus(caster, target.Uid, $"NPC {target.Uid}", statusEffectSpell))
             {
                 if (statusEffectSpell != null) // Indicates that the target is off-screen without having to repeat the relatively inefficient IsTargetOffScreen() check

@@ -171,6 +171,14 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         };
 
         /// <summary>
+        /// Lower-aether invoke performed by using a Fragile Orb of Mage Invoke
+        /// </summary>
+        public static readonly AetheredKeySpell[] MageInvoke =
+        {
+            new AetheredKeySpell("Fragile Orb of Mage Invoke", "Fragile Orb of Mage Invoke", 0, 14)
+        };
+
+        /// <summary>
         /// Mass paralyze 3x3 grouping.
         /// </summary>
         public static readonly BuffKeySpell[] MassParalyze =
@@ -207,6 +215,15 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
             new BuffKeySpell("Sleep", "Sweet Musings", 300, 10, 18),
             new BuffKeySpell("Sleep", "Essence of Poppies", 300, 10, 18),
             new BuffKeySpell("Sleep", "Stillness", 300, 10, 18)
+        };
+
+        /// <summary>
+        /// Powerful attack performed by using a Fragile Orb of Sul Slash
+        /// </summary>
+        public static readonly AetheredKeySpell[] SulSlash =
+        {
+            // TODO: 100% guessing on aethers. I have no way to verify that right now.
+            new AetheredKeySpell("Fragile Orb of Sul Slash", "Fragile Orb of Sul Slash", 0, 14)
         };
 
         /// <summary>
