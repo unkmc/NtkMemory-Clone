@@ -14,7 +14,6 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Commands.Caster;
@@ -211,16 +210,9 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         /// Casts the Paralyze debuff on a target.
         /// </summary>
         /// <param name="target">The NPC to target for the debuff.</param>
-        /// <param name="ignoreEligibility">If true, cast on the target no matter what. If false,
-        /// cast only if the duration of the spell has elapsed since the last casting.</param>
         /// <returns>True if the spell was cast; false otherwise.</returns>
-        public async Task<bool> Paralyze(Npc target, bool ignoreEligibility)
+        public async Task<bool> Paralyze(Npc target) // TODO: Figure out how to compensate for the failure rate
         {
-            if (ignoreEligibility)
-            {
-                target.Activity.Paralyze.SetInactive();
-            }
-
             return await StatusCommands.CastStatus(_self, target, target.Activity.Paralyze, _paralyzeSpell);
         }
 
@@ -229,26 +221,14 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Mage
         /// for it. The method will exit and return true as soon as the spell is cast once. If no eligible NPCs are
         /// found, the method will return false.
         /// </summary>
-        /// <param name="ignoreEligibility">If true, cast repeatedly on targets to compensate for the failure rate.
-        /// If false, cast on a particular target only as often as the duration of the spell.</param>
         /// <returns>True if the spell was cast; false otherwise.</returns>
-        [SuppressMessage("ReSharper", "InvertIf")]
-        public async Task<bool> ParalyzeNpcs(bool ignoreEligibility = false)
+        public async Task<bool> ParalyzeNpcs(int numberOfAttempts = 3)
         {
             // It may seem like there are more efficient ways to do this loop, but it is imperative to iterate through
             // the list backwards to properly handle removals from the list further downstream.
             for (var i = _self.Npcs.Count - 1; i >= 0; i--)
             {
-                if (ignoreEligibility && i == 0)
-                {
-                    // We have iterated through the entire list of NPCs, so mark each as eligible for Paralyze again and start over.
-                    foreach (var npc in _self.Npcs)
-                    {
-                        npc.Activity.Paralyze.SetInactive();
-                    }
-                }
-
-                if (await Paralyze(_self.Npcs[i], false)) // Never ignore eligibility here. It would cause an infinite loop of paralyzing a single target.
+                if (await Paralyze(_self.Npcs[i]))
                 {
                     return true;
                 }
