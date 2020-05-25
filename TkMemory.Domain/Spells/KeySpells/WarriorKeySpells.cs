@@ -42,7 +42,7 @@ namespace TkMemory.Domain.Spells.KeySpells
             Heal = GetHealKeySpellByPriority(Priorities.Warrior.Heal);
             HealSelf = GetHealKeySpellByPriority(Priorities.Warrior.HealSelf);
             Potence = GetBuffKeySpellByPriority(Priorities.Warrior.Potence);
-            Rage = GetBuffKeySpellByPriority(Priorities.Warrior.Rage);
+            Rage = GetBuffKeySpellByPriority(new[] { Priorities.Warrior.Rage, Priorities.Warrior.SonhiRage });
             Rampage = GetAetheredKeySpellByPriority(Priorities.Warrior.Rampage);
             RegenerateMana = GetBuffKeySpellByPriority(Priorities.Warrior.RegenerateMana);
             Siege = GetAetheredKeySpellByPriority(Priorities.Warrior.Siege);

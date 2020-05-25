@@ -15,7 +15,6 @@
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
 using AutoHotkey.Interop.ClassMemory;
-using System.Linq;
 using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Commands.Poet;
@@ -83,9 +82,17 @@ namespace TkMemory.Integration.TkClient
                 return false;
             }
 
-            foreach (var npc in Npcs.Where(npc => npc.Activity.Curse == null))
+            foreach (var npc in Npcs)
             {
-                npc.Activity.Curse = new NpcDebuffActivity(Spells.KeySpells.Curse);
+                if (npc.Activity.Curse == null)
+                {
+                    npc.Activity.Curse = new NpcDebuffActivity(Spells.KeySpells.Curse);
+                }
+
+                if (npc.Activity.Dishearten == null)
+                {
+                    npc.Activity.Dishearten = new NpcDebuffActivity(Spells.KeySpells.Dishearten);
+                }
             }
 
             return true;

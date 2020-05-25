@@ -111,11 +111,12 @@ namespace TkMemory.Application.Demo
                     if (await _poet.Commands.Debuffs.CurseNpcs()) continue;
                     if (await _poet.UpdateNpcs(_poet.Spells.KeySpells.Heal)) continue;
                     if (await _poet.Commands.Debuffs.RemoveVeilGroup()) continue;
+                    if (await _poet.Commands.Mana.InspireGroup()) continue;
+                    if (await HardenBody()) continue;
                     if (await _poet.Commands.Heal.HealGroupIfEligible()) continue;
                     if (await _poet.Commands.Asv.ValorGroup()) continue;
                     if (await _poet.Commands.Heal.HealGroupIfBelowVitaPercent(85)) continue;
-                    if (await _poet.Commands.Mana.InspireGroup()) continue;
-                    await HardenBody();
+                    await _poet.Commands.Debuffs.DisheartenNpcs();
                 }
                 catch (Exception ex)
                 {

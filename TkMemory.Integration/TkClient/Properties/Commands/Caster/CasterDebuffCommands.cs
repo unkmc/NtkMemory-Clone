@@ -19,8 +19,6 @@ using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Group;
 using TkMemory.Integration.TkClient.Properties.Npcs;
 
-// ReSharper disable UnusedMember.Global
-
 namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
 {
     /// <summary>
@@ -31,6 +29,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Caster
         #region Fields
 
         protected readonly KeySpell CurseSpell;
+
         private readonly KeySpell _cureParalysisSpell;
         private readonly KeySpell _purgeSpell;
         private readonly KeySpell _removeCurseSpell;

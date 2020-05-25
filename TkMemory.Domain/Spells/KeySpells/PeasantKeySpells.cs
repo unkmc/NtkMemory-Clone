@@ -118,9 +118,9 @@ namespace TkMemory.Domain.Spells.KeySpells
         protected AetheredKeySpell GetAetheredKeySpellByPriority(IEnumerable<AetheredKeySpell> priorityList)
         {
             return (from aethered in priorityList
-                from spell in Spells
-                where string.Equals(aethered.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
-                select new AetheredKeySpell(aethered.UnalignedName, aethered.AlignedName, aethered.Cost, aethered.Aethers, Index.Parse(spell.Letter))
+                    from spell in Spells
+                    where string.Equals(aethered.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
+                    select new AetheredKeySpell(aethered.UnalignedName, aethered.AlignedName, aethered.Cost, aethered.Aethers, Index.Parse(spell.Letter))
             ).FirstOrDefault();
         }
 
@@ -133,18 +133,35 @@ namespace TkMemory.Domain.Spells.KeySpells
         protected BuffKeySpell GetBuffKeySpellByPriority(IEnumerable<BuffKeySpell> priorityList)
         {
             return (from buff in priorityList
-                from spell in Spells
-                where string.Equals(buff.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
-                select new BuffKeySpell(buff.UnalignedName, buff.AlignedName, buff.Cost, buff.Duration, buff.Aethers, Index.Parse(spell.Letter))
-            ).FirstOrDefault();
+                    from spell in Spells
+                    where string.Equals(buff.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
+                    select new BuffKeySpell(buff.UnalignedName, buff.AlignedName, buff.Cost, buff.Duration, buff.Aethers, Index.Parse(spell.Letter))
+                ).FirstOrDefault();
+        }
+
+        protected BuffKeySpell GetBuffKeySpellByPriority(IEnumerable<IEnumerable<BuffKeySpell>> priorityLists)
+        {
+            return priorityLists.Select(priorityList =>
+                    (from buff in priorityList
+                     from spell in Spells
+                     where string.Equals(buff.AlignedName.RemoveApostrohes(),
+                         spell.AlignedName.RemoveApostrohes(),
+                         StringComparison.OrdinalIgnoreCase)
+                     select new BuffKeySpell(buff.UnalignedName,
+                         buff.AlignedName,
+                         buff.Cost,
+                         buff.Duration,
+                         buff.Aethers,
+                         Index.Parse(spell.Letter))).FirstOrDefault())
+                .FirstOrDefault(buffKeySpell => buffKeySpell != null);
         }
 
         protected HealKeySpell GetHealKeySpellByPriority(IEnumerable<HealKeySpell> priorityList)
         {
             return (from heal in priorityList
-                from spell in Spells
-                where string.Equals(heal.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
-                select new HealKeySpell(heal.UnalignedName, heal.AlignedName, heal.Cost, heal.Vita, Index.Parse(spell.Letter))
+                    from spell in Spells
+                    where string.Equals(heal.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
+                    select new HealKeySpell(heal.UnalignedName, heal.AlignedName, heal.Cost, heal.Vita, Index.Parse(spell.Letter))
             ).FirstOrDefault();
         }
 
@@ -157,9 +174,9 @@ namespace TkMemory.Domain.Spells.KeySpells
         protected KeySpell GetKeySpellByPriority(IEnumerable<KeySpell> priorityList)
         {
             return (from keySpell in priorityList
-                from spell in Spells
-                where string.Equals(keySpell.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
-                select new KeySpell(keySpell.UnalignedName, keySpell.AlignedName, keySpell.Cost, Index.Parse(spell.Letter))
+                    from spell in Spells
+                    where string.Equals(keySpell.AlignedName.RemoveApostrohes(), spell.AlignedName.RemoveApostrohes(), StringComparison.OrdinalIgnoreCase)
+                    select new KeySpell(keySpell.UnalignedName, keySpell.AlignedName, keySpell.Cost, Index.Parse(spell.Letter))
             ).FirstOrDefault();
         }
 

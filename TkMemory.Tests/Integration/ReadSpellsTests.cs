@@ -14,9 +14,9 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using NUnit.Framework;
 using System;
 using System.Configuration;
-using NUnit.Framework;
 using TkMemory.Integration.TkClient;
 
 namespace TkMemory.Tests.Integration
@@ -28,7 +28,7 @@ namespace TkMemory.Tests.Integration
         public void ReadSpells()
         {
             var clients = new ActiveClients(ConfigurationManager.AppSettings["ProcessName"]);
-            var tkMemory = clients.GetRogue();
+            var tkMemory = clients.GetWarrior();
             Console.WriteLine(tkMemory.Spells.ToString());
         }
     }

@@ -14,12 +14,12 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Commands.Caster;
 using TkMemory.Integration.TkClient.Properties.Group;
-
-// ReSharper disable UnusedMember.Global
+using TkMemory.Integration.TkClient.Properties.Npcs;
 
 namespace TkMemory.Integration.TkClient.Properties.Commands.Poet
 {
@@ -31,6 +31,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Poet
         #region Fields
 
         private readonly KeySpell _atoneSpell;
+        private readonly KeySpell _disheartenSpell;
         private readonly KeySpell _removeVeilSpell;
         private readonly PoetClient _self;
 
@@ -47,6 +48,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Poet
             _self = self;
 
             _atoneSpell = _self.Spells.KeySpells.Atone;
+            _disheartenSpell = self.Spells.KeySpells.Dishearten;
             _removeVeilSpell = _self.Spells.KeySpells.RemoveVeil;
         }
 
@@ -111,6 +113,41 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Poet
 
         #endregion Atone
 
+        #region Dishearten
+
+        /// <summary>
+        /// Casts Dishearten on a target.
+        /// </summary>
+        /// <param name="target">The NPC to target for the debuff.</param>
+        /// <returns>True if the spell was cast; false otherwise.</returns>
+        public virtual async Task<bool> Dishearten(Npc target)
+        {
+            return await StatusCommands.CastStatus(_self, target, target.Activity.Dishearten, _disheartenSpell);
+        }
+
+        /// <summary>
+        /// Iterates through the NPCs in the caster's vicinity and Disheartens the first NPC found to be eligible
+        /// for it. The method will exit and return true as soon as the spell is cast once. If no eligible NPCs
+        /// are found, the method will return false.
+        /// </summary>
+        /// <returns>True if the spell was cast; false otherwise.</returns>
+        public async Task<bool> DisheartenNpcs()
+        {
+            // It may seem like there are more efficient ways to do this loop, but it is imperative to iterate through
+            // the list backwards to properly handle removals from the list further downstream.
+            for (var i = _self.Npcs.Count - 1; i >= 0; i--)
+            {
+                if (await Dishearten(_self.Npcs[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion Dishearten
+
         #region Esuna
 
         /// <summary>
@@ -156,6 +193,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Poet
         /// Remove Veil.
         /// </summary>
         /// <returns>True if a spell was cast; false otherwise.</returns>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public async Task<bool> EsunaGroup()
         {
             if (await Esuna(_self))

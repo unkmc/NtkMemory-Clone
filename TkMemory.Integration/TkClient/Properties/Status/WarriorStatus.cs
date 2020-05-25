@@ -33,7 +33,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status
         /// Initializes a Warrior's status data.
         /// </summary>
         /// <param name="self">All game client data for the Warrior.</param>
-        public WarriorStatus(TkClient self) : base(self.Activity)
+        public WarriorStatus(WarriorClient self) : base(self.Activity)
         {
             Backstab = new BuffStatus(Activity, Warrior.Backstab);
             Berserk = new BuffStatus(Activity, Warrior.Berserk);
@@ -41,9 +41,19 @@ namespace TkMemory.Integration.TkClient.Properties.Status
             Flank = new BuffStatus(Activity, Warrior.Flank);
             Fury = new BuffStatus(Activity, Warrior.Fury);
             Potence = new BuffStatus(Activity, Warrior.Potence);
-            Rage = new RageStatus(self, Warrior.Rage);
             SpotTraps = new BuffStatus(Activity, Warrior.SpotTraps);
             Whirlwind = new BuffStatus(Activity, Warrior.Whirlwind);
+
+            switch (self.Spells.KeySpells.Rage.AlignedName)
+            {
+                case "Sonhi Rage":
+                    Rage = new RageStatus(self, Warrior.SonhiRage);
+                    break;
+
+                default:
+                    Rage = new RageStatus(self, Warrior.Rage);
+                    break;
+            }
         }
 
         #endregion Constructors

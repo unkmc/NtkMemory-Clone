@@ -34,6 +34,11 @@ namespace TkMemory.Integration.TkClient.Properties.Npcs
         public NpcDebuffActivity Curse { get; internal set; }
 
         /// <summary>
+        /// Gets the activity data for the Dishearten debuff.
+        /// </summary>
+        public NpcDebuffActivity Dishearten { get; internal set; }
+
+        /// <summary>
         /// Gets the activity data for the Doze debuff.
         /// </summary>
         public NpcDebuffActivity Doze { get; internal set; }

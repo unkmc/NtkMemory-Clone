@@ -68,8 +68,8 @@ namespace TkMemory.Application.Demo
             _isBotPaused = new AutoHotkeySuspendToggle("F4", "isBotPaused", false);
             _shouldSpotTrapsOnAethers = new AutoHotkeyToggle("F6", "shouldSpotTrapsOnAethers", false);
             _shouldTaunt = new AutoHotkeyToggleWithPrerequisite("F7", "shouldTaunt", false, _shouldUpdateNpcs);
-            _shouldWhirlwindOnAethers = new AutoHotkeyToggle("F8", "shouldWhirlwindOnAethers", true);
-            _shouldBerserkOnAethers = new AutoHotkeyToggle("F9", "shouldBerserkOnAethers", true);
+            _shouldWhirlwindOnAethers = new AutoHotkeyToggle("F8", "shouldWhirlwindOnAethers", false);
+            _shouldBerserkOnAethers = new AutoHotkeyToggle("F9", "shouldBerserkOnAethers", false);
             _shouldAutoMelee = new AutoHotkeyToggle("F10", "shouldAutoMelee", true);
 
             var toggles = new[]

@@ -61,7 +61,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
             _maxRageLevel = GetMaxRageLevel();
             _currentRageLevel = GetCurrentRageLevel();
 
-            Log.Debug($"Starting rage level is {_currentRageLevel}.");
+            Log.Debug($"{self.Self.Name}'s starting rage level is {_currentRageLevel}.");
 
             _latestDurationInactivity = DateTime.Now.AddMilliseconds(-self.Activity.DefaultCommandCooldown);
             _durationInactiveCount = RequiredDurationInactiveCount;
@@ -93,7 +93,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
                     _recastPending = false;
                     _currentRageLevel = GetCurrentRageLevel();
 
-                    Log.Information($"Current rage level is now {_currentRageLevel}.");
+                    Log.Information($"{_self.Self.Name}'s current rage level is now {_currentRageLevel}.");
                 }
 
                 InactiveCount = 0;
@@ -108,7 +108,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
             InactiveCount++;
             LatestInactivity = DateTime.Now;
 
-            Log.Verbose($"{Aliases[0]} inactivity counter is at {InactiveCount}.");
+            Log.Verbose($"{_self.Self.Name}'s {Aliases[0]} inactivity counter is at {InactiveCount}.");
 
             if (InactiveCount < RequiredInactiveCount)
             {
@@ -125,7 +125,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
                 _durationInactiveCount++;
                 _latestDurationInactivity = DateTime.Now;
 
-                Log.Verbose($"{Aliases[0]} inactivity counter is at {_durationInactiveCount}.");
+                Log.Verbose($"{_self.Self.Name}'s {Aliases[0]} inactivity counter is at {_durationInactiveCount}.");
 
                 if (_durationInactiveCount < RequiredDurationInactiveCount)
                 {
@@ -135,7 +135,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
                 _currentRageLevel = 0;
                 _recastPending = true;
 
-                Log.Information($"Current rage level is now {_currentRageLevel}.");
+                Log.Information($"{_self.Self.Name}'s current rage level is now {_currentRageLevel}.");
 
                 return false;
             }
@@ -189,7 +189,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
             }
 
             var maxRageLevel = Convert.ToInt32(NumbersRegex.Match(maxRage.DisplayName).Groups[1].Value);
-            Log.Debug($"Maximum rage possible with current max mana of {_self.Self.Mana.Max:N0} is level {maxRageLevel} at a cost of {maxRage.Cost:N0} mana.");
+            Log.Debug($"{_self.Self.Name}'s maximum rage possible with current max mana of {_self.Self.Mana.Max:N0} is level {maxRageLevel} at a cost of {maxRage.Cost:N0} mana.");
 
             return maxRageLevel;
         }

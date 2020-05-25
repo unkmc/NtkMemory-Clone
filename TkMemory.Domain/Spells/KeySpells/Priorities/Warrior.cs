@@ -253,6 +253,20 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         public static readonly AetheredKeySpell Slash = new AetheredKeySpell("Slash", "Slash", 180, 1);
 
         /// <summary>
+        /// Incremental fury for Barbarian subpath. This feature was requested, but I have no familiarity with this spell.
+        /// I am guessing it is conceptually identical to Chung Ryong's Rage. If not, this feature probably will not work.
+        /// </summary>
+        public static readonly BuffKeySpell[] SonhiRage =
+        {
+            new BuffKeySpell("Sonhi Rage 1", "Sonhi Rage", 3000, 938, 120),
+            new BuffKeySpell("Sonhi Rage 2", "Sonhi Rage", 10000, 818, 120),
+            new BuffKeySpell("Sonhi Rage 3", "Sonhi Rage", 22000, 698, 120),
+            new BuffKeySpell("Sonhi Rage 4", "Sonhi Rage", 38000, 578, 120),
+            new BuffKeySpell("Sonhi Rage 5", "Sonhi Rage", 78000, 458, 120),
+            new BuffKeySpell("Sonhi Rage 6", "Sonhi Rage", 150000, 338, 120)
+        };
+
+        /// <summary>
         /// Spots Ambushes on ground and marks them off as Steel daggers. Indicators will disappear if you move where they
         /// are off-screen or if you refresh the screen. Mythic fall zones are not detected, only NPC ambushes.
         /// </summary>

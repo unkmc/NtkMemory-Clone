@@ -18,8 +18,6 @@ using System.Threading.Tasks;
 using TkMemory.Domain.Spells;
 using TkMemory.Integration.TkClient.Properties.Status.KeySpells;
 
-// ReSharper disable UnusedMember.Global
-
 namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
 {
     /// <summary>
@@ -30,12 +28,12 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
         #region Fields
 
         protected readonly FighterClient Self;
-        protected readonly KeySpell RageSpell;
-        protected readonly RageStatus RageStatus;
 
         private readonly KeySpell _enchantSpell;
         private readonly KeySpell _furySpell;
         private readonly BuffStatus _furyStatus;
+        private readonly KeySpell _rageSpell;
+        private readonly RageStatus _rageStatus;
 
         #endregion Fields
 
@@ -48,8 +46,8 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
         protected FighterBuffCommands(RogueClient self)
         {
             Self = self;
-            RageSpell = self.Spells.KeySpells.Rage;
-            RageStatus = self.Status.Rage;
+            _rageSpell = self.Spells.KeySpells.Rage;
+            _rageStatus = self.Status.Rage;
 
             _enchantSpell = self.Spells.KeySpells.Enchant;
             _furySpell = self.Spells.KeySpells.Fury;
@@ -63,8 +61,8 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
         protected FighterBuffCommands(WarriorClient self)
         {
             Self = self;
-            RageSpell = self.Spells.KeySpells.Rage;
-            RageStatus = self.Status.Rage;
+            _rageSpell = self.Spells.KeySpells.Rage;
+            _rageStatus = self.Status.Rage;
 
             _enchantSpell = self.Spells.KeySpells.Enchant;
             _furySpell = self.Spells.KeySpells.Fury;
@@ -90,7 +88,7 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
         /// <returns>True if the spell was cast; false otherwise.</returns>
         public async Task<bool> Fury()
         {
-            if (RageSpell != null)
+            if (_rageSpell != null)
             {
                 return false;
             }
@@ -104,12 +102,12 @@ namespace TkMemory.Integration.TkClient.Properties.Commands.Fighter
         /// <returns>True if the spell was cast; false otherwise.</returns>
         public async Task<bool> Rage()
         {
-            if (RageSpell == null)
+            if (_rageSpell == null)
             {
                 return false;
             }
 
-            return await SpellCommands.CastAetheredSpell(Self, RageSpell, RageStatus);
+            return await SpellCommands.CastAetheredSpell(Self, _rageSpell, _rageStatus);
         }
 
         #endregion Public Methods
