@@ -44,7 +44,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status
             SpotTraps = new BuffStatus(Activity, Warrior.SpotTraps);
             Whirlwind = new BuffStatus(Activity, Warrior.Whirlwind);
 
-            switch (self.Spells.KeySpells.Rage.AlignedName)
+            switch (self.Spells.KeySpells.Rage?.AlignedName)
             {
                 case "Sonhi Rage":
                     Rage = new RageStatus(self, Warrior.SonhiRage);

@@ -22,43 +22,106 @@ namespace TkMemory.Integration.TkClient.Infrastructure
     {
         public const string DefaultEncoding = "UTF-16";
 
-        public static class SubPaths // TODO: Add missing sub-paths
+        public static class Subpath // TODO: Add missing NPC subpaths
         {
             public static readonly string[] Mage =
             {
                 "Mage",
                 "Ju Jak",
+                // Il san
+                // Ee san
+                // Sam san
+                "Catastrophe",
                 "Diviner",
+                "Oracle",
+                "Prophet",
+                "Clairvoyant",
+                "Visionary",
                 "Geomancer",
-                "Shaman"
+                "Haein-Sa",
+                "Ba-Gua",
+                "Xing-Yi",
+                "Dizhu",
+                "Shaman",
+                "Mog-ur",
+                "Anamchara",
+                "Sul'sah",
+                "Kamang"
             };
 
             public static readonly string[] Poet =
             {
                 "Poet",
                 "Hyun Moo",
+                // Il san
+                // Ee san
+                // Sam san
+                "Guardian",
                 "Druid",
+                "Archdruid",
+                "Diarmuid",
+                "Ainvar",
+                "Nwyfre",
                 "Monk",
-                "Muse"
+                "Sammasati",
+                "Karuna",
+                "Samaruhi",
+                "Bhavana",
+                "Muse",
+                "Artisan",
+                "Virtuoso",
+                "Prodigy",
+                "Luminary"
             };
 
             public static readonly string[] Rogue =
             {
                 "Rogue",
                 "Baekho",
+                // Il san
+                // Ee san
+                // Sam san
                 "Marauder",
                 "Merchant",
+                "Gypsy",
+                "Tradesman",
+                "Kashou",
+                "Magnate",
                 "Spy",
-                "Ranger"
+                "Mercenary",
+                "Assassin",
+                "Saboteur",
+                "Emissary",
+                "Ranger",
+                "Adventurer",
+                "Tracker",
+                "Survivalist",
+                "Marksman"
             };
 
             public static readonly string[] Warrior =
             {
                 "Warrior",
                 "Chung Ryong",
+                // Il san
+                // Ee san
+                // Sam san
+                "Champion",
                 "Barbarian",
+                "Berserker",
+                "Savage",
+                "Beast",
+                "Behemoth",
                 "Chongun",
-                "Do"
+                "Sonbae",
+                "Kysh'itra",
+                "Musadan",
+                "Samurang",
+                "Do",
+                "HwarangDo",
+                "Sulsa-Do",
+                "Jeong-Do",
+                "Wonhwa"
             };
         }
     }

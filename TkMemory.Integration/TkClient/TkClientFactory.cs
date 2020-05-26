@@ -124,22 +124,24 @@ namespace TkMemory.Integration.TkClient
         /// <returns>The base path of the player currently logged into the client.</returns>
         public TkClient.BasePath GetBasePath()
         {
-            if (Constants.SubPaths.Mage.Contains(TkSelf.Path, ComparisonRules))
+            var path = TkSelf.Path;
+
+            if (Constants.Subpath.Mage.Contains(path, ComparisonRules))
             {
                 return TkClient.BasePath.Mage;
             }
 
-            if (Constants.SubPaths.Poet.Contains(TkSelf.Path, ComparisonRules))
+            if (Constants.Subpath.Poet.Contains(path, ComparisonRules))
             {
                 return TkClient.BasePath.Poet;
             }
 
-            if (Constants.SubPaths.Rogue.Contains(TkSelf.Path, ComparisonRules))
+            if (Constants.Subpath.Rogue.Contains(path, ComparisonRules))
             {
                 return TkClient.BasePath.Rogue;
             }
 
-            return Constants.SubPaths.Warrior.Contains(TkSelf.Path, ComparisonRules)
+            return Constants.Subpath.Warrior.Contains(path, ComparisonRules)
                 ? TkClient.BasePath.Warrior
                 : GetBasePathByKeySpellCount();
         }
