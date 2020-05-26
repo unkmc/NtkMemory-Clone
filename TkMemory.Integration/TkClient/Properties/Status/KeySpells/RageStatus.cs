@@ -44,6 +44,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
         private bool _recastPending;
         private DateTime _latestDurationInactivity;
         private int _durationInactiveCount;
+        private bool _shouldLogInactivityError = true;
 
         #endregion Fields
 
@@ -108,7 +109,17 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
             InactiveCount++;
             LatestInactivity = DateTime.Now;
 
-            Log.Verbose($"{_self.Self.Name}'s {Aliases[0]} inactivity counter is at {InactiveCount}.");
+            Log.Verbose($"{_self.Self.Name}'s {Aliases[0]} aether inactivity counter is at {InactiveCount}.");
+
+            if (_shouldLogInactivityError && InactiveCount > 10 && _durationInactiveCount > 10)
+            {
+                var errorMessage = string.IsNullOrWhiteSpace(_self.Activity.ActiveStatusEffects)
+                    ? $"{Aliases[0]} has been inactive for too long. The active status effects string is empty, so there may be a problem reading it from memory."
+                    : $"{Aliases[0]} has been inactive for too long. The active status effects string is:\n{_self.Activity.ActiveStatusEffects}";
+
+                Log.Error(errorMessage);
+                _shouldLogInactivityError = false;
+            }
 
             if (InactiveCount < RequiredInactiveCount)
             {
@@ -125,7 +136,7 @@ namespace TkMemory.Integration.TkClient.Properties.Status.KeySpells
                 _durationInactiveCount++;
                 _latestDurationInactivity = DateTime.Now;
 
-                Log.Verbose($"{_self.Self.Name}'s {Aliases[0]} inactivity counter is at {_durationInactiveCount}.");
+                Log.Verbose($"{_self.Self.Name}'s {Aliases[0]} duration inactivity counter is at {_durationInactiveCount}.");
 
                 if (_durationInactiveCount < RequiredDurationInactiveCount)
                 {
