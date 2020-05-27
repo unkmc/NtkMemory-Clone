@@ -28,9 +28,9 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             {
                 "Mage",
                 "Ju Jak",
-                // Il san
-                // Ee san
-                // Sam san
+                "Force",
+                "Inferno",
+                "Pandemonium",
                 "Catastrophe",
                 "Diviner",
                 "Oracle",
@@ -41,7 +41,7 @@ namespace TkMemory.Integration.TkClient.Infrastructure
                 "Haein-Sa",
                 "Ba-Gua",
                 "Xing-Yi",
-                "Dizhu",
+                "DiZhu",
                 "Shaman",
                 "Mog-ur",
                 "Anamchara",
@@ -53,9 +53,9 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             {
                 "Poet",
                 "Hyun Moo",
-                // Il san
-                // Ee san
-                // Sam san
+                "Panoply",
+                "Essence",
+                "Balistraria",
                 "Guardian",
                 "Druid",
                 "Archdruid",
@@ -78,9 +78,9 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             {
                 "Rogue",
                 "Baekho",
-                // Il san
-                // Ee san
-                // Sam san
+                "Cunning",
+                "Swift",
+                "Shikari",
                 "Marauder",
                 "Merchant",
                 "Gypsy",
@@ -103,9 +103,9 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             {
                 "Warrior",
                 "Chung Ryong",
-                // Il san
-                // Ee san
-                // Sam san
+                "Fury",
+                "Assault",
+                "Barrage",
                 "Champion",
                 "Barbarian",
                 "Berserker",
@@ -121,6 +121,7 @@ namespace TkMemory.Integration.TkClient.Infrastructure
                 "HwarangDo",
                 "Sulsa-Do",
                 "Jeong-Do",
+                "Jung-Do",
                 "Wonhwa"
             };
         }

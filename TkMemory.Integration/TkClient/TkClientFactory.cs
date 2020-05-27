@@ -150,6 +150,7 @@ namespace TkMemory.Integration.TkClient
 
         #region Private Methods
 
+        [Obsolete("All existing subpaths are now mapped to their corresponding base paths, so this method should never be needed.")]
         private TkClient.BasePath GetBasePathByKeySpellCount()
         {
             Log.Warning($"Subpath \"{TkSelf.Path}\" is not currently associated with a base path. Base path will therefore be determined from your spell inventory. You may see a few lines of unusual log activity during this process, but it can be ignored. Please send the developer your base path and subpath to have this corrected in a future release.");
