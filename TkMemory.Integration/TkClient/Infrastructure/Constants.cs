@@ -22,7 +22,7 @@ namespace TkMemory.Integration.TkClient.Infrastructure
     {
         public const string DefaultEncoding = "UTF-16";
 
-        public static class Subpath // TODO: Add missing NPC subpaths
+        public static class Subpath
         {
             public static readonly string[] Mage =
             {

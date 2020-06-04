@@ -51,7 +51,8 @@ namespace TkMemory.Integration.TkClient.Properties.Status
         #region Properties
 
         /// <summary>
-        /// Gets a list of status effects currently affecting the player.
+        /// Gets a list of status effects currently affecting the player. The information included in the returned string could
+        /// include buff durations, debuff durations, or aethers.
         /// </summary>
         public string ActiveEffects => Activity.ActiveStatusEffects;
 

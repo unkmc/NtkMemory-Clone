@@ -89,8 +89,11 @@ namespace TkMemory.Integration.TkClient
         {
             public static readonly Address Exp = new Address(0x6FE238, new[] { 0x114 });
             public static readonly Address Gold = new Address(0x6FE238, new[] { 0x11C });
+            public static readonly Address Legend = new Address(0x6DD5A8, new[] { 0x4, 0x104, 0x134, 0x10, 0x4 });
             public static readonly Address Level = new Address(0x6FDB3C, new[] { 0x280 });
             public static readonly Address Name = new Address(0x6DD490, new[] { 0x12A });
+            public static readonly Address NameAlt = new Address(0x6FEC70);
+            public static readonly Address Partner = new Address(0x6DD5A8, new[] { 0x4, 0x1F38 });
             public static readonly Address Path = new Address(0x6FDB3C, new[] { 0x1FC });
             public static readonly Address Uid = new Address(0x6DD490, new[] { 0xFC });
 
@@ -111,7 +114,7 @@ namespace TkMemory.Integration.TkClient
 
             public static class Spells
             {
-                public static int PositionOffset = 0x148;
+                public const int PositionOffset = 0x148;
 
                 public static readonly Address DisplayName = new Address(0x6DD490, new[] { 0x16A83C });
             }
@@ -119,6 +122,7 @@ namespace TkMemory.Integration.TkClient
             public static class Status
             {
                 public static readonly Address ActiveEffects = new Address(0x4C1260, new[] { 0x4A4 });
+                public static readonly Address ActiveEffectsAlt = new Address(0x4278EC, new[] { 0xA4 });
                 public static readonly Address LatestActivity = new Address(0x444724, new[] { 0x140 });
                 public static readonly Address LatestChange = new Address(0x6FE8C8, new[] { 0xC });
             }
@@ -126,6 +130,7 @@ namespace TkMemory.Integration.TkClient
             public static class TargetUids
             {
                 public static readonly Address AutoTarget = new Address(0x6FEC64);
+                public static readonly Address IsTargetingSelf = new Address(0x6DD490, new[] { 0x1E8 });
                 public static readonly Address Item = new Address(0x6FEC5C);
                 public static readonly Address Spell = new Address(0x6FEC58);
                 public static readonly Address TargetLock = new Address(0x6FEC60);

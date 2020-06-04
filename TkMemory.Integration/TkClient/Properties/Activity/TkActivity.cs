@@ -14,10 +14,11 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
-using System;
-using System.Threading.Tasks;
 using AutoHotkey.Interop.ClassMemory;
 using Serilog;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using TkMemory.Integration.TkClient.Infrastructure;
 
 namespace TkMemory.Integration.TkClient.Properties.Activity
@@ -43,6 +44,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         private readonly ClassMemory _classMemory;
 
         private int _defaultCommandCooldown;
+        private Address _activeStatusEffectsAddress;
         private DateTime _timeOfPreviousCommand;
 
         #endregion Fields
@@ -50,7 +52,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         #region Constructors
 
         /// <summary>
-        /// Initializes a player's activity data. 
+        /// Initializes a player's activity data.
         /// </summary>
         /// <param name="classMemory">The application memory for the player's game client.</param>
         public TkActivity(ClassMemory classMemory)
@@ -68,9 +70,10 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         #region Properties
 
         /// <summary>
-        /// Gets a list of status effects currently affecting the player.
+        /// Gets a list of status effects currently affecting the player. The information included in the returned string could
+        /// include buff durations, debuff durations, or aethers.
         /// </summary>
-        public string ActiveStatusEffects => _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffects, Constants.DefaultEncoding);
+        public string ActiveStatusEffects => GetActiveStatusEffects();
 
         /// <summary>
         /// Gets the latest activity documented in the box on the right side of the screen that shows things like experience gained
@@ -176,6 +179,39 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         #endregion Public Methods
 
         #region Private Methods
+
+        /// <summary>
+        /// Testing has revealed that different instances of the TK client can store the status effects string at different
+        /// addresses in memory. The cause of this is not known. This method attempts to determine the correct address to
+        /// use for reading the status effects from a particular instance of the TK client.
+        /// </summary>
+        [SuppressMessage("ReSharper", "InvertIf")]
+        private string GetActiveStatusEffects()
+        {
+            if (_activeStatusEffectsAddress != null)
+            {
+                return _classMemory.ReadString(_activeStatusEffectsAddress, Constants.DefaultEncoding);
+            }
+
+            var activeEffects = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffects, Constants.DefaultEncoding);
+            var activeEffectsAlt = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffectsAlt, Constants.DefaultEncoding);
+
+            if (!string.IsNullOrWhiteSpace(activeEffects))
+            {
+                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffects;
+                Log.Debug("The primary memory address will be used for reading active status effects.");
+                return activeEffects;
+            }
+
+            if (!string.IsNullOrWhiteSpace(activeEffectsAlt))
+            {
+                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffectsAlt;
+                Log.Debug("The alternate memory address will be used for reading active status effects.");
+                return activeEffectsAlt;
+            }
+
+            return string.Empty;
+        }
 
         private async Task WaitForCommandCooldown(int cooldown)
         {
