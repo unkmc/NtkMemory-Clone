@@ -34,7 +34,6 @@ namespace TkMemory.Integration.TkClient
         #region Fields
 
         private static readonly StringComparer ComparisonRules = StringComparer.OrdinalIgnoreCase;
-
         protected readonly ClassMemory ClassMemory;
 
         #endregion Fields
@@ -125,6 +124,12 @@ namespace TkMemory.Integration.TkClient
         public TkClient.BasePath GetBasePath()
         {
             var path = TkSelf.Path;
+
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                // This covers cases in which a client is open but not logged in.
+                return TkClient.BasePath.None;
+            }
 
             if (Constants.Subpath.Mage.Contains(path, ComparisonRules))
             {

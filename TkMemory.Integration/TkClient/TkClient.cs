@@ -94,7 +94,7 @@ namespace TkMemory.Integration.TkClient
         /// <summary>
         /// The base path that a player has chosen excluding subpath and mark rank.
         /// </summary>
-        public enum BasePath { Warrior, Rogue, Mage, Poet }
+        public enum BasePath { None, Warrior, Rogue, Mage, Poet }
 
         #endregion Enums
 
@@ -261,10 +261,10 @@ namespace TkMemory.Integration.TkClient
             _previousGroupSize = currentGroupSize;
             _previousLastGroupMemberUid = lastGroupMemberUid;
 
-            Group.MultiboxMembers = new List<TkClient>();
+            Group.MultiboxMembers = activeClients.Clients.ToList(); // Multibox clients are treated like group members even when they are not grouped (does not include clients opened after the trainer starts)
             var newExternalMembers = new List<GroupMember>();
-            var clients = activeClients.Clients.ToArray();
 
+            // Get all members of the group that are not multibox clients and add them as external group members
             for (var i = 0; i < currentGroupSize; i++)
             {
                 var uid = Group.GetUid(i);
@@ -274,15 +274,12 @@ namespace TkMemory.Integration.TkClient
                     continue;
                 }
 
-                var matchingClient = clients.FirstOrDefault(client => client.Self.Uid == uid);
+                var matchingClient = Group.MultiboxMembers.FirstOrDefault(client => client.Self.Uid == uid);
 
                 if (matchingClient == null)
                 {
                     newExternalMembers.Add(new GroupMember(i, Group.GetName(i), uid));
-                    continue;
                 }
-
-                Group.MultiboxMembers.Add(matchingClient);
             }
 
             // The following may seem overcomplicated, but the simpler approach of just completely replacing the existing list of external group members

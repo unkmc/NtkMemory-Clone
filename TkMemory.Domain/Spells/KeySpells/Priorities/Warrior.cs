@@ -272,10 +272,10 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         /// </summary>
         public static readonly AetheredKeySpell[] SpotTraps =
         {
-            new AetheredKeySpell("Spot Traps", "Watchful Eye", 90, 37),
-            new AetheredKeySpell("Spot Traps", "Spirit's Whisper", 90, 37),
-            new AetheredKeySpell("Spot Traps", "Creature's Guidance", 90, 37),
-            new AetheredKeySpell("Spot Traps", "Spot Unbalance", 90, 37)
+            new AetheredKeySpell("Spot Traps", "Watchful Eye", 125, 37),
+            new AetheredKeySpell("Spot Traps", "Spirit's Whisper", 125, 37),
+            new AetheredKeySpell("Spot Traps", "Creature's Guidance", 125, 37),
+            new AetheredKeySpell("Spot Traps", "Spot Unbalance", 125, 37)
         };
 
         /// <summary>

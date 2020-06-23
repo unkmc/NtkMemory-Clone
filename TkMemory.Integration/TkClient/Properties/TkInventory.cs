@@ -14,10 +14,10 @@
 // along with TkMemory. If not, please refer to:
 // https://www.gnu.org/licenses/gpl-3.0.en.html
 
+using AutoHotkey.Interop.ClassMemory;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using AutoHotkey.Interop.ClassMemory;
 using TkMemory.Domain.Items;
 using TkMemory.Integration.TkClient.Infrastructure;
 
@@ -58,7 +58,7 @@ namespace TkMemory.Integration.TkClient.Properties
         /// Gets the current item inventory of the player.
         /// </summary>
         public List<Item> Items { get; private set; }
-        
+
         /// <summary>
         /// Gets the key items currently possessed by the player.
         /// </summary>
@@ -124,7 +124,7 @@ namespace TkMemory.Integration.TkClient.Properties
                     continue;
                 }
 
-                var quantity = displayName.Contains(LeftBracket)
+                var quantity = displayName.Contains(LeftBracket) && !displayName.Contains("(")
                     ? ParseQuantityFromDisplayName(displayName)
                     : GetQuantity(i);
 

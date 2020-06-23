@@ -266,11 +266,7 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
             new HealKeySpell("Recover", "Recover", 100, 200),
             new HealKeySpell("Recover", "Spirit's Embrace", 100, 200),
             new HealKeySpell("Recover", "Infuse Energy", 100, 200),
-            new HealKeySpell("Recover", "Life's River", 100, 200),
-            new HealKeySpell("Lay Hands", "Lay Hands", 90, 100),
-            new HealKeySpell("Lay Hands", "Spirit's Smile", 90, 100),
-            new HealKeySpell("Lay Hands", "Life's Water", 90, 100),
-            new HealKeySpell("Lay Hands", "Quicken", 90, 100)
+            new HealKeySpell("Recover", "Life's River", 100, 200)
         };
 
         /// <summary>
@@ -289,7 +285,11 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         /// </summary>
         public static readonly HealKeySpell[] HealSelf =
         {
-            new HealKeySpell("Soothe", "Soothe", 3, 50)
+            new HealKeySpell("Soothe", "Soothe", 3, 50),
+            new HealKeySpell("Lay Hands", "Lay Hands", 90, 100),
+            new HealKeySpell("Lay Hands", "Spirit's Smile", 90, 100),
+            new HealKeySpell("Lay Hands", "Life's Water", 90, 100),
+            new HealKeySpell("Lay Hands", "Quicken", 90, 100)
         };
 
         /// <summary>

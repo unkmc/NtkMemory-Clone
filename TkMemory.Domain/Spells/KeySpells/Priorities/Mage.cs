@@ -126,7 +126,11 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         /// </summary>
         public static readonly HealKeySpell[] HealSelf =
         {
-            new HealKeySpell("Soothe", "Soothe", 3, 50)
+            new HealKeySpell("Soothe", "Soothe", 3, 50),
+            new HealKeySpell("Lay Hands", "Lay Hands", 90, 100),
+            new HealKeySpell("Lay Hands", "Spirit's Smile", 90, 100),
+            new HealKeySpell("Lay Hands", "Life's Water", 90, 100),
+            new HealKeySpell("Lay Hands", "Quicken", 90, 100)
         };
 
         /// <summary>

@@ -77,6 +77,9 @@ namespace TkMemory.Integration.TkClient
                         Warriors.Add(tkClientFactory.BuildWarrior());
                         break;
 
+                    case TkClient.BasePath.None:
+                        break;
+
                     default:
                         throw new Exception($"Invalid path '{tkClientFactory.TkSelf.Path}' could not be classified into a base path.");
                 }
