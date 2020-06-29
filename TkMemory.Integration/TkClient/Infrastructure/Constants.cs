@@ -27,6 +27,10 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             public static readonly string[] Mage =
             {
                 "Mage",
+                "Il San (M)",
+                "Ee San (M)",
+                "Sam San (M)",
+                "Sa San (M)",
                 "Ju Jak",
                 "Force",
                 "Inferno",
@@ -52,6 +56,10 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             public static readonly string[] Poet =
             {
                 "Poet",
+                "Il San (P)",
+                "Ee San (P)",
+                "Sam San (P)",
+                "Sa San (P)",
                 "Hyun Moo",
                 "Panoply",
                 "Essence",
@@ -77,6 +85,10 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             public static readonly string[] Rogue =
             {
                 "Rogue",
+                "Il San (R)",
+                "Ee San (R)",
+                "Sam San (R)",
+                "Sa San (R)",
                 "Baekho",
                 "Cunning",
                 "Swift",
@@ -102,6 +114,10 @@ namespace TkMemory.Integration.TkClient.Infrastructure
             public static readonly string[] Warrior =
             {
                 "Warrior",
+                "Il San (W)",
+                "Ee San (W)",
+                "Sam San (W)",
+                "Sa San (W)",
                 "Chung Ryong",
                 "Fury",
                 "Assault",

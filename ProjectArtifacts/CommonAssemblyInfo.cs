@@ -5,4 +5,4 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.3.5")]
+[assembly: AssemblyVersion("1.4.0")]

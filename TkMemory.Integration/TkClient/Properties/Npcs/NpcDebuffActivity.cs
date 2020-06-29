@@ -47,7 +47,7 @@ namespace TkMemory.Integration.TkClient.Properties.Npcs
             }
 
             _duration = buffKeySpell.Duration + 1;
-            _timeLastCast = DateTime.Now.AddSeconds(-_duration);
+            OverrideTimer();
         }
 
         #endregion Constructors
@@ -62,6 +62,15 @@ namespace TkMemory.Integration.TkClient.Properties.Npcs
         #endregion Properties
 
         #region Public Methods
+
+        /// <summary>
+        /// Alters the timer used track when the debuff was most recently cast on the NPC
+        /// such that the trainer will recast on the NPC at the next opportunity.
+        /// </summary>
+        public void OverrideTimer()
+        {
+            _timeLastCast = DateTime.Now.AddSeconds(-_duration);
+        }
 
         /// <summary>
         /// Resets the timer used track when the debuff was most recently cast on the NPC.
