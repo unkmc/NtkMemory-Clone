@@ -33,8 +33,6 @@ namespace TkMemory.Application
         #region Fields
 
         private const int DefaultCommandCooldown = 333;
-        private const int MaxErrorCount = 10;
-        private static int _errorCount;
 
         #endregion Fields
 
@@ -82,30 +80,13 @@ namespace TkMemory.Application
         }
 
         /// <summary>
-        /// Logs any exception in a standardized format.
-        /// </summary>
-        /// <param name="ex">The exception that was thrown.</param>
-        public static void LogException(Exception ex)
-        {
-            _errorCount++;
-
-            if (_errorCount >= MaxErrorCount)
-            {
-                Log.Fatal("Unfortunately, it looks like things are not going very well. The number of errors so far indicates that there is a serious bug that needs to be fixed, so I am going to call it quits here for now. Please contact the developer for support.");
-                Terminate(-2);
-            }
-
-            Log.Error($"{ex.GetType()}: {ex.Message}\n{ex.StackTrace}");
-        }
-
-        /// <summary>
-        /// Terminates the bot in exceptional circumstances.
+        /// Terminates the bot after logging an exception.
         /// </summary>
         /// <param name="ex">The exception that was thrown.</param>
         public static void Terminate(Exception ex)
         {
-            LogException(ex);
-            Terminate(-1);
+            Log.Fatal($"{ex.GetType()}: {ex.Message}\n{ex.StackTrace}");
+            Environment.Exit(-1);
         }
 
         /// <summary>
@@ -116,28 +97,13 @@ namespace TkMemory.Application
         {
             Log.Information(client.GetExpReport());
             Log.Information(client.GetManaRestorationItemUsageReport());
-            Terminate();
-        }
-
-        #endregion Public Methods
-
-        #region Private Methods
-
-        private static void Terminate(int exitCode = 0)
-        {
-            if (exitCode != 0)
-            {
-                Log.Fatal($"Process failed with exit code {exitCode}.");
-                Process.GetCurrentProcess().Kill();
-            }
 
             Console.WriteLine();
             Console.WriteLine(@"Press ""Esc"" to exit...");
             while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
-
             Environment.Exit(0);
         }
 
-        #endregion Private Methods
+        #endregion Public Methods
     }
 }

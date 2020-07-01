@@ -19,6 +19,8 @@ using AutoHotkey.Interop.ClassMemory;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -85,6 +87,8 @@ namespace TkMemory.Integration.TkClient
             _botStartTime = DateTime.Now;
             _startingExp = Self.Exp;
             _timeOfPreviousNpcScan = DateTime.Now.AddSeconds(-NpcScanCooldownInSeconds);
+
+            StartAutoHotkeyDllErrorHandler();
         }
 
         #endregion Constructors
@@ -383,6 +387,39 @@ namespace TkMemory.Integration.TkClient
 
         #region Private Methods
 
+        /// <summary>
+        /// Starts a simple AHK application that kills any trainer that stops due to AutoHotkey.dll errors.
+        /// This is kind of a dumb approach because it leaves an AHK application running even after TkMemory
+        /// stops, but it's lightweight and extremely unlikely to do any harm. I could do it more elegantly
+        /// from within TkMemory.Application, but this ridiculous brute force approach also makes it automatic
+        /// for anyone who uses TkMemory in some other application of his/her own design. I am not sure why
+        /// I care so much about that since the real benefit of this is that it complements the automatic
+        /// restart feature that I implemented in TkMemory.Application, but I am going to assume that everyone
+        /// is employing the same general concept since these apps can always crash unexpectedly.
+        /// </summary>
+        private static void StartAutoHotkeyDllErrorHandler()
+        {
+            var tkMemory = Path.Combine(
+                System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData),
+                "TkMemory");
+
+            if (!Directory.Exists(tkMemory))
+            {
+                Directory.CreateDirectory(tkMemory);
+            }
+
+            var ahkErrorHandler = Path.Combine(
+                tkMemory,
+                "AutoHotkeyDllErrorHandler.exe");
+
+            if (!File.Exists(ahkErrorHandler))
+            {
+                File.WriteAllBytes(ahkErrorHandler, Integration.Properties.Resources.AutoHotkeyDllErrorHandler);
+            }
+
+            Process.Start(ahkErrorHandler);
+        }
+
         private void AddNpc(uint uid)
         {
             var isAlreadyInNpcList = Npcs.Any(npc => uid == npc.Uid);
@@ -394,7 +431,7 @@ namespace TkMemory.Integration.TkClient
         }
 
         /// <summary>
-        /// Shift + F11 will swap the target lock and auto-target keys,
+        /// Pressing Shift + F11 in-game will swap the target lock and auto-target keys,
         /// so we have to figure out which one to use.
         /// </summary>
         private async Task<string> GetAutoTargetingKey()

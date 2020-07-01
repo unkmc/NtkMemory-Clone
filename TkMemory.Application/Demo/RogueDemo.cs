@@ -107,7 +107,7 @@ namespace TkMemory.Application.Demo
             }
             catch (Exception ex)
             {
-                TkBotFactory.LogException(ex);
+                TkBotFactory.Terminate(ex);
             }
 
             while (_isBotRunning.Value)
@@ -128,7 +128,7 @@ namespace TkMemory.Application.Demo
                 }
                 catch (Exception ex)
                 {
-                    TkBotFactory.LogException(ex);
+                    TkBotFactory.Terminate(ex);
                 }
             }
 

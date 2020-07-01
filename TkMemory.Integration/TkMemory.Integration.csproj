@@ -57,6 +57,11 @@
     <Compile Include="AutoHotkey\AutoHotkeyToggleWithPrerequisite.cs" />
     <Compile Include="AutoHotkey\AutoHotkeyEngineExtensions.cs" />
     <Compile Include="AutoHotkey\AutoHotkeyBool.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TkClient\FighterClient.cs" />
     <Compile Include="TkClient\CasterClient.cs" />
     <Compile Include="TkClient\Infrastructure\DoubleExtensions.cs" />
@@ -146,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoHotkey\AutoHotkeyConfig.cs" />
+    <None Include="AutoHotkey\AutoHotkeyDllErrorHandler.ahk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +160,14 @@
       <Name>TkMemory.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AutoHotkeyDllErrorHandler.exe" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
