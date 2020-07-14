@@ -256,7 +256,7 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
             new BuffKeySpell("Vex", "Disrupt", 120, 187),
             new BuffKeySpell("Vex", "Vex", 60, 425),
             new BuffKeySpell("Vex", "Death's Face", 60, 425),
-            new BuffKeySpell("Vex", "Un-natural Selection", 60, 425),
+            new BuffKeySpell("Vex", "Unnatural Selection", 60, 425),
             new BuffKeySpell("Vex", "Flaw", 60, 425),
             new BuffKeySpell("Vex", "Pestilence", 5, 15),
             new BuffKeySpell("Snared", "Snared", 0, 0)
