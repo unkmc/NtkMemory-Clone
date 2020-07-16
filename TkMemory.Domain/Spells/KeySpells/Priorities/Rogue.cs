@@ -256,7 +256,7 @@ namespace TkMemory.Domain.Spells.KeySpells.Priorities
         public static readonly BuffKeySpell[] Might =
         {
             new BuffKeySpell("Might", "Might", 30, 162),
-            new BuffKeySpell("Might", "Spiritstrength", 30, 162),
+            new BuffKeySpell("Might", "Spirit Strength", 30, 162),
             new BuffKeySpell("Might", "Inner Blessing", 30, 162),
             new BuffKeySpell("Might", "Temper", 30, 162)
         };
