@@ -62,9 +62,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TkMemory.Domain, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TkMemory.1.5.2\lib\net461\TkMemory.Domain.dll</HintPath>
-    </Reference>
     <Reference Include="TkMemory.Integration, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\TkMemory.Integration\bin\Debug\TkMemory.Integration.dll</HintPath>
     </Reference>
@@ -86,6 +83,10 @@
     <ProjectReference Include="..\TkMemory.Common\TkMemory.Common.csproj">
       <Project>{6041CAD2-0C41-4443-8D7D-C271C9DFEE61}</Project>
       <Name>TkMemory.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TkMemory.Domain\TkMemory.Domain.csproj">
+      <Project>{c7597364-60b7-48da-b358-08db41f03197}</Project>
+      <Name>TkMemory.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

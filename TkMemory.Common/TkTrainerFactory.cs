@@ -29,7 +29,7 @@ namespace TkMemory.Application.Common
         public static void Initialize(string trainerName)
         {
             var logFilePath = Path.Combine(
-                Constants.FileSinkPath,
+                Constants.TkMemoryAppDataPath,
                 $"{trainerName}-.log");
 
             Log.Logger = new LoggerConfiguration()

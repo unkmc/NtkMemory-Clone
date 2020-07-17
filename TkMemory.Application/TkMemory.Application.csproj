@@ -35,7 +35,7 @@
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.6.0.0</ApplicationVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -71,7 +71,7 @@
     <ManifestKeyFile>TkMemory.Application.Launcher_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -153,26 +153,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\ProjectArtifacts\AutoFollow.exe">
+    <EmbeddedResource Include="..\ProjectArtifacts\AutoFollow.exe">
       <Link>Resources\AutoFollow.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\ProjectArtifacts\Mage.exe">
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ProjectArtifacts\Mage.exe">
       <Link>Resources\Mage.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\ProjectArtifacts\Poet.exe">
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ProjectArtifacts\Poet.exe">
       <Link>Resources\Poet.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\ProjectArtifacts\Rogue.exe">
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ProjectArtifacts\Rogue.exe">
       <Link>Resources\Rogue.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\ProjectArtifacts\Warrior.exe">
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\ProjectArtifacts\Warrior.exe">
       <Link>Resources\Warrior.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
     <Content Include="FodyWeavers.xml" />
     <Content Include="totem.ico" />
   </ItemGroup>

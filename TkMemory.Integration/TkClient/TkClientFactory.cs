@@ -146,9 +146,13 @@ namespace TkMemory.Integration.TkClient
                 return TkClient.BasePath.Rogue;
             }
 
-            return Constants.Subpath.Warrior.Contains(path, ComparisonRules)
-                ? TkClient.BasePath.Warrior
-                : GetBasePathByKeySpellCount();
+            if (Constants.Subpath.Warrior.Contains(path, ComparisonRules))
+            {
+                return TkClient.BasePath.Warrior;
+            }
+
+            Log.Warning($"Could not determine base path for subpath \"{path}\".");
+            return TkClient.BasePath.None;
         }
 
         #endregion Public Methods

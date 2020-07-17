@@ -1,6 +1,6 @@
 using System.Reflection;
 
-[assembly: AssemblyCompany("Sean O'Donnell")]
+[assembly: AssemblyCompany("TkMemory")]
 [assembly: AssemblyProduct("TkMemory")]
 [assembly: AssemblyCopyright("Copyright © 2020")]
 [assembly: AssemblyTrademark("")]

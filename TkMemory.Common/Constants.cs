@@ -5,13 +5,13 @@ namespace TkMemory.Application.Common
 {
     public static class Constants
     {
-        public const string AutoFollow = "AutoFollow";
-        public const string Mage = "Mage";
-        public const string Poet = "Poet";
-        public const string Rogue = "Rogue";
-        public const string Warrior = "Warrior";
+        public const string AutoFollowExe = "AutoFollow";
+        public const string MageExe = "Mage";
+        public const string PoetExe = "Poet";
+        public const string RogueExe = "Rogue";
+        public const string WarriorExe = "Warrior";
 
-        public static readonly string FileSinkPath = Path.Combine(
+        public static readonly string TkMemoryAppDataPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
             "TkMemory");
     }

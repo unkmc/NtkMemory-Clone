@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using Constants = TkMemory.Application.Common.Constants;
 
 namespace TkMemory.Application.Infrastructure
 {
@@ -39,7 +40,8 @@ namespace TkMemory.Application.Infrastructure
                             p.ProcessName.Equals("Mage", StringComparison.OrdinalIgnoreCase) ||
                             p.ProcessName.Equals("Poet", StringComparison.OrdinalIgnoreCase) |
                             p.ProcessName.Equals("Rogue", StringComparison.OrdinalIgnoreCase) ||
-                            p.ProcessName.Equals("Warrior", StringComparison.OrdinalIgnoreCase));
+                            p.ProcessName.Equals("Warrior", StringComparison.OrdinalIgnoreCase) ||
+                            p.ProcessName.Equals("AutoHotkeyDllErrorHandler", StringComparison.OrdinalIgnoreCase));
 
             foreach (var process in processes)
             {
@@ -78,20 +80,13 @@ namespace TkMemory.Application.Infrastructure
                 return;
             }
 
-            var exeDirectory = Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
-
-            if (string.IsNullOrWhiteSpace(exeDirectory))
-            {
-                throw new Exception("Could not find the path to the executable for this application.");
-            }
-
-            var pathToTrainerExe = Path.Combine(exeDirectory, "Resources", exeName + ".exe");
+            var pathToExe = Path.Combine(Constants.TkMemoryAppDataPath, exeName + ".exe");
 
             using (var process = new Process
             {
                 StartInfo =
                 {
-                    FileName = pathToTrainerExe,
+                    FileName = pathToExe,
                     Arguments = string.Join(" ", commandLineArguments),
                     WindowStyle = startMinimized
                         ? ProcessWindowStyle.Minimized
@@ -105,7 +100,7 @@ namespace TkMemory.Application.Infrastructure
                 }
                 catch (Win32Exception)
                 {
-                    MessageBox.Show($@"{exeName}.exe was not found at: {pathToTrainerExe}",
+                    MessageBox.Show($@"{exeName}.exe was not found at: {pathToExe}",
                         $@"{exeName}.exe Not Found",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);

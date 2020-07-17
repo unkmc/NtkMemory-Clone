@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -63,6 +64,21 @@ namespace TkMemory.Application
             _featureCheckBoxes.AddRange(_poetFeatureCheckBoxes);
             _featureCheckBoxes.AddRange(_rogueFeatureCheckBoxes);
             _featureCheckBoxes.AddRange(_warriorFeatureCheckBoxes);
+
+            var exeNames = new[] { Constants.AutoFollowExe, Constants.MageExe, Constants.PoetExe, Constants.RogueExe, Constants.WarriorExe };
+
+            foreach (var exeName in exeNames)
+            {
+                var pathToExe = Path.Combine(Constants.TkMemoryAppDataPath, exeName + ".exe");
+                var exeResource = ProcessHelpers.GetEmbeddedExe(exeName);
+
+                foreach (var process in Process.GetProcessesByName(exeName))
+                {
+                    process.Close();
+                }
+
+                File.WriteAllBytes(pathToExe, exeResource);
+            }
         }
 
         [SuppressMessage("ReSharper", "FunctionNeverReturns")]
@@ -83,7 +99,7 @@ namespace TkMemory.Application
 
                         if (MageActiveCheckBox.Checked)
                         {
-                            StartEmbeddedExe(Constants.Mage,
+                            StartEmbeddedExe(Constants.MageExe,
                                 new[]
                                 {
                                     $"-h {MageHealCheckBox.Checked}",
@@ -97,7 +113,7 @@ namespace TkMemory.Application
 
                         if (PoetActiveCheckBox.Checked)
                         {
-                            StartEmbeddedExe(Constants.Poet,
+                            StartEmbeddedExe(Constants.PoetExe,
                                 new[]
                                 {
                                     $"-h {PoetHardenBodyCheckbox.Checked}"
@@ -106,7 +122,7 @@ namespace TkMemory.Application
 
                         if (RogueActiveCheckBox.Checked)
                         {
-                            StartEmbeddedExe(Constants.Rogue,
+                            StartEmbeddedExe(Constants.RogueExe,
                                 new[]
                                 {
                                     $"-m {RogueAttackCheckBox.Checked}",
@@ -118,7 +134,7 @@ namespace TkMemory.Application
 
                         if (WarriorActiveCheckBox.Checked)
                         {
-                            StartEmbeddedExe(Constants.Warrior,
+                            StartEmbeddedExe(Constants.WarriorExe,
                                 new[]
                                 {
                                     $"-m {WarriorAttackCheckBox.Checked}",
@@ -129,7 +145,7 @@ namespace TkMemory.Application
 
                         if (AutoFollowActiveCheckBox.Checked)
                         {
-                            ProcessHelpers.StartEmbeddedExe(Constants.AutoFollow,
+                            ProcessHelpers.StartEmbeddedExe(Constants.AutoFollowExe,
                                 new[]
                                 {
                                     $@"-p ""{ApplicationNameTextBox.Text}""",
@@ -192,7 +208,7 @@ namespace TkMemory.Application
                 return;
             }
 
-            foreach (var process in Process.GetProcessesByName(Constants.Mage))
+            foreach (var process in Process.GetProcessesByName(Constants.MageExe))
             {
                 process.Kill();
             }
@@ -210,7 +226,7 @@ namespace TkMemory.Application
                 return;
             }
 
-            foreach (var process in Process.GetProcessesByName(Constants.Poet))
+            foreach (var process in Process.GetProcessesByName(Constants.PoetExe))
             {
                 process.Kill();
             }
@@ -228,7 +244,7 @@ namespace TkMemory.Application
                 return;
             }
 
-            foreach (var process in Process.GetProcessesByName(Constants.Rogue))
+            foreach (var process in Process.GetProcessesByName(Constants.RogueExe))
             {
                 process.Kill();
             }
@@ -246,7 +262,7 @@ namespace TkMemory.Application
                 return;
             }
 
-            foreach (var process in Process.GetProcessesByName(Constants.Warrior))
+            foreach (var process in Process.GetProcessesByName(Constants.WarriorExe))
             {
                 process.Kill();
             }
@@ -264,7 +280,7 @@ namespace TkMemory.Application
                 return;
             }
 
-            foreach (var process in Process.GetProcessesByName(Constants.AutoFollow))
+            foreach (var process in Process.GetProcessesByName(Constants.AutoFollowExe))
             {
                 process.Kill();
             }
@@ -398,7 +414,7 @@ namespace TkMemory.Application
 
         private void LogFilesButton_Click(object sender, EventArgs e)
         {
-            Process.Start("explorer.exe", Constants.FileSinkPath);
+            Process.Start("explorer.exe", Constants.TkMemoryAppDataPath);
         }
 
         private void DeactivateButton_Click(object sender, EventArgs e)

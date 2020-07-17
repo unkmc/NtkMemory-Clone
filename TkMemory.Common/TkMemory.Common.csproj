@@ -54,12 +54,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TkMemory.Domain, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TkMemory.1.5.2\lib\net461\TkMemory.Domain.dll</HintPath>
-    </Reference>
-    <Reference Include="TkMemory.Integration, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\TkMemory.Integration\bin\Debug\TkMemory.Integration.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\ProjectArtifacts\CommonAssemblyInfo.cs">
@@ -71,6 +65,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TkMemory.Domain\TkMemory.Domain.csproj">
+      <Project>{c7597364-60b7-48da-b358-08db41f03197}</Project>
+      <Name>TkMemory.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TkMemory.Integration\TkMemory.Integration.csproj">
+      <Project>{6bf6898b-81d7-4a98-8b6b-c5513295e8a0}</Project>
+      <Name>TkMemory.Integration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
