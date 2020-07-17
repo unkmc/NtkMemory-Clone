@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("TkMemory.Application")]
+[assembly: AssemblyTitle("TkMemory")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: ComVisible(false)]
-[assembly: Guid("db6d1efc-2276-42d1-8f91-659440d6ca20")]
+[assembly: Guid("aa72c33e-77c5-4128-9c37-12e4cf6a5e93")]

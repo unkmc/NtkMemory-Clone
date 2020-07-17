@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="TkMemory.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+      <section name="TkMemory.Application.Launcher.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+  </startup>
+  <userSettings>
+    <TkMemory.Properties.Settings>
+      <setting name="ApplicationName" serializeAs="String">
+        <value>NexusTK.exe</value>
+      </setting>
+      <setting name="CommandDelay" serializeAs="String">
+        <value>333</value>
+      </setting>
+      <setting name="MageHeal" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageVex" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageZap" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueAttack" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueDesperateAttack" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueLethalStrike" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="WarriorAttack" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="WarriorBerserk" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="WarriorWhirlwind" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageBlind" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageParalyze" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageVenom" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueAmbush" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="AutoFollowLeader" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="AutoFollowDistance" serializeAs="String">
+        <value>4</value>
+      </setting>
+      <setting name="MinimizeConsoleOutput" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="PoetHardenBody" serializeAs="String">
+        <value>True</value>
+      </setting>
+    </TkMemory.Properties.Settings>
+    <TkMemory.Application.Launcher.Properties.Settings>
+      <setting name="ApplicationName" serializeAs="String">
+        <value>NexusTK.exe</value>
+      </setting>
+      <setting name="CommandDelay" serializeAs="String">
+        <value>333</value>
+      </setting>
+      <setting name="MageHeal" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageVex" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageZap" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueAttack" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueDesperateAttack" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueLethalStrike" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="WarriorAttack" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="WarriorBerserk" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="WarriorWhirlwind" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageBlind" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageParalyze" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="MageVenom" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="RogueAmbush" serializeAs="String">
+        <value>True</value>
+      </setting>
+      <setting name="AutoFollowLeader" serializeAs="String">
+        <value />
+      </setting>
+      <setting name="AutoFollowDistance" serializeAs="String">
+        <value>2</value>
+      </setting>
+      <setting name="MinimizeConsoleOutput" serializeAs="String">
+        <value>False</value>
+      </setting>
+      <setting name="PoetHardenBody" serializeAs="String">
+        <value>True</value>
+      </setting>
+    </TkMemory.Application.Launcher.Properties.Settings>
+  </userSettings>
+</configuration>

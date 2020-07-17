@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="TkMemory.exe" version="1.5.3.0" publicKeyToken="77dc297255cbe519" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="totem.ico" asmv2:publisher="TkMemory" asmv2:product="TkMemory" asmv2:supportUrl="https://github.com/elodon/AutoHotkey.Interop.ClassMemory/wiki/Issues" co.v1:errorReportUrl="https://github.com/elodon/AutoHotkey.Interop.ClassMemory/wiki/Issues" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="TkMemory" version="1.5.3.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="TkMemory.exe" parameters="" />
+  </entryPoint>
+  <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AutoHotkey.Interop.dll" size="3625984">
+      <assemblyIdentity name="AutoHotkey.Interop" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>wBMTDaTedWzR6sEmF5hvGQzJLnlkC9ord+5dHqe4WvA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AutoHotkey.Interop.ClassMemory.dll" size="367104">
+      <assemblyIdentity name="AutoHotkey.Interop.ClassMemory" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>su8SNfwq10md8M56QZ2rJ4dfBNJc19DQMXgUC6Ot0cc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Serilog.Sinks.Console.dll" size="32256">
+      <assemblyIdentity name="Serilog.Sinks.Console" version="3.1.1.0" publicKeyToken="24C2F752A8E58A10" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>3tO1e2TspHnyplmiROTEA+v7g6mpswztiTwUXnev/Sk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Serilog.Sinks.File.dll" size="28160">
+      <assemblyIdentity name="Serilog.Sinks.File" version="2.0.0.0" publicKeyToken="24C2F752A8E58A10" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>bY2EycFCAWdNmjCfUelSzxSK0zzbZlB9lnfr8bHkQys=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TkMemory.exe" size="2049496">
+      <assemblyIdentity name="TkMemory" version="1.5.3.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>2L5tXrZSYriuzd79ikZyd5zMak7OFAofHbKMFC+Qy60=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TkMemory.Domain.dll" size="78336">
+      <assemblyIdentity name="TkMemory.Domain" version="1.3.5.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>wiKYmM3dnfeq0ePrR7KoM3GfETQsa4gOOIafdidxQ6A=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TkMemory.Integration.dll" size="189952">
+      <assemblyIdentity name="TkMemory.Integration" version="1.3.5.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>sIJR02oLVR0+As9nnb4W4lg8m02Ve5Pu1FvQSr03Dfo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="FodyWeavers.xml" size="181" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>wNZfdme8o/Mx+z65HOlTkKrnhbOVUHanv82xNbMqObI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\AutoFollow.exe" size="2133504">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2fw7MoMSTq0blH2FTGz4G415R4onVNYm7KxdIME4FPY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Mage.exe" size="2142720">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/iU4PoyYZ5/yMklklklS8+C1xoL96QeOCrBDMFcrCZU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Poet.exe" size="2137088">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/iy7epwO4bZXeemKWB4L+FkJFh+WEIy1PIL4f+fCSRw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Rogue.exe" size="2139136">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>L9/98N0PfXRz7kIQ1Nenzv6SEF4Jpjh96M/SY94O8bA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Warrior.exe" size="2139136">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>7hNiafDPYwSkRBItFiA+aqBrekM48RjdesgZ7Owzafc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="TkMemory.exe.config" size="5164">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>z9fNeWFSPWJKNA2gWhHUTKaw5yWDynN37fqimRs/7+M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="totem.ico" size="4286">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1j2weF5ZBQqVi24hS9VhqbeWrPQm+b48F7YQjiTrQeQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on
+           and is designed to work with. Uncomment the appropriate elements
+           and Windows will automatically select the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=DESKTOP-2VAMTO1\Sean" issuerKeyHash="16789ae0d06f6f03d5547caf5a3386d825e263d3" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>vVtdwMpYJ8ihoYatYx7fgScfIJac28h6+3XVTISNLZ4=</DigestValue></Reference></SignedInfo><SignatureValue>OSt/rw2/QesFwPfCkRjUNyZPNKu0ayXtoRYe3BXOxJzCdcVuX7Tb+7Wdo2VwpxvDTtul59Aq76oIriFcVpBdvrnGBMyJ5mcYEVsMIKwQizvm+iyy8y2Xf7CCXq8sfqtj1E9lyAKbZ4HfxnMVnfwTIeaF2zP3h4vScX8eFrtalvY=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>yjuN/nFtdhK/Bd4F1Yruyz1Km4AR8350NRW8U2Upsy/8yMektgONPf8hSQE7b/1luVuE2UxEtoHVxej5g0X5c0Z0mFicrgqRXNUp3huj2H7xnXvzrauM9q2BlH22kHv0SBh3xA1WiVIfWlxAALlqfkiNqYf2+G2lhr3IBDzpAJ0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="9e2d8d844cd575fb7ac8db9c96201f2781df1e63ad86a1a1c82758cac05d5bbd" Description="" Url=""><as:assemblyIdentity name="TkMemory.exe" version="1.5.3.0" publicKeyToken="77dc297255cbe519" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-2VAMTO1\Sean</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>sVcGxD+kgEgLjTZSW6oVV3uSITIjIxTNU0405bTdoMQ=</DigestValue></Reference></SignedInfo><SignatureValue>kTSbGmGcH02nqvBlwp0ZGrc75sIfl7ZdW++zbbca6qSUIWoNB7lvx+yv3dyQKYxiPvZGC1O6rjM0AoM2cpu/6vQ5tmchz38SlVSXG2ZofwTSpCRnSlWeBIng6i8Q89OZ9FNUWe/3mwiJvXmKKUUZ660IyvjAfNBXeci4kSC2qHw=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>yjuN/nFtdhK/Bd4F1Yruyz1Km4AR8350NRW8U2Upsy/8yMektgONPf8hSQE7b/1luVuE2UxEtoHVxej5g0X5c0Z0mFicrgqRXNUp3huj2H7xnXvzrauM9q2BlH22kHv0SBh3xA1WiVIfWlxAALlqfkiNqYf2+G2lhr3IBDzpAJ0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB6TCCAVKgAwIBAgIQdgX973nCXaNFFrBEhZYmszANBgkqhkiG9w0BAQsFADAzMTEwLwYDVQQDHigARABFAFMASwBUAE8AUAAtADIAVgBBAE0AVABPADEAXABTAGUAYQBuMB4XDTIwMDUxNTEzMDg1NFoXDTIxMDUxNTE5MDg1NFowMzExMC8GA1UEAx4oAEQARQBTAEsAVABPAFAALQAyAFYAQQBNAFQATwAxAFwAUwBlAGEAbjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAyjuN/nFtdhK/Bd4F1Yruyz1Km4AR8350NRW8U2Upsy/8yMektgONPf8hSQE7b/1luVuE2UxEtoHVxej5g0X5c0Z0mFicrgqRXNUp3huj2H7xnXvzrauM9q2BlH22kHv0SBh3xA1WiVIfWlxAALlqfkiNqYf2+G2lhr3IBDzpAJ0CAwEAATANBgkqhkiG9w0BAQsFAAOBgQCGa3EVNtTKZ9eYh5Z+ID57RG0OykCBn9plt5SokcyV2eL9rteAS8/PZ1Wr3ju3mL2fgm7esDxzTqYg53F1WoHZSSA6IHujFdtn+Y4EJhZtoBcG51pPwI2QhCEFgWJ6z1mAtejGl7vux2YbxySqYGWV3L2ihh7XxVhvqbkl3ugjiw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -1,26 +1,59 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Tests", "TkMemory.Tests\TkMemory.Tests.csproj", "{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{517053BA-FAF4-4A41-8478-4278DCF67F07}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A93F7718-BE2A-495D-9655-1B19F0510600}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3FEA4B58-C297-49E2-BB42-26A2525A0F89}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectArtifacts", "ProjectArtifacts", "{F1E3C221-FA6D-47B2-9B36-98B39BBA24F0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectArtifacts", "ProjectArtifacts", "{53BD1B93-1739-4E6A-A08B-3762D7EF57A8}"
 	ProjectSection(SolutionItems) = preProject
+		ProjectArtifacts\AutoFollow.exe = ProjectArtifacts\AutoFollow.exe
+		ProjectArtifacts\ClassicTK.CT = ProjectArtifacts\ClassicTK.CT
 		ProjectArtifacts\CommonAssemblyInfo.cs = ProjectArtifacts\CommonAssemblyInfo.cs
-		ProjectArtifacts\NexusTK.CT = ProjectArtifacts\NexusTK.CT
+		ProjectArtifacts\Mage.exe = ProjectArtifacts\Mage.exe
+		ProjectArtifacts\Poet.exe = ProjectArtifacts\Poet.exe
+		ProjectArtifacts\Rogue.exe = ProjectArtifacts\Rogue.exe
 		ProjectArtifacts\tk.png = ProjectArtifacts\tk.png
+		ProjectArtifacts\TkMemory.exe = ProjectArtifacts\TkMemory.exe
+		ProjectArtifacts\Warrior.exe = ProjectArtifacts\Warrior.exe
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Mage", "TkMemory.Mage\TkMemory.Mage.csproj", "{CE277A44-E573-4768-8DED-EA81C9BBEBDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Rogue", "TkMemory.Rogue\TkMemory.Rogue.csproj", "{77C6898F-C60F-4C19-940A-33A2BA6BDE3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Warrior", "TkMemory.Warrior\TkMemory.Warrior.csproj", "{E3994A74-3A58-469C-B810-77F288D9A089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Poet", "TkMemory.Poet\TkMemory.Poet.csproj", "{9151CCB7-2AAC-4BB9-AD95-3CD509141625}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Application", "TkMemory.Application\TkMemory.Application.csproj", "{AA72C33E-77C5-4128-9C37-12E4CF6A5E93}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE277A44-E573-4768-8DED-EA81C9BBEBDB} = {CE277A44-E573-4768-8DED-EA81C9BBEBDB}
+		{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382} = {1DB2104D-5BD0-43E5-B5BA-98E37A8B3382}
+		{E3994A74-3A58-469C-B810-77F288D9A089} = {E3994A74-3A58-469C-B810-77F288D9A089}
+		{77C6898F-C60F-4C19-940A-33A2BA6BDE3B} = {77C6898F-C60F-4C19-940A-33A2BA6BDE3B}
+		{9151CCB7-2AAC-4BB9-AD95-3CD509141625} = {9151CCB7-2AAC-4BB9-AD95-3CD509141625}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Common", "TkMemory.Common\TkMemory.Common.csproj", "{6041CAD2-0C41-4443-8D7D-C271C9DFEE61}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{770E01C2-EA76-432F-889B-AD8B2E993622}"
+	ProjectSection(SolutionItems) = preProject
+		Build\UpdateApplicationExe.bat = Build\UpdateApplicationExe.bat
+		Build\UpdateTrainerExes.bat = Build\UpdateTrainerExes.bat
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.AutoFollow", "TkMemory.AutoFollow\TkMemory.AutoFollow.csproj", "{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A8068C1D-680F-4C0A-9F1A-A39E676BC843}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{38A1C82C-BC09-4300-93DC-C7562838A8BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Domain", "TkMemory.Domain\TkMemory.Domain.csproj", "{C7597364-60B7-48DA-B358-08DB41F03197}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Integration", "TkMemory.Integration\TkMemory.Integration.csproj", "{6BF6898B-81D7-4A98-8B6B-C5513295E8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Application", "TkMemory.Application\TkMemory.Application.csproj", "{DB6D1EFC-2276-42D1-8F91-659440D6CA20}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TkMemory.Tests", "TkMemory.Tests\TkMemory.Tests.csproj", "{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +61,34 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE277A44-E573-4768-8DED-EA81C9BBEBDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE277A44-E573-4768-8DED-EA81C9BBEBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE277A44-E573-4768-8DED-EA81C9BBEBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE277A44-E573-4768-8DED-EA81C9BBEBDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C6898F-C60F-4C19-940A-33A2BA6BDE3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C6898F-C60F-4C19-940A-33A2BA6BDE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C6898F-C60F-4C19-940A-33A2BA6BDE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C6898F-C60F-4C19-940A-33A2BA6BDE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3994A74-3A58-469C-B810-77F288D9A089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3994A74-3A58-469C-B810-77F288D9A089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3994A74-3A58-469C-B810-77F288D9A089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3994A74-3A58-469C-B810-77F288D9A089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9151CCB7-2AAC-4BB9-AD95-3CD509141625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9151CCB7-2AAC-4BB9-AD95-3CD509141625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9151CCB7-2AAC-4BB9-AD95-3CD509141625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9151CCB7-2AAC-4BB9-AD95-3CD509141625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA72C33E-77C5-4128-9C37-12E4CF6A5E93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA72C33E-77C5-4128-9C37-12E4CF6A5E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA72C33E-77C5-4128-9C37-12E4CF6A5E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA72C33E-77C5-4128-9C37-12E4CF6A5E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6041CAD2-0C41-4443-8D7D-C271C9DFEE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6041CAD2-0C41-4443-8D7D-C271C9DFEE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6041CAD2-0C41-4443-8D7D-C271C9DFEE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6041CAD2-0C41-4443-8D7D-C271C9DFEE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7597364-60B7-48DA-B358-08DB41F03197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7597364-60B7-48DA-B358-08DB41F03197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7597364-60B7-48DA-B358-08DB41F03197}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -40,21 +97,27 @@ Global
 		{6BF6898B-81D7-4A98-8B6B-C5513295E8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BF6898B-81D7-4A98-8B6B-C5513295E8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BF6898B-81D7-4A98-8B6B-C5513295E8A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DB6D1EFC-2276-42D1-8F91-659440D6CA20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB6D1EFC-2276-42D1-8F91-659440D6CA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB6D1EFC-2276-42D1-8F91-659440D6CA20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB6D1EFC-2276-42D1-8F91-659440D6CA20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C} = {3FEA4B58-C297-49E2-BB42-26A2525A0F89}
-		{C7597364-60B7-48DA-B358-08DB41F03197} = {A93F7718-BE2A-495D-9655-1B19F0510600}
-		{6BF6898B-81D7-4A98-8B6B-C5513295E8A0} = {A93F7718-BE2A-495D-9655-1B19F0510600}
-		{DB6D1EFC-2276-42D1-8F91-659440D6CA20} = {A93F7718-BE2A-495D-9655-1B19F0510600}
+		{CE277A44-E573-4768-8DED-EA81C9BBEBDB} = {517053BA-FAF4-4A41-8478-4278DCF67F07}
+		{77C6898F-C60F-4C19-940A-33A2BA6BDE3B} = {517053BA-FAF4-4A41-8478-4278DCF67F07}
+		{E3994A74-3A58-469C-B810-77F288D9A089} = {517053BA-FAF4-4A41-8478-4278DCF67F07}
+		{9151CCB7-2AAC-4BB9-AD95-3CD509141625} = {517053BA-FAF4-4A41-8478-4278DCF67F07}
+		{AA72C33E-77C5-4128-9C37-12E4CF6A5E93} = {517053BA-FAF4-4A41-8478-4278DCF67F07}
+		{6041CAD2-0C41-4443-8D7D-C271C9DFEE61} = {38A1C82C-BC09-4300-93DC-C7562838A8BD}
+		{1DB2104D-5BD0-43E5-B5BA-98E37A8B3382} = {517053BA-FAF4-4A41-8478-4278DCF67F07}
+		{C7597364-60B7-48DA-B358-08DB41F03197} = {38A1C82C-BC09-4300-93DC-C7562838A8BD}
+		{6BF6898B-81D7-4A98-8B6B-C5513295E8A0} = {38A1C82C-BC09-4300-93DC-C7562838A8BD}
+		{8D2E4102-75F2-4F4B-BFA8-8963DD42DE9C} = {A8068C1D-680F-4C0A-9F1A-A39E676BC843}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FACF9DD7-71E7-4785-B95B-6DADF15D56FD}
+		SolutionGuid = {4EE366B5-FC87-4FA7-AF82-80F0DD967F28}
 	EndGlobalSection
 EndGlobal
