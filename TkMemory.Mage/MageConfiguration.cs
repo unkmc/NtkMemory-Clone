@@ -14,6 +14,11 @@ namespace TkMemory.Mage
             HelpText = "The number of milliseconds to wait in between sending commands.")]
         public int CommandDelay { get; set; }
 
+        [Option('n', "name",
+            Required = false,
+            HelpText = "The name of the Mage.")]
+        public string Name { get; set; }
+
         [Option('h', "heal",
             Required = true,
             HelpText = "Whether or not the Mage should heal self and allies.")]

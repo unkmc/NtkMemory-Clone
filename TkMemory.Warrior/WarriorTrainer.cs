@@ -36,7 +36,11 @@ namespace TkMemory.Warrior
             TkTrainerFactory.Initialize(TkClient.BasePath.Warrior.ToString());
 
             _clients = new ActiveClients(config.Process);
-            _warrior = _clients.GetWarrior();
+
+            _warrior = string.IsNullOrWhiteSpace(config.Name)
+                ? _clients.GetWarrior()
+                : _clients.GetWarrior(config.Name);
+
             _warrior.Activity.DefaultCommandCooldown = config.CommandDelay;
 
             Log.Debug($"Key item assignments:\n{_warrior.Inventory.KeyItems}\n");

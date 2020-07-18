@@ -14,6 +14,11 @@ namespace TkMemory.Rogue
             HelpText = "The number of milliseconds to wait in between sending commands.")]
         public int CommandDelay { get; set; }
 
+        [Option('n', "name",
+            Required = false,
+            HelpText = "The name of the Rogue.")]
+        public string Name { get; set; }
+
         [Option('m', "melee",
             Required = true,
             HelpText = "Whether or not the Rogue should automatically perform melee attacks.")]

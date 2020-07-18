@@ -72,6 +72,10 @@ namespace TkMemory.Application
             this.KillSwitch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.LogFilesButton = new System.Windows.Forms.Button();
+            this.MageNameTextBox = new System.Windows.Forms.TextBox();
+            this.PoetNameTextBox = new System.Windows.Forms.TextBox();
+            this.RogueNameTextBox = new System.Windows.Forms.TextBox();
+            this.WarriorNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.CommandDelayUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AutoFollowDistanceUpDown)).BeginInit();
             this.SuspendLayout();
@@ -79,10 +83,10 @@ namespace TkMemory.Application
             // MageActiveCheckBox
             // 
             this.MageActiveCheckBox.AutoSize = true;
-            this.MageActiveCheckBox.Location = new System.Drawing.Point(16, 85);
+            this.MageActiveCheckBox.Location = new System.Drawing.Point(182, 87);
             this.MageActiveCheckBox.Name = "MageActiveCheckBox";
             this.MageActiveCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.MageActiveCheckBox.TabIndex = 2;
+            this.MageActiveCheckBox.TabIndex = 3;
             this.MageActiveCheckBox.Text = "Active";
             this.toolTip1.SetToolTip(this.MageActiveCheckBox, "Check to start the Mage trainer. Uncheck to close the trainer.");
             this.MageActiveCheckBox.UseVisualStyleBackColor = true;
@@ -91,10 +95,10 @@ namespace TkMemory.Application
             // PoetActiveCheckBox
             // 
             this.PoetActiveCheckBox.AutoSize = true;
-            this.PoetActiveCheckBox.Location = new System.Drawing.Point(16, 132);
+            this.PoetActiveCheckBox.Location = new System.Drawing.Point(182, 133);
             this.PoetActiveCheckBox.Name = "PoetActiveCheckBox";
             this.PoetActiveCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.PoetActiveCheckBox.TabIndex = 9;
+            this.PoetActiveCheckBox.TabIndex = 11;
             this.PoetActiveCheckBox.Text = "Active";
             this.toolTip1.SetToolTip(this.PoetActiveCheckBox, "Check to start the Poet trainer. Uncheck to close the trainer.");
             this.PoetActiveCheckBox.UseVisualStyleBackColor = true;
@@ -103,10 +107,10 @@ namespace TkMemory.Application
             // RogueActiveCheckBox
             // 
             this.RogueActiveCheckBox.AutoSize = true;
-            this.RogueActiveCheckBox.Location = new System.Drawing.Point(16, 177);
+            this.RogueActiveCheckBox.Location = new System.Drawing.Point(182, 179);
             this.RogueActiveCheckBox.Name = "RogueActiveCheckBox";
             this.RogueActiveCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.RogueActiveCheckBox.TabIndex = 11;
+            this.RogueActiveCheckBox.TabIndex = 14;
             this.RogueActiveCheckBox.Text = "Active";
             this.toolTip1.SetToolTip(this.RogueActiveCheckBox, "Check to start the Rogue trainer. Uncheck to close the trainer.");
             this.RogueActiveCheckBox.UseVisualStyleBackColor = true;
@@ -115,10 +119,10 @@ namespace TkMemory.Application
             // WarriorActiveCheckBox
             // 
             this.WarriorActiveCheckBox.AutoSize = true;
-            this.WarriorActiveCheckBox.Location = new System.Drawing.Point(16, 223);
+            this.WarriorActiveCheckBox.Location = new System.Drawing.Point(182, 224);
             this.WarriorActiveCheckBox.Name = "WarriorActiveCheckBox";
             this.WarriorActiveCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.WarriorActiveCheckBox.TabIndex = 16;
+            this.WarriorActiveCheckBox.TabIndex = 20;
             this.WarriorActiveCheckBox.Text = "Active";
             this.toolTip1.SetToolTip(this.WarriorActiveCheckBox, "Check to start the Warrior trainer. Uncheck to close the trainer.");
             this.WarriorActiveCheckBox.UseVisualStyleBackColor = true;
@@ -163,7 +167,8 @@ namespace TkMemory.Application
             this.MageLabel.Size = new System.Drawing.Size(37, 13);
             this.MageLabel.TabIndex = 28;
             this.MageLabel.Text = "Mage:";
-            this.toolTip1.SetToolTip(this.MageLabel, "Check to start the Mage trainer. Uncheck to close the trainer.");
+            this.toolTip1.SetToolTip(this.MageLabel, "(Optional) The name of the Mage to control with the trainer. If left blank, the f" +
+        "irst Mage found will be selected.");
             // 
             // PoetLabel
             // 
@@ -173,7 +178,8 @@ namespace TkMemory.Application
             this.PoetLabel.Size = new System.Drawing.Size(32, 13);
             this.PoetLabel.TabIndex = 29;
             this.PoetLabel.Text = "Poet:";
-            this.toolTip1.SetToolTip(this.PoetLabel, "Check to start the Poet trainer. Uncheck to close the trainer.");
+            this.toolTip1.SetToolTip(this.PoetLabel, "(Optional) The name of the Poet to control with the trainer. If left blank, the f" +
+        "irst Poet found will be selected.");
             // 
             // RogueLabel
             // 
@@ -183,7 +189,8 @@ namespace TkMemory.Application
             this.RogueLabel.Size = new System.Drawing.Size(42, 13);
             this.RogueLabel.TabIndex = 30;
             this.RogueLabel.Text = "Rogue:";
-            this.toolTip1.SetToolTip(this.RogueLabel, "Check to start the Rogue trainer. Uncheck to close the trainer.");
+            this.toolTip1.SetToolTip(this.RogueLabel, "(Optional) The name of the Rogue to control with the trainer. If left blank, the " +
+        "first Rogue found will be selected.");
             // 
             // WarriorLabel
             // 
@@ -193,15 +200,16 @@ namespace TkMemory.Application
             this.WarriorLabel.Size = new System.Drawing.Size(44, 13);
             this.WarriorLabel.TabIndex = 31;
             this.WarriorLabel.Text = "Warrior:";
-            this.toolTip1.SetToolTip(this.WarriorLabel, "Check to start the Warrior trainer. Uncheck to close the trainer.");
+            this.toolTip1.SetToolTip(this.WarriorLabel, "(Optional) The name of the Warrior to control with the trainer. If left blank, th" +
+        "e first Warrior found will be selected.");
             // 
             // MageHealCheckBox
             // 
             this.MageHealCheckBox.AutoSize = true;
-            this.MageHealCheckBox.Location = new System.Drawing.Point(78, 85);
+            this.MageHealCheckBox.Location = new System.Drawing.Point(244, 87);
             this.MageHealCheckBox.Name = "MageHealCheckBox";
             this.MageHealCheckBox.Size = new System.Drawing.Size(48, 17);
-            this.MageHealCheckBox.TabIndex = 3;
+            this.MageHealCheckBox.TabIndex = 4;
             this.MageHealCheckBox.Text = "Heal";
             this.toolTip1.SetToolTip(this.MageHealCheckBox, "Toggles whether or not the Mage should heal self and group members.");
             this.MageHealCheckBox.UseVisualStyleBackColor = true;
@@ -210,10 +218,10 @@ namespace TkMemory.Application
             // MageVexCheckBox
             // 
             this.MageVexCheckBox.AutoSize = true;
-            this.MageVexCheckBox.Location = new System.Drawing.Point(324, 85);
+            this.MageVexCheckBox.Location = new System.Drawing.Point(490, 87);
             this.MageVexCheckBox.Name = "MageVexCheckBox";
             this.MageVexCheckBox.Size = new System.Drawing.Size(44, 17);
-            this.MageVexCheckBox.TabIndex = 7;
+            this.MageVexCheckBox.TabIndex = 8;
             this.MageVexCheckBox.Text = "Vex";
             this.toolTip1.SetToolTip(this.MageVexCheckBox, "Toggles whether or not the Mage should curse enemies.");
             this.MageVexCheckBox.UseVisualStyleBackColor = true;
@@ -222,10 +230,10 @@ namespace TkMemory.Application
             // MageZapCheckBox
             // 
             this.MageZapCheckBox.AutoSize = true;
-            this.MageZapCheckBox.Location = new System.Drawing.Point(374, 85);
+            this.MageZapCheckBox.Location = new System.Drawing.Point(540, 87);
             this.MageZapCheckBox.Name = "MageZapCheckBox";
             this.MageZapCheckBox.Size = new System.Drawing.Size(45, 17);
-            this.MageZapCheckBox.TabIndex = 8;
+            this.MageZapCheckBox.TabIndex = 9;
             this.MageZapCheckBox.Text = "Zap";
             this.toolTip1.SetToolTip(this.MageZapCheckBox, "Toggles whether or not the Mage should zap enemies. When toggled, the Mage will z" +
         "ap a single enemy until it is defeated and then move on to another one.");
@@ -235,10 +243,10 @@ namespace TkMemory.Application
             // PoetHardenBodyCheckbox
             // 
             this.PoetHardenBodyCheckbox.AutoSize = true;
-            this.PoetHardenBodyCheckbox.Location = new System.Drawing.Point(78, 132);
+            this.PoetHardenBodyCheckbox.Location = new System.Drawing.Point(244, 133);
             this.PoetHardenBodyCheckbox.Name = "PoetHardenBodyCheckbox";
             this.PoetHardenBodyCheckbox.Size = new System.Drawing.Size(88, 17);
-            this.PoetHardenBodyCheckbox.TabIndex = 10;
+            this.PoetHardenBodyCheckbox.TabIndex = 12;
             this.PoetHardenBodyCheckbox.Text = "Harden Body";
             this.toolTip1.SetToolTip(this.PoetHardenBodyCheckbox, "Toggles whether or not the Poet should cast Harden Body as often as possible.");
             this.PoetHardenBodyCheckbox.UseVisualStyleBackColor = true;
@@ -247,10 +255,10 @@ namespace TkMemory.Application
             // RogueAttackCheckBox
             // 
             this.RogueAttackCheckBox.AutoSize = true;
-            this.RogueAttackCheckBox.Location = new System.Drawing.Point(78, 177);
+            this.RogueAttackCheckBox.Location = new System.Drawing.Point(244, 179);
             this.RogueAttackCheckBox.Name = "RogueAttackCheckBox";
             this.RogueAttackCheckBox.Size = new System.Drawing.Size(57, 17);
-            this.RogueAttackCheckBox.TabIndex = 12;
+            this.RogueAttackCheckBox.TabIndex = 15;
             this.RogueAttackCheckBox.Text = "Attack";
             this.toolTip1.SetToolTip(this.RogueAttackCheckBox, "Toggles whether or not the Rogue should automatically perform melee attacks as of" +
         "ten as possible.");
@@ -260,10 +268,10 @@ namespace TkMemory.Application
             // RogueDesperateAttackCheckBox
             // 
             this.RogueDesperateAttackCheckBox.AutoSize = true;
-            this.RogueDesperateAttackCheckBox.Location = new System.Drawing.Point(211, 177);
+            this.RogueDesperateAttackCheckBox.Location = new System.Drawing.Point(377, 179);
             this.RogueDesperateAttackCheckBox.Name = "RogueDesperateAttackCheckBox";
             this.RogueDesperateAttackCheckBox.Size = new System.Drawing.Size(109, 17);
-            this.RogueDesperateAttackCheckBox.TabIndex = 14;
+            this.RogueDesperateAttackCheckBox.TabIndex = 17;
             this.RogueDesperateAttackCheckBox.Text = "Desperate Attack";
             this.toolTip1.SetToolTip(this.RogueDesperateAttackCheckBox, "Toggles whether or not the Rogue should use Desperate Attack as often as possible" +
         ". Vita attacks will only be performed if Attack is checked and the Rogue has at " +
@@ -274,10 +282,10 @@ namespace TkMemory.Application
             // RogueLethalStrikeCheckBox
             // 
             this.RogueLethalStrikeCheckBox.AutoSize = true;
-            this.RogueLethalStrikeCheckBox.Location = new System.Drawing.Point(326, 177);
+            this.RogueLethalStrikeCheckBox.Location = new System.Drawing.Point(492, 179);
             this.RogueLethalStrikeCheckBox.Name = "RogueLethalStrikeCheckBox";
             this.RogueLethalStrikeCheckBox.Size = new System.Drawing.Size(85, 17);
-            this.RogueLethalStrikeCheckBox.TabIndex = 15;
+            this.RogueLethalStrikeCheckBox.TabIndex = 18;
             this.RogueLethalStrikeCheckBox.Text = "Lethal Strike";
             this.toolTip1.SetToolTip(this.RogueLethalStrikeCheckBox, "Toggles whether or not the Rogue should use Lethal Strike as often as possible. V" +
         "ita attacks will only be performed if Attack is checked and the Rogue has at lea" +
@@ -288,10 +296,10 @@ namespace TkMemory.Application
             // WarriorAttackCheckBox
             // 
             this.WarriorAttackCheckBox.AutoSize = true;
-            this.WarriorAttackCheckBox.Location = new System.Drawing.Point(78, 223);
+            this.WarriorAttackCheckBox.Location = new System.Drawing.Point(244, 224);
             this.WarriorAttackCheckBox.Name = "WarriorAttackCheckBox";
             this.WarriorAttackCheckBox.Size = new System.Drawing.Size(57, 17);
-            this.WarriorAttackCheckBox.TabIndex = 17;
+            this.WarriorAttackCheckBox.TabIndex = 21;
             this.WarriorAttackCheckBox.Text = "Attack";
             this.toolTip1.SetToolTip(this.WarriorAttackCheckBox, "Toggles whether or not the Warrior should automatically perform melee attacks as " +
         "often as possible.");
@@ -301,10 +309,10 @@ namespace TkMemory.Application
             // WarriorBerserkCheckBox
             // 
             this.WarriorBerserkCheckBox.AutoSize = true;
-            this.WarriorBerserkCheckBox.Location = new System.Drawing.Point(141, 223);
+            this.WarriorBerserkCheckBox.Location = new System.Drawing.Point(307, 224);
             this.WarriorBerserkCheckBox.Name = "WarriorBerserkCheckBox";
             this.WarriorBerserkCheckBox.Size = new System.Drawing.Size(62, 17);
-            this.WarriorBerserkCheckBox.TabIndex = 18;
+            this.WarriorBerserkCheckBox.TabIndex = 22;
             this.WarriorBerserkCheckBox.Text = "Berserk";
             this.toolTip1.SetToolTip(this.WarriorBerserkCheckBox, "Toggles whether or not the Warrior should use Berserk as often as possible. Vita " +
         "attacks will only be performed if Attack is checked and the Warrior has at least" +
@@ -315,10 +323,10 @@ namespace TkMemory.Application
             // WarriorWhirlwindCheckBox
             // 
             this.WarriorWhirlwindCheckBox.AutoSize = true;
-            this.WarriorWhirlwindCheckBox.Location = new System.Drawing.Point(209, 223);
+            this.WarriorWhirlwindCheckBox.Location = new System.Drawing.Point(375, 224);
             this.WarriorWhirlwindCheckBox.Name = "WarriorWhirlwindCheckBox";
             this.WarriorWhirlwindCheckBox.Size = new System.Drawing.Size(72, 17);
-            this.WarriorWhirlwindCheckBox.TabIndex = 19;
+            this.WarriorWhirlwindCheckBox.TabIndex = 23;
             this.WarriorWhirlwindCheckBox.Text = "Whirlwind";
             this.toolTip1.SetToolTip(this.WarriorWhirlwindCheckBox, "Toggles whether or not the Warrior should use Whirlwind as often as possible. Vit" +
         "a attacks will only be performed if Attack is checked and the Warrior has at lea" +
@@ -360,10 +368,10 @@ namespace TkMemory.Application
             // MageBlindCheckBox
             // 
             this.MageBlindCheckBox.AutoSize = true;
-            this.MageBlindCheckBox.Location = new System.Drawing.Point(132, 85);
+            this.MageBlindCheckBox.Location = new System.Drawing.Point(298, 87);
             this.MageBlindCheckBox.Name = "MageBlindCheckBox";
             this.MageBlindCheckBox.Size = new System.Drawing.Size(49, 17);
-            this.MageBlindCheckBox.TabIndex = 4;
+            this.MageBlindCheckBox.TabIndex = 5;
             this.MageBlindCheckBox.Text = "Blind";
             this.toolTip1.SetToolTip(this.MageBlindCheckBox, "Toggles whether or not the Mage should blind enemies.");
             this.MageBlindCheckBox.UseVisualStyleBackColor = true;
@@ -372,10 +380,10 @@ namespace TkMemory.Application
             // MageParalyzeCheckBox
             // 
             this.MageParalyzeCheckBox.AutoSize = true;
-            this.MageParalyzeCheckBox.Location = new System.Drawing.Point(187, 85);
+            this.MageParalyzeCheckBox.Location = new System.Drawing.Point(353, 87);
             this.MageParalyzeCheckBox.Name = "MageParalyzeCheckBox";
             this.MageParalyzeCheckBox.Size = new System.Drawing.Size(66, 17);
-            this.MageParalyzeCheckBox.TabIndex = 5;
+            this.MageParalyzeCheckBox.TabIndex = 6;
             this.MageParalyzeCheckBox.Text = "Paralyze";
             this.toolTip1.SetToolTip(this.MageParalyzeCheckBox, "Toggles whether or not the Mage should paralyze enemies.");
             this.MageParalyzeCheckBox.UseVisualStyleBackColor = true;
@@ -384,10 +392,10 @@ namespace TkMemory.Application
             // MageVenomCheckBox
             // 
             this.MageVenomCheckBox.AutoSize = true;
-            this.MageVenomCheckBox.Location = new System.Drawing.Point(259, 85);
+            this.MageVenomCheckBox.Location = new System.Drawing.Point(425, 87);
             this.MageVenomCheckBox.Name = "MageVenomCheckBox";
             this.MageVenomCheckBox.Size = new System.Drawing.Size(59, 17);
-            this.MageVenomCheckBox.TabIndex = 6;
+            this.MageVenomCheckBox.TabIndex = 7;
             this.MageVenomCheckBox.Text = "Venom";
             this.toolTip1.SetToolTip(this.MageVenomCheckBox, "Toggles whether or not the Mage should poison enemies. When toggled, enemies will" +
         " be poisoned every 30 seconds.");
@@ -397,10 +405,10 @@ namespace TkMemory.Application
             // RogueAmbushCheckBox
             // 
             this.RogueAmbushCheckBox.AutoSize = true;
-            this.RogueAmbushCheckBox.Location = new System.Drawing.Point(141, 177);
+            this.RogueAmbushCheckBox.Location = new System.Drawing.Point(307, 179);
             this.RogueAmbushCheckBox.Name = "RogueAmbushCheckBox";
             this.RogueAmbushCheckBox.Size = new System.Drawing.Size(64, 17);
-            this.RogueAmbushCheckBox.TabIndex = 13;
+            this.RogueAmbushCheckBox.TabIndex = 16;
             this.RogueAmbushCheckBox.Text = "Ambush";
             this.toolTip1.SetToolTip(this.RogueAmbushCheckBox, "Check to use Ambush for melee attacks. Uncheck to use normal attacks. Normal atta" +
         "cks may be preferable for paralyzed enemies. Invisible will be used either way.");
@@ -418,7 +426,7 @@ namespace TkMemory.Application
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(-214, 250);
+            this.label1.Location = new System.Drawing.Point(-214, 254);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(862, 2);
             this.label1.TabIndex = 22;
@@ -426,7 +434,7 @@ namespace TkMemory.Application
             // AutoFollowLabel
             // 
             this.AutoFollowLabel.AutoSize = true;
-            this.AutoFollowLabel.Location = new System.Drawing.Point(14, 259);
+            this.AutoFollowLabel.Location = new System.Drawing.Point(14, 263);
             this.AutoFollowLabel.Name = "AutoFollowLabel";
             this.AutoFollowLabel.Size = new System.Drawing.Size(65, 13);
             this.AutoFollowLabel.TabIndex = 32;
@@ -436,10 +444,10 @@ namespace TkMemory.Application
             // AutoFollowActiveCheckBox
             // 
             this.AutoFollowActiveCheckBox.AutoSize = true;
-            this.AutoFollowActiveCheckBox.Location = new System.Drawing.Point(16, 278);
+            this.AutoFollowActiveCheckBox.Location = new System.Drawing.Point(16, 282);
             this.AutoFollowActiveCheckBox.Name = "AutoFollowActiveCheckBox";
             this.AutoFollowActiveCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.AutoFollowActiveCheckBox.TabIndex = 20;
+            this.AutoFollowActiveCheckBox.TabIndex = 24;
             this.AutoFollowActiveCheckBox.Text = "Active";
             this.toolTip1.SetToolTip(this.AutoFollowActiveCheckBox, "Check to start the AutoFollow trainer. Uncheck to close the trainer.");
             this.AutoFollowActiveCheckBox.UseVisualStyleBackColor = true;
@@ -447,10 +455,10 @@ namespace TkMemory.Application
             // 
             // AutoFollowLeaderTextBox
             // 
-            this.AutoFollowLeaderTextBox.Location = new System.Drawing.Point(92, 277);
+            this.AutoFollowLeaderTextBox.Location = new System.Drawing.Point(92, 281);
             this.AutoFollowLeaderTextBox.Name = "AutoFollowLeaderTextBox";
             this.AutoFollowLeaderTextBox.Size = new System.Drawing.Size(150, 20);
-            this.AutoFollowLeaderTextBox.TabIndex = 21;
+            this.AutoFollowLeaderTextBox.TabIndex = 25;
             this.toolTip1.SetToolTip(this.AutoFollowLeaderTextBox, "The name of the character to follow. Only multiboxed characters are eligiible to " +
         "be leaders or followers.");
             this.AutoFollowLeaderTextBox.TextChanged += new System.EventHandler(this.LeaderTextBox_TextChanged);
@@ -458,7 +466,7 @@ namespace TkMemory.Application
             // AutoFollowLeaderLabel
             // 
             this.AutoFollowLeaderLabel.AutoSize = true;
-            this.AutoFollowLeaderLabel.Location = new System.Drawing.Point(93, 259);
+            this.AutoFollowLeaderLabel.Location = new System.Drawing.Point(93, 263);
             this.AutoFollowLeaderLabel.Name = "AutoFollowLeaderLabel";
             this.AutoFollowLeaderLabel.Size = new System.Drawing.Size(43, 13);
             this.AutoFollowLeaderLabel.TabIndex = 33;
@@ -466,7 +474,7 @@ namespace TkMemory.Application
             // 
             // AutoFollowDistanceUpDown
             // 
-            this.AutoFollowDistanceUpDown.Location = new System.Drawing.Point(259, 277);
+            this.AutoFollowDistanceUpDown.Location = new System.Drawing.Point(259, 281);
             this.AutoFollowDistanceUpDown.Maximum = new decimal(new int[] {
             7,
             0,
@@ -479,7 +487,7 @@ namespace TkMemory.Application
             0});
             this.AutoFollowDistanceUpDown.Name = "AutoFollowDistanceUpDown";
             this.AutoFollowDistanceUpDown.Size = new System.Drawing.Size(99, 20);
-            this.AutoFollowDistanceUpDown.TabIndex = 22;
+            this.AutoFollowDistanceUpDown.TabIndex = 26;
             this.AutoFollowDistanceUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.AutoFollowDistanceUpDown, "The maximum distance in either direction that a follower can be from its leader b" +
         "efore it moves to follow.");
@@ -493,7 +501,7 @@ namespace TkMemory.Application
             // AutoFollowDistanceLabel
             // 
             this.AutoFollowDistanceLabel.AutoSize = true;
-            this.AutoFollowDistanceLabel.Location = new System.Drawing.Point(256, 259);
+            this.AutoFollowDistanceLabel.Location = new System.Drawing.Point(256, 263);
             this.AutoFollowDistanceLabel.Name = "AutoFollowDistanceLabel";
             this.AutoFollowDistanceLabel.Size = new System.Drawing.Size(52, 13);
             this.AutoFollowDistanceLabel.TabIndex = 34;
@@ -502,7 +510,7 @@ namespace TkMemory.Application
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(-214, 310);
+            this.label2.Location = new System.Drawing.Point(-214, 314);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(862, 2);
             this.label2.TabIndex = 29;
@@ -510,10 +518,10 @@ namespace TkMemory.Application
             // MinimizeCheckBox
             // 
             this.MinimizeCheckBox.AutoSize = true;
-            this.MinimizeCheckBox.Location = new System.Drawing.Point(16, 325);
+            this.MinimizeCheckBox.Location = new System.Drawing.Point(16, 329);
             this.MinimizeCheckBox.Name = "MinimizeCheckBox";
             this.MinimizeCheckBox.Size = new System.Drawing.Size(142, 17);
-            this.MinimizeCheckBox.TabIndex = 23;
+            this.MinimizeCheckBox.TabIndex = 27;
             this.MinimizeCheckBox.Text = "Minimize Console Output";
             this.toolTip1.SetToolTip(this.MinimizeCheckBox, "Check to start the console output window minimized. Uncheck to start the console " +
         "output window normally.");
@@ -523,10 +531,10 @@ namespace TkMemory.Application
             // DeactivateButton
             // 
             this.DeactivateButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PageTabList;
-            this.DeactivateButton.Location = new System.Drawing.Point(263, 321);
+            this.DeactivateButton.Location = new System.Drawing.Point(394, 325);
             this.DeactivateButton.Name = "DeactivateButton";
             this.DeactivateButton.Size = new System.Drawing.Size(93, 23);
-            this.DeactivateButton.TabIndex = 24;
+            this.DeactivateButton.TabIndex = 29;
             this.DeactivateButton.Text = "Deactivate All";
             this.toolTip1.SetToolTip(this.DeactivateButton, "Closes any active trainers and unchecks the corresponding Active check boxes.");
             this.DeactivateButton.UseVisualStyleBackColor = true;
@@ -535,10 +543,10 @@ namespace TkMemory.Application
             // KillSwitch
             // 
             this.KillSwitch.AccessibleRole = System.Windows.Forms.AccessibleRole.PageTabList;
-            this.KillSwitch.Location = new System.Drawing.Point(362, 321);
+            this.KillSwitch.Location = new System.Drawing.Point(493, 325);
             this.KillSwitch.Name = "KillSwitch";
             this.KillSwitch.Size = new System.Drawing.Size(93, 23);
-            this.KillSwitch.TabIndex = 25;
+            this.KillSwitch.TabIndex = 30;
             this.KillSwitch.Text = "Kill Switch";
             this.toolTip1.SetToolTip(this.KillSwitch, "Closes all active trainers, all open TK clients, and this application.");
             this.KillSwitch.UseVisualStyleBackColor = true;
@@ -547,20 +555,64 @@ namespace TkMemory.Application
             // LogFilesButton
             // 
             this.LogFilesButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PageTabList;
-            this.LogFilesButton.Location = new System.Drawing.Point(164, 321);
+            this.LogFilesButton.Location = new System.Drawing.Point(295, 325);
             this.LogFilesButton.Name = "LogFilesButton";
             this.LogFilesButton.Size = new System.Drawing.Size(93, 23);
-            this.LogFilesButton.TabIndex = 35;
+            this.LogFilesButton.TabIndex = 28;
             this.LogFilesButton.Text = "Log Files";
             this.toolTip1.SetToolTip(this.LogFilesButton, "Opens the Local AppData folder where log files are automatically saved.");
             this.LogFilesButton.UseVisualStyleBackColor = true;
             this.LogFilesButton.Click += new System.EventHandler(this.LogFilesButton_Click);
             // 
+            // MageNameTextBox
+            // 
+            this.MageNameTextBox.Location = new System.Drawing.Point(12, 85);
+            this.MageNameTextBox.Name = "MageNameTextBox";
+            this.MageNameTextBox.Size = new System.Drawing.Size(150, 20);
+            this.MageNameTextBox.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.MageNameTextBox, "(Optional) The name of the Mage to control with the trainer. If left blank, the f" +
+        "irst Mage found will be selected.");
+            this.MageNameTextBox.TextChanged += new System.EventHandler(this.MageTextBox_TextChanged);
+            // 
+            // PoetNameTextBox
+            // 
+            this.PoetNameTextBox.Location = new System.Drawing.Point(12, 131);
+            this.PoetNameTextBox.Name = "PoetNameTextBox";
+            this.PoetNameTextBox.Size = new System.Drawing.Size(150, 20);
+            this.PoetNameTextBox.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.PoetNameTextBox, "(Optional) The name of the Poet to control with the trainer. If left blank, the f" +
+        "irst Poet found will be selected.");
+            this.PoetNameTextBox.TextChanged += new System.EventHandler(this.PoetTextBox_TextChanged);
+            // 
+            // RogueNameTextBox
+            // 
+            this.RogueNameTextBox.Location = new System.Drawing.Point(12, 177);
+            this.RogueNameTextBox.Name = "RogueNameTextBox";
+            this.RogueNameTextBox.Size = new System.Drawing.Size(150, 20);
+            this.RogueNameTextBox.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.RogueNameTextBox, "(Optional) The name of the Rogue to control with the trainer. If left blank, the " +
+        "first Rogue found will be selected.");
+            this.RogueNameTextBox.TextChanged += new System.EventHandler(this.RogueTextBox_TextChanged);
+            // 
+            // WarriorNameTextBox
+            // 
+            this.WarriorNameTextBox.Location = new System.Drawing.Point(12, 222);
+            this.WarriorNameTextBox.Name = "WarriorNameTextBox";
+            this.WarriorNameTextBox.Size = new System.Drawing.Size(150, 20);
+            this.WarriorNameTextBox.TabIndex = 19;
+            this.toolTip1.SetToolTip(this.WarriorNameTextBox, "(Optional) The name of the Warrior to control with the trainer. If left blank, th" +
+        "e first Warrior found will be selected.");
+            this.WarriorNameTextBox.TextChanged += new System.EventHandler(this.WarriorTextBox_TextChanged);
+            // 
             // TkMemoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 356);
+            this.ClientSize = new System.Drawing.Size(598, 361);
+            this.Controls.Add(this.WarriorNameTextBox);
+            this.Controls.Add(this.RogueNameTextBox);
+            this.Controls.Add(this.PoetNameTextBox);
+            this.Controls.Add(this.MageNameTextBox);
             this.Controls.Add(this.LogFilesButton);
             this.Controls.Add(this.PoetHardenBodyCheckbox);
             this.Controls.Add(this.KillSwitch);
@@ -654,6 +706,10 @@ namespace TkMemory.Application
         private System.Windows.Forms.CheckBox PoetHardenBodyCheckbox;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button LogFilesButton;
+        private System.Windows.Forms.TextBox MageNameTextBox;
+        private System.Windows.Forms.TextBox PoetNameTextBox;
+        private System.Windows.Forms.TextBox RogueNameTextBox;
+        private System.Windows.Forms.TextBox WarriorNameTextBox;
     }
 }
 

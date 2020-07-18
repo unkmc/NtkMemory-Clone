@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -35,25 +36,36 @@ namespace TkMemory.Application
 
             ApplicationNameTextBox.Text = Properties.Settings.Default.ApplicationName;
             CommandDelayUpDown.Value = Properties.Settings.Default.CommandDelay;
+
+            MageNameTextBox.Text = Properties.Settings.Default.MageName;
             MageBlindCheckBox.Checked = Properties.Settings.Default.MageBlind;
             MageHealCheckBox.Checked = Properties.Settings.Default.MageHeal;
             MageParalyzeCheckBox.Checked = Properties.Settings.Default.MageParalyze;
             MageVenomCheckBox.Checked = Properties.Settings.Default.MageVenom;
             MageVexCheckBox.Checked = Properties.Settings.Default.MageVex;
             MageZapCheckBox.Checked = Properties.Settings.Default.MageZap;
+
+            PoetNameTextBox.Text = Properties.Settings.Default.PoetName;
             PoetHardenBodyCheckbox.Checked = Properties.Settings.Default.PoetHardenBody;
+
+            RogueNameTextBox.Text = Properties.Settings.Default.RogueName;
             RogueAttackCheckBox.Checked = Properties.Settings.Default.RogueAttack;
             RogueAmbushCheckBox.Checked = Properties.Settings.Default.RogueAmbush;
             RogueDesperateAttackCheckBox.Checked = Properties.Settings.Default.RogueDesperateAttack;
             RogueLethalStrikeCheckBox.Checked = Properties.Settings.Default.RogueLethalStrike;
+
+            WarriorNameTextBox.Text = Properties.Settings.Default.WarriorName;
             WarriorAttackCheckBox.Checked = Properties.Settings.Default.WarriorAttack;
             WarriorBerserkCheckBox.Checked = Properties.Settings.Default.WarriorBerserk;
             WarriorWhirlwindCheckBox.Checked = Properties.Settings.Default.WarriorWhirlwind;
+
             AutoFollowLeaderTextBox.Text = Properties.Settings.Default.AutoFollowLeader;
             AutoFollowDistanceUpDown.Value = Properties.Settings.Default.AutoFollowDistance;
+
             MinimizeCheckBox.Checked = Properties.Settings.Default.MinimizeConsoleOutput;
 
             _activeCheckBoxes = new[] { MageActiveCheckBox, PoetActiveCheckBox, RogueActiveCheckBox, WarriorActiveCheckBox, AutoFollowActiveCheckBox };
+
             _mageFeatureCheckBoxes = new[] { MageHealCheckBox, MageBlindCheckBox, MageParalyzeCheckBox, MageVenomCheckBox, MageVexCheckBox, MageZapCheckBox };
             _poetFeatureCheckBoxes = new[] { PoetHardenBodyCheckbox };
             _rogueFeatureCheckBoxes = new[] { RogueAttackCheckBox, RogueAmbushCheckBox, RogueDesperateAttackCheckBox, RogueLethalStrikeCheckBox };
@@ -102,6 +114,7 @@ namespace TkMemory.Application
                             StartEmbeddedExe(Constants.MageExe,
                                 new[]
                                 {
+                                    $@"-n ""{MageNameTextBox.Text}""",
                                     $"-h {MageHealCheckBox.Checked}",
                                     $"-b {MageBlindCheckBox.Checked}",
                                     $"-f {MageParalyzeCheckBox.Checked}",
@@ -116,6 +129,7 @@ namespace TkMemory.Application
                             StartEmbeddedExe(Constants.PoetExe,
                                 new[]
                                 {
+                                    $@"-n ""{PoetNameTextBox.Text}""",
                                     $"-h {PoetHardenBodyCheckbox.Checked}"
                                 });
                         }
@@ -125,6 +139,7 @@ namespace TkMemory.Application
                             StartEmbeddedExe(Constants.RogueExe,
                                 new[]
                                 {
+                                    $@"-n ""{RogueNameTextBox.Text}""",
                                     $"-m {RogueAttackCheckBox.Checked}",
                                     $"-a {RogueAmbushCheckBox.Checked}",
                                     $"-d {RogueDesperateAttackCheckBox.Checked}",
@@ -137,6 +152,7 @@ namespace TkMemory.Application
                             StartEmbeddedExe(Constants.WarriorExe,
                                 new[]
                                 {
+                                    $@"-n ""{WarriorNameTextBox.Text}""",
                                     $"-m {WarriorAttackCheckBox.Checked}",
                                     $"-b {WarriorBerserkCheckBox.Checked}",
                                     $"-w {WarriorWhirlwindCheckBox.Checked}"
@@ -193,6 +209,34 @@ namespace TkMemory.Application
         }
 
         #endregion Application Configuration
+
+        #region Name TextBoxes
+
+        private void MageTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.MageName = MageNameTextBox.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void PoetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PoetName = PoetNameTextBox.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void RogueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.RogueName = RogueNameTextBox.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void WarriorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WarriorName = WarriorNameTextBox.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        #endregion Name TextBoxes
 
         #region Active CheckBoxes
 
@@ -427,6 +471,15 @@ namespace TkMemory.Application
             foreach (var featureCheckbox in _featureCheckBoxes)
             {
                 featureCheckbox.Enabled = true;
+            }
+
+            foreach (var process in Process.GetProcessesByName("AutoHotkeyDllErrorHandler"))
+            {
+                try
+                {
+                    process.Kill();
+                }
+                catch (Win32Exception) { }
             }
         }
 

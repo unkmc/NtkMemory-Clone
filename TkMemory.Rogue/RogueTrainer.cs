@@ -36,7 +36,11 @@ namespace TkMemory.Rogue
             TkTrainerFactory.Initialize(TkClient.BasePath.Rogue.ToString());
 
             _clients = new ActiveClients(config.Process);
-            _rogue = _clients.GetRogue();
+
+            _rogue = string.IsNullOrWhiteSpace(config.Name)
+                ? _clients.GetRogue()
+                : _clients.GetRogue(config.Name);
+
             _rogue.Activity.DefaultCommandCooldown = config.CommandDelay;
 
             Log.Debug($"Key item assignments:\n{_rogue.Inventory.KeyItems}\n");

@@ -14,6 +14,11 @@ namespace TkMemory.Poet
             HelpText = "The number of milliseconds to wait in between sending commands.")]
         public int CommandDelay { get; set; }
 
+        [Option('n', "name",
+            Required = false,
+            HelpText = "The name of the Poet.")]
+        public string Name { get; set; }
+
         [Option('h', "hardenBody",
             Required = true,
             HelpText = "Whether or not the Poet should constantly cast Harden Body.")]

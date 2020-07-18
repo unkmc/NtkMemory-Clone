@@ -33,7 +33,11 @@ namespace TkMemory.Poet
             TkTrainerFactory.Initialize(TkClient.BasePath.Poet.ToString());
 
             _clients = new ActiveClients(config.Process);
-            _poet = _clients.GetPoet();
+
+            _poet = string.IsNullOrWhiteSpace(config.Name)
+                ? _clients.GetPoet()
+                : _clients.GetPoet(config.Name);
+
             _poet.Activity.DefaultCommandCooldown = config.CommandDelay;
 
             Log.Debug($"Key item assignments:\n{_poet.Inventory.KeyItems}\n");

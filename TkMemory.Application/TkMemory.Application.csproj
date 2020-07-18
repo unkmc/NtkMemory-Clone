@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>TkMemory.Application</RootNamespace>
     <AssemblyName>TkMemory</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -40,6 +40,7 @@
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -62,7 +63,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>totem.ico</ApplicationIcon>
+    <ApplicationIcon>kru.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>3F07DDDB1CC54E67C980CB2EB9446F8B8D322F94</ManifestCertificateThumbprint>
@@ -153,6 +154,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="kru.ico" />
     <EmbeddedResource Include="..\ProjectArtifacts\AutoFollow.exe">
       <Link>Resources\AutoFollow.exe</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -174,7 +176,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="FodyWeavers.xml" />
-    <Content Include="totem.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -192,6 +193,14 @@
     <ProjectReference Include="..\TkMemory.Common\TkMemory.Common.csproj">
       <Project>{6041cad2-0c41-4443-8d7d-c271c9dfee61}</Project>
       <Name>TkMemory.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TkMemory.Domain\TkMemory.Domain.csproj">
+      <Project>{c7597364-60b7-48da-b358-08db41f03197}</Project>
+      <Name>TkMemory.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TkMemory.Integration\TkMemory.Integration.csproj">
+      <Project>{6bf6898b-81d7-4a98-8b6b-c5513295e8a0}</Project>
+      <Name>TkMemory.Integration</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

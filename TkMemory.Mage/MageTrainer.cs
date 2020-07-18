@@ -38,7 +38,11 @@ namespace TkMemory.Mage
             TkTrainerFactory.Initialize(TkClient.BasePath.Mage.ToString());
 
             _clients = new ActiveClients(config.Process);
-            _mage = _clients.GetMage();
+
+            _mage = string.IsNullOrWhiteSpace(config.Name)
+                ? _clients.GetMage()
+                : _clients.GetMage(config.Name);
+
             _mage.Activity.DefaultCommandCooldown = config.CommandDelay;
 
             Log.Debug($"Key item assignments:\n{_mage.Inventory.KeyItems}\n");

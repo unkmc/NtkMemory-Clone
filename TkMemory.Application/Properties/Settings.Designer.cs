@@ -250,5 +250,53 @@ namespace TkMemory.Application.Properties {
                 this["PoetHardenBody"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MageName {
+            get {
+                return ((string)(this["MageName"]));
+            }
+            set {
+                this["MageName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PoetName {
+            get {
+                return ((string)(this["PoetName"]));
+            }
+            set {
+                this["PoetName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RogueName {
+            get {
+                return ((string)(this["RogueName"]));
+            }
+            set {
+                this["RogueName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WarriorName {
+            get {
+                return ((string)(this["WarriorName"]));
+            }
+            set {
+                this["WarriorName"] = value;
+            }
+        }
     }
 }

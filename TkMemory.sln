@@ -10,10 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectArtifacts", "Project
 		ProjectArtifacts\AutoFollow.exe = ProjectArtifacts\AutoFollow.exe
 		ProjectArtifacts\ClassicTK.CT = ProjectArtifacts\ClassicTK.CT
 		ProjectArtifacts\CommonAssemblyInfo.cs = ProjectArtifacts\CommonAssemblyInfo.cs
+		ProjectArtifacts\kru.png = ProjectArtifacts\kru.png
 		ProjectArtifacts\Mage.exe = ProjectArtifacts\Mage.exe
 		ProjectArtifacts\Poet.exe = ProjectArtifacts\Poet.exe
 		ProjectArtifacts\Rogue.exe = ProjectArtifacts\Rogue.exe
-		ProjectArtifacts\tk.png = ProjectArtifacts\tk.png
 		ProjectArtifacts\TkMemory.exe = ProjectArtifacts\TkMemory.exe
 		ProjectArtifacts\Warrior.exe = ProjectArtifacts\Warrior.exe
 	EndProjectSection
