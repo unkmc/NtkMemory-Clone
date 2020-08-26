@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>TkMemory.Rogue</RootNamespace>
     <AssemblyName>Rogue</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <LangVersion>7.1</LangVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
