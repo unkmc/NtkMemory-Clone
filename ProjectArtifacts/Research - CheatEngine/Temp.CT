@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Tab Target"</Description>
+      <LastState Value="0" RealAddress="0069BF18"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>NexusTK.exe+29BF18</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Map Name"</Description>
+      <VariableType>String</VariableType>
+      <Length>100</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>"NexusTK.exe"+0029B4A4</Address>
+      <Offsets>
+        <Offset>F8</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>445</ID>
+      <Description>"Name"</Description>
+      <LastState RealAddress="0069BED0"/>
+      <Color>000000</Color>
+      <VariableType>String</VariableType>
+      <Length>50</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>"NexusTK.exe"+001A2AD4</Address>
+      <Offsets>
+        <Offset>0</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>486</ID>
+      <Description>"Path"</Description>
+      <Color>000000</Color>
+      <VariableType>String</VariableType>
+      <Length>50</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>NexusTK.exe+0029ADFC</Address>
+      <Offsets>
+        <Offset>1FC</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>472</ID>
+      <Description>"Number of Players On Screen"</Description>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0027A754</Address>
+      <Offsets>
+        <Offset>C</Offset>
+        <Offset>38</Offset>
+        <Offset>424</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>289</ID>
+      <Description>"Map X Coordinate"</Description>
+      <LastState Value="1" RealAddress="48B1F124"/>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029BF2C</Address>
+      <Offsets>
+        <Offset>104</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>494</ID>
+      <Description>"Map Y Coordinate"</Description>
+      <LastState Value="8" RealAddress="48B1F128"/>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029BF2C</Address>
+      <Offsets>
+        <Offset>108</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>105</ID>
+      <Description>"Mana Current"</Description>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029B4D4</Address>
+      <Offsets>
+        <Offset>10c</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>104</ID>
+      <Description>"Mana Max"</Description>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029B4D4</Address>
+      <Offsets>
+        <Offset>110</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>102</ID>
+      <Description>"Vita Max"</Description>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029B4D4</Address>
+      <Offsets>
+        <Offset>108</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>301</ID>
+      <Description>"Vita Current"</Description>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029B4D4</Address>
+      <Offsets>
+        <Offset>104</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"Gold"</Description>
+      <Color>000000</Color>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0029B4D4</Address>
+      <Offsets>
+        <Offset>11c</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>487</ID>
+      <Description>"Spell Target UID?"</Description>
+      <LastState Value="924321" RealAddress="0069BF10"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>NexusTK.exe+29BF10</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Tab Target UID?"</Description>
+      <LastState Value="923705" RealAddress="0069BF1C"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>NexusTK.exe+29BF1C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>495</ID>
+      <Description>"Entity UID"</Description>
+      <LastState Value="924809" RealAddress="4DDA0024"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>4DDA0024</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>496</ID>
+      <Description>"Entity Object Pointer?"</Description>
+      <LastState Value="1306130168" RealAddress="4DD9FF28"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>4DD9FF28</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>497</ID>
+      <Description>"Entity 2 UID"</Description>
+      <LastState Value="923705" RealAddress="4DD9EFC4"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>4DD9EFC4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>498</ID>
+      <Description>"Entity 2 Pointer?"</Description>
+      <LastState Value="1306124404" RealAddress="4DD9EEC8"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>4DD9EEC8</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
