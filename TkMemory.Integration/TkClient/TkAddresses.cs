@@ -15,27 +15,37 @@ namespace TkMemory.Integration.TkClient {
                 public static readonly Address Name = new Address("NexusTK.exe", 0x0029B4A4, new[] { 0xF8 }); // V751
 
                 public static class Coordinates {
-                    public static readonly Address X = new Address(0x6FE238, new[] { 0xFC }); // VOld
-                    public static readonly Address Y = new Address(0x6FE238, new[] { 0x100 }); // VOld
+                    //public static readonly Address X = new Address(0x6FE238, new[] { 0xFC }); // VOld
+                    public static readonly Address X = new Address("NexusTK.exe", 0x0029BF2C, new[] { 0x104 }); // VOld
+                    //public static readonly Address Y = new Address(0x6FE238, new[] { 0x100 }); // VOld
+                    public static readonly Address Y = new Address("NexusTK.exe", 0x0029BF2C, new[] { 0x108 }); // VOld
                 }
             }
         }
 
         public static class Group {
-            public const int PositionOffset = 0x12C;
+            //public const int PositionOffset = 0x12C; // VOld
+            public const int PositionOffset = 0x12C; // V751
 
-            public static readonly Address Name = new Address(0x6DD490, new[] { 0x21C }); // VOld
-            public static readonly Address Size = new Address(0x6DD490, new[] { 0x3CB0 }); // VOld
-            public static readonly Address Uid = new Address(0x6DD490, new[] { 0x218 }); // VOld
+            //public static readonly Address Size = new Address(0x6DD490, new[] { 0x3CB0 }); // VOld
+            public static readonly Address Size = new Address("NexusTK.exe", 0x0027A738, new[] { 0x3CB0 }); // V751
+            //public static readonly Address Name = new Address(0x6DD490, new[] { 0x21C }); // VOld
+            public static readonly Address Name = new Address("NexusTK.exe", 0x0027A738, new[] { 0x21C }); // V751
+            //public static readonly Address Uid = new Address(0x6DD490, new[] { 0x218 }); // VOld
+            public static readonly Address Uid = new Address("NexusTK.exe", 0x0027A738, new[] { 0x218 }); // V751
 
             public static class Mana {
-                public static readonly Address Current = new Address(0x6DD490, new[] { 0x340 }); // VOld
-                public static readonly Address Max = new Address(0x6DD490, new[] { 0x33C }); // VOld
+                //public static readonly Address Current = new Address(0x6DD490, new[] { 0x340 }); // VOld
+                public static readonly Address Current = new Address("NexusTK.exe", 0x0027A738, new[] { 0x340 }); // V751
+                //public static readonly Address Max = new Address(0x6DD490, new[] { 0x33C }); // VOld
+                public static readonly Address Max = new Address("NexusTK.exe", 0x0027A738, new[] { 0x33C }); // V751
             }
 
             public static class Vita {
-                public static readonly Address Current = new Address(0x6DD490, new[] { 0x338 }); // VOld
-                public static readonly Address Max = new Address(0x6DD490, new[] { 0x334 }); // VOld
+                //public static readonly Address Current = new Address(0x6DD490, new[] { 0x338 }); // VOld
+                public static readonly Address Current = new Address("NexusTK.exe", 0x0027A738, new[] { 0x338 }); // V751
+                //public static readonly Address Max = new Address(0x6DD490, new[] { 0x334 }); // VOld
+                public static readonly Address Max = new Address("NexusTK.exe", 0x0027A738, new[] { 0x334 }); // V751
             }
         }
 
@@ -62,18 +72,23 @@ namespace TkMemory.Integration.TkClient {
         }
 
         public static class Self {
-            public static readonly Address Exp = new Address(0x6FE238, new[] { 0x114 }); // VOld
+            //public static readonly Address Exp = new Address(0x6FE238, new[] { 0x114 }); // VOld
+            public static readonly Address Exp = new Address("NexusTK.exe", 0x0029B4D4, new[] { 0x114 }); // V751
             //public static readonly Address Gold = new Address(0x6FE238, new[] { 0x11C }); // VOld
             public static readonly Address Gold = new Address("NexusTK.exe", 0x0029B4D4, new[] { 0x11C }); // V751
             public static readonly Address Legend = new Address(0x6DD5A8, new[] { 0x4, 0x104, 0x134, 0x10, 0x4 }); // VOld
-            public static readonly Address Level = new Address(0x6FDB3C, new[] { 0x280 }); // VOld
-            public static readonly Address Name = new Address(0x6DD490, new[] { 0x12A }); // VOld
+            //public static readonly Address Level = new Address(0x6FDB3C, new[] { 0x280 }); // VOld
+            public static readonly Address Level = new Address("NexusTK.exe", 0x0029ADFC, new[] { 0x280 }); // VOld
+            //public static readonly Address Name = new Address(0x6DD490, new[] { 0x12A }); // VOld
+            public static readonly Address Name = new Address("NexusTK.exe", 0x0027A738, new[] { 0x12A }); // VOld
             //public static readonly Address NameAlt = new Address(0x6FEC70); // VOld
             public static readonly Address NameAlt = new Address("NexusTK.exe", 0x001A2AD4); // V751
             public static readonly Address Partner = new Address(0x6DD5A8, new[] { 0x4, 0x1F38 }); // VOld
             //public static readonly Address Path = new Address(0x6FDB3C, new[] { 0x1FC }); // VOld
             public static readonly Address Path = new Address("NexusTK.exe", 0x0029ADFC, new[] { 0x1FC }); // V751
-            public static readonly Address Uid = new Address(0x6DD490, new[] { 0xFC }); // VOld
+
+            //public static readonly Address Uid = new Address(0x6DD490, new[] { 0xFC }); // VOld
+            public static readonly Address Uid = new Address("NexusTK.exe", 0x0027A738, new[] { 0xFC }); // V751
 
             public static class Inventory {
                 public const int PositionOffset = 0x1FC; // VOld
@@ -105,7 +120,7 @@ namespace TkMemory.Integration.TkClient {
 
             public static class TargetUids {
                 public static readonly Address AutoTarget = new Address(0x6FEC64); // VOld
-                public static readonly Address IsTargetingSelf = new Address(0x6DD490, new[] { 0x1E8 }); // VOld
+                public static readonly Address IsTargetingSelf = new Address("NexusTK.exe", 0x0027A738, new[] { 0x1E8 }); // VOld
                 public static readonly Address Item = new Address(0x6FEC5C); // VOld
                 public static readonly Address Spell = new Address(0x6FEC58); // VOld
                 public static readonly Address TargetLock = new Address(0x6FEC60); // VOld
