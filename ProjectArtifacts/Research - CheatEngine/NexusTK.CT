@@ -66,7 +66,7 @@
     <CheatEntry>
       <ID>472</ID>
       <Description>"Number of Players On Screen"</Description>
-      <LastState Value="3" RealAddress="4B5672EC"/>
+      <LastState Value="2" RealAddress="4B5672EC"/>
       <Color>000000</Color>
       <VariableType>4 Bytes</VariableType>
       <Address>"NexusTK.exe"+0027A754</Address>
@@ -212,7 +212,7 @@
     <CheatEntry>
       <ID>512</ID>
       <Description>"Player Is Targeting Self"</Description>
-      <LastState Value="0" RealAddress="48C6B20C"/>
+      <LastState Value="1" RealAddress="48C6B20C"/>
       <VariableType>Byte</VariableType>
       <Address>"NexusTK.exe"+0027A738</Address>
       <Offsets>
@@ -266,6 +266,88 @@
       <Offsets>
         <Offset>21c+12c</Offset>
       </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>527</ID>
+      <Description>"Slot A"</Description>
+      <LastState RealAddress="48DA5860"/>
+      <VariableType>String</VariableType>
+      <Length>6</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>48DA5860</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>528</ID>
+      <Description>"Slot B"</Description>
+      <LastState RealAddress="48DA59A8"/>
+      <VariableType>String</VariableType>
+      <Length>7</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>48DA59A8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>529</ID>
+      <Description>"No description"</Description>
+      <LastState Value="2337669003" RealAddress="005CD367"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>005CD367</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>530</ID>
+      <Description>"No description"</Description>
+      <LastState RealAddress="48DA5A48"/>
+      <VariableType>String</VariableType>
+      <Length>15</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>48DA5A48</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>531</ID>
+      <Description>"No description"</Description>
+      <LastState RealAddress="0018D69C"/>
+      <VariableType>String</VariableType>
+      <Length>15</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>0018D69C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>532</ID>
+      <Description>"No description"</Description>
+      <LastState RealAddress="4D718298"/>
+      <VariableType>String</VariableType>
+      <Length>15</Length>
+      <Unicode>1</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>4D718298</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>533</ID>
+      <Description>"Group Member 1"</Description>
+      <LastState Value="48C6B024" RealAddress="0067A738"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"NexusTK.exe"+0027A738</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>534</ID>
+      <Description>"Group Member 1"</Description>
+      <LastState RealAddress="00676A88"/>
+      <ShowAsHex>1</ShowAsHex>
+      <VariableType>String</VariableType>
+      <Length>20</Length>
+      <Unicode>0</Unicode>
+      <CodePage>0</CodePage>
+      <ZeroTerminate>1</ZeroTerminate>
+      <Address>NexusTK.exe + 276A88</Address>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
