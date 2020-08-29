@@ -3,8 +3,10 @@
 namespace TkMemory.Integration.TkClient {
     internal static class TkAddresses {
         public static class Chat {
-            public static readonly Address ChatOrBlueSpell = new Address(0x6FE788, new[] { 0x12C }); // VOld
-            public static readonly Address SageOrWhisper = new Address(0x5C07D4, new[] { 0x174 }); // VOld
+            //public static readonly Address ChatOrBlueSpell = new Address(0x6FE788, new[] { 0x12C }); // VOld
+            public static readonly Address ChatOrBlueSpell = new Address("NexusTK.exe", 0x0029B9F8, new[] { 0x12C }); // VOld
+            //public static readonly Address SageOrWhisper = new Address(0x5C07D4, new[] { 0x174 }); // VOld
+            public static readonly Address SageOrWhisper = new Address("NexusTK.exe", 0x00040960, new[] { 0x1A4 }); // VOld
         }
 
         public static class Environment {
@@ -119,9 +121,15 @@ namespace TkMemory.Integration.TkClient {
             }
 
             public static class Status {
-                public static readonly Address ActiveEffects = new Address(0x4C1260, new[] { 0x4A4 }); // VOld
-                public static readonly Address ActiveEffectsAlt = new Address(0x4278EC, new[] { 0xA4 }); // VOld
-                public static readonly Address LatestActivity = new Address(0x444724, new[] { 0x140 }); // VOld
+                //public static readonly Address ActiveEffects = new Address(0x4C1260, new[] { 0x4A4 }); // VOld
+                public static readonly Address ActiveEffects = new Address("NexusTK.exe", 0x000380F0, new[] { 0x8AC }); // V751
+                //public static readonly Address ActiveEffectsAlt = new Address(0x4278EC, new[] { 0xA4 }); // VOld
+                public static readonly Address ActiveEffectsAlt = new Address("NexusTK.exe", 0x000DFF50, new[] { 0x78C }); // V751
+                public static readonly Address ActiveEffectsAlt2 = new Address("NexusTK.exe", 0x00044554, new[] { 0x550 }); // V751
+                public static readonly Address ActiveEffectsAlt3 = new Address("NexusTK.exe", 0x0004F6B0, new[] { 0x2F8 }); // V751
+                public static readonly Address ActiveEffectsAlt4 = new Address("NexusTK.exe", 0x00045098, new[] { 0x1B4 }); // V751
+                //public static readonly Address LatestActivity = new Address(0x444724, new[] { 0x140 }); // VOld
+                public static readonly Address LatestActivity = new Address("NexusTK.exe", 0x00037AF4, new[] { 0x190 }); // V751
                 public static readonly Address LatestChange = new Address(0x6FE8C8, new[] { 0xC }); // VOld
             }
 
