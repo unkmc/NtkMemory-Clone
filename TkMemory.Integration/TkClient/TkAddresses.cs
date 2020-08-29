@@ -119,11 +119,14 @@ namespace TkMemory.Integration.TkClient {
             }
 
             public static class TargetUids {
-                public static readonly Address AutoTarget = new Address(0x6FEC64); // VOld
-                public static readonly Address IsTargetingSelf = new Address("NexusTK.exe", 0x0027A738, new[] { 0x1E8 }); // VOld
+                //public static readonly Address AutoTarget = new Address(0x6FEC64); // VOld
+                public static readonly Address AutoTarget = new Address("NexusTK.exe", 0x29BF1C); // V751
+                //public static readonly Address IsTargetingSelf = new Address(0x6DD490, new[] { 0x1E8 }); // VOld
+                public static readonly Address IsTargetingSelf = new Address("NexusTK.exe", 0x0027A738, new[] { 0x1E8 }); // V751
                 public static readonly Address Item = new Address(0x6FEC5C); // VOld
                 public static readonly Address Spell = new Address(0x6FEC58); // VOld
-                public static readonly Address TargetLock = new Address(0x6FEC60); // VOld
+                //public static readonly Address TargetLock = new Address(0x6FEC60); // VOld
+                public static readonly Address TargetLock = new Address("NexusTK.exe", 0x29BF18); // V751
             }
 
             public static class Vita {
