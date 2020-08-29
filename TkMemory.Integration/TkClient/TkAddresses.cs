@@ -93,9 +93,12 @@ namespace TkMemory.Integration.TkClient {
             public static class Inventory {
                 public const int PositionOffset = 0x1FC; // VOld
 
-                public static readonly Address DisplayName = new Address(0x6DD490, new[] { 0x16410A }); // VOld
-                public static readonly Address ItemName = new Address(0x6DD490, new[] { 0x1641AA }); // VOld
-                public static readonly Address Quantity = new Address(0x6DD490, new[] { 0x1642EC }); // VOld
+                //public static readonly Address DisplayName = new Address(0x6DD490, new[] { 0x16410A }); // VOld
+                public static readonly Address DisplayName = new Address("NexusTK.exe", 0x0027A738, new[] { 0x13410A }); // V751
+                //public static readonly Address ItemName = new Address(0x6DD490, new[] { 0x1641AA }); // VOld
+                public static readonly Address ItemName = new Address("NexusTK.exe", 0x0027A738, new[] { 0x1641AA }); // V751
+                //public static readonly Address Quantity = new Address(0x6DD490, new[] { 0x1642EC }); // VOld
+                public static readonly Address Quantity = new Address("NexusTK.exe", 0x0027A738, new[] { 0x1342EC }); // V751
             }
 
             public static class Mana {
