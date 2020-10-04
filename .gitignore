@@ -359,3 +359,6 @@ MigrationBackup/
 
 # IDA Crash logs
 ProjectArtifacts/**/*.dmp
+
+# EXEs
+**/*.exe
