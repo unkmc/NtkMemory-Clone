@@ -99,6 +99,7 @@ namespace TkMemory.Integration.TkClient
 
         public static class Self
         {
+
             //public static readonly Address Exp = new Address(0x6FE238, new[] { 0x114 }); // VOld
             public static readonly Address Exp = new Address(ProcessName, 0x0029B4D4, new[] { 0x114 }); // V751
 
