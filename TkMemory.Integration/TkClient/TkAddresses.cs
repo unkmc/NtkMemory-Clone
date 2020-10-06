@@ -161,14 +161,15 @@ namespace TkMemory.Integration.TkClient
             public static class Status
             {
                 //public static readonly Address ActiveEffects = new Address(0x4C1260, new[] { 0x4A4 }); // VOld
-                public static readonly Address ActiveEffects = new Address(ProcessName, 0x000380F0, new[] { 0x8AC }); // V751
+                public static readonly Address ActiveEffects = new Address(ProcessName, 0x0003C050, new[] { 0xF0C }); // V751
 
                 //public static readonly Address ActiveEffectsAlt = new Address(0x4278EC, new[] { 0xA4 }); // VOld
-                public static readonly Address ActiveEffectsAlt = new Address(ProcessName, 0x000DFF50, new[] { 0x78C }); // V751
+                public static readonly Address ActiveEffectsAlt = new Address(ProcessName, 0x000E0070, new[] { 0x790 }); // V751
 
-                public static readonly Address ActiveEffectsAlt2 = new Address(ProcessName, 0x00044554, new[] { 0x550 }); // V751
-                public static readonly Address ActiveEffectsAlt3 = new Address(ProcessName, 0x0004F6B0, new[] { 0x2F8 }); // V751
-                public static readonly Address ActiveEffectsAlt4 = new Address(ProcessName, 0x00045098, new[] { 0x1B4 }); // V751
+                public static readonly Address ActiveEffectsAlt2 = new Address(ProcessName, 0x000380F0, new[] { 0x6B0 }); // V751
+                public static readonly Address ActiveEffectsAlt3 = new Address(ProcessName, 0x00044554, new[] { 0x354 }); // V751
+                public static readonly Address ActiveEffectsAlt4 = new Address(ProcessName, 0x0004F6B0, new[] { 0xFC }); // V751
+                public static readonly Address ActiveEffectsAlt5 = new Address(ProcessName, 0x0003C050, new[] { 0xF0C }); // V751
 
                 //public static readonly Address LatestActivity = new Address(0x444724, new[] { 0x140 }); // VOld
                 public static readonly Address LatestActivity = new Address(ProcessName, 0x00037AF4, new[] { 0x190 }); // V751
