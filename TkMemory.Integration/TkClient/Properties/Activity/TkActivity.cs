@@ -161,7 +161,10 @@ namespace TkMemory.Integration.TkClient.Properties.Activity {
         [SuppressMessage("ReSharper", "InvertIf")]
         private string GetActiveStatusEffects() {
             if (_activeStatusEffectsAddress != null) {
-                return _classMemory.ReadString(_activeStatusEffectsAddress, Constants.DefaultEncoding);
+                var probableActiveEffects = _classMemory.ReadString(_activeStatusEffectsAddress, Constants.DefaultEncoding);
+                if (!string.IsNullOrWhiteSpace(probableActiveEffects)) {
+                    return probableActiveEffects;
+                }
             }
 
             var activeEffects = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffects, Constants.DefaultEncoding);
@@ -172,36 +175,14 @@ namespace TkMemory.Integration.TkClient.Properties.Activity {
                 return activeEffects;
             }
 
-            var activeEffectsAlt = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffectsAlt, Constants.DefaultEncoding);
-            Log.Debug("activeEffectsAlt: " + activeEffectsAlt);
-            if (!string.IsNullOrWhiteSpace(activeEffectsAlt)) {
-                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffectsAlt;
-                Log.Debug("The alternate memory address will be used for reading active status effects.");
-                return activeEffectsAlt;
-            }
-
-            var activeEffectsAlt2 = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffectsAlt2, Constants.DefaultEncoding);
-            Log.Debug("activeEffectsAlt2: " + activeEffectsAlt2);
-            if (!string.IsNullOrWhiteSpace(activeEffectsAlt2)) {
-                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffectsAlt2;
-                Log.Debug("The alternate memory address will be used for reading active status effects.");
-                return activeEffectsAlt2;
-            }
-
-            var activeEffectsAlt3 = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffectsAlt3, Constants.DefaultEncoding);
-            Log.Debug("activeEffectsAlt3: " + activeEffectsAlt3);
-            if (!string.IsNullOrWhiteSpace(activeEffectsAlt3)) {
-                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffectsAlt3;
-                Log.Debug("The alternate memory address will be used for reading active status effects.");
-                return activeEffectsAlt3;
-            }
-
-            var activeEffectsAlt4 = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffectsAlt4, Constants.DefaultEncoding);
-            Log.Debug("activeEffectsAlt4: " + activeEffectsAlt4);
-            if (!string.IsNullOrWhiteSpace(activeEffectsAlt4)) {
-                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffectsAlt4;
-                Log.Debug("The alternate memory address will be used for reading active status effects.");
-                return activeEffectsAlt4;
+            for (int i = 0; i < TkAddresses.Self.Status.PossibleActiveEffects.Length; i++) {
+                Log.Debug("The primary active status effects memory address did not yeild any active statuses, will try alternates...");
+                var possibleActiveEffects = _classMemory.ReadString(TkAddresses.Self.Status.PossibleActiveEffects[i], Constants.DefaultEncoding);
+                if (!string.IsNullOrWhiteSpace(possibleActiveEffects)) {
+                    _activeStatusEffectsAddress = TkAddresses.Self.Status.PossibleActiveEffects[i];
+                    Log.Debug("An alternate memory address will be used for reading active status effects.");
+                    return activeEffects;
+                }
             }
 
             return string.Empty;
