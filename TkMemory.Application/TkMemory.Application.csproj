@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>TkMemory.Application</RootNamespace>
     <AssemblyName>TkMemory</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>

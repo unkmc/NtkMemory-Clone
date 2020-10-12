@@ -5,8 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using TkMemory.Integration.TkClient.Infrastructure;
 
-namespace TkMemory.Integration.TkClient.Properties.Activity
-{
+namespace TkMemory.Integration.TkClient.Properties.Activity {
     /// <summary>
     /// Contains information about activity (actions, status effects, commands, etc.) that are at least potentially
     /// beyond the full control of the player (e.g. status effects like Sanctuary that can be cast on the player
@@ -16,8 +15,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
     /// place to find them, but they really belong here as they are all related to the command cool down enforced by
     /// the server which is beyond the control of the player.
     /// </summary>
-    public class TkActivity
-    {
+    public class TkActivity {
         #region Fields
 
         private const int MaximumSpellCooldownInMilliseconds = 1000;
@@ -39,8 +37,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// Initializes a player's activity data.
         /// </summary>
         /// <param name="classMemory">The application memory for the player's game client.</param>
-        public TkActivity(ClassMemory classMemory)
-        {
+        public TkActivity(ClassMemory classMemory) {
             _classMemory = classMemory;
             _defaultCommandCooldown = MinimumSpellCooldownInMilliseconds;
             _timeOfPreviousCommand = DateTime.Now.AddMilliseconds(-MaximumSpellCooldownInMilliseconds);
@@ -85,19 +82,15 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// <summary>
         /// The default number of milliseconds to wait in between commands.
         /// </summary>
-        public int DefaultCommandCooldown
-        {
+        public int DefaultCommandCooldown {
             get => _defaultCommandCooldown;
-            set
-            {
-                if (value < MinimumSpellCooldownInMilliseconds)
-                {
+            set {
+                if (value < MinimumSpellCooldownInMilliseconds) {
                     value = MinimumSpellCooldownInMilliseconds;
                     Log.Warning($"Spell cool down adjusted to the minimum allowable value of {value} milliseconds.");
                 }
 
-                if (value > MaximumSpellCooldownInMilliseconds)
-                {
+                if (value > MaximumSpellCooldownInMilliseconds) {
                     value = MaximumSpellCooldownInMilliseconds;
                     Log.Warning($"Spell cool down adjusted to the maximum allowable value of {value} milliseconds.");
                 }
@@ -127,8 +120,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// are some exceptions when no cooldown is required between commands (e.g. using a mana
         /// restoration before casting a spell).
         /// </summary>
-        public void ResetCommandCooldown()
-        {
+        public void ResetCommandCooldown() {
             _timeOfPreviousCommand = DateTime.Now;
         }
 
@@ -137,8 +129,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// is greater than the number of milliseconds currently assigned to the DefaultCommandCooldown
         /// property.
         /// </summary>
-        public async Task WaitForCommandCooldown()
-        {
+        public async Task WaitForCommandCooldown() {
             await WaitForCommandCooldown(DefaultCommandCooldown);
         }
 
@@ -146,8 +137,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// Delays any further melee commands until the number of milliseconds since the previous command
         /// is greater than of the number of milliseconds set for the cooldown on melee commands.
         /// </summary>
-        public async Task WaitForMeleeCooldown()
-        {
+        public async Task WaitForMeleeCooldown() {
             await WaitForCommandCooldown(MeleeCommandCooldownInMilliseconds);
         }
 
@@ -155,8 +145,7 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// Delays any further movement commands until the number of milliseconds since the previous command
         /// is greater than of the number of milliseconds set for the cooldown on movement commands.
         /// </summary>
-        public async Task WaitForMovementCooldown()
-        {
+        public async Task WaitForMovementCooldown() {
             await WaitForCommandCooldown(MovementCommandCooldownInMilliseconds);
         }
 
@@ -170,39 +159,39 @@ namespace TkMemory.Integration.TkClient.Properties.Activity
         /// use for reading the status effects from a particular instance of the TK client.
         /// </summary>
         [SuppressMessage("ReSharper", "InvertIf")]
-        private string GetActiveStatusEffects()
-        {
-            if (_activeStatusEffectsAddress != null)
-            {
-                return _classMemory.ReadString(_activeStatusEffectsAddress, Constants.DefaultEncoding);
+        private string GetActiveStatusEffects() {
+            if (_activeStatusEffectsAddress != null) {
+                var probableActiveEffects = _classMemory.ReadString(_activeStatusEffectsAddress, Constants.DefaultEncoding);
+                if (!string.IsNullOrWhiteSpace(probableActiveEffects)) {
+                    return probableActiveEffects;
+                }
             }
 
             var activeEffects = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffects, Constants.DefaultEncoding);
-            var activeEffectsAlt = _classMemory.ReadString(TkAddresses.Self.Status.ActiveEffectsAlt, Constants.DefaultEncoding);
-
-            if (!string.IsNullOrWhiteSpace(activeEffects))
-            {
+            Log.Debug("activeEffects: " + activeEffects);
+            if (!string.IsNullOrWhiteSpace(activeEffects)) {
                 _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffects;
                 Log.Debug("The primary memory address will be used for reading active status effects.");
                 return activeEffects;
             }
 
-            if (!string.IsNullOrWhiteSpace(activeEffectsAlt))
-            {
-                _activeStatusEffectsAddress = TkAddresses.Self.Status.ActiveEffectsAlt;
-                Log.Debug("The alternate memory address will be used for reading active status effects.");
-                return activeEffectsAlt;
+            for (int i = 0; i < TkAddresses.Self.Status.PossibleActiveEffects.Length; i++) {
+                Log.Debug("The primary active status effects memory address did not yeild any active statuses, will try alternates...");
+                var possibleActiveEffects = _classMemory.ReadString(TkAddresses.Self.Status.PossibleActiveEffects[i], Constants.DefaultEncoding);
+                if (!string.IsNullOrWhiteSpace(possibleActiveEffects)) {
+                    _activeStatusEffectsAddress = TkAddresses.Self.Status.PossibleActiveEffects[i];
+                    Log.Debug("An alternate memory address will be used for reading active status effects.");
+                    return activeEffects;
+                }
             }
 
             return string.Empty;
         }
 
-        private async Task WaitForCommandCooldown(int cooldown)
-        {
+        private async Task WaitForCommandCooldown(int cooldown) {
             var remainingCooldown = (int)Math.Ceiling(cooldown - (DateTime.Now - _timeOfPreviousCommand).TotalMilliseconds);
 
-            if (remainingCooldown > 0)
-            {
+            if (remainingCooldown > 0) {
                 await Task.Delay(remainingCooldown);
             }
         }
