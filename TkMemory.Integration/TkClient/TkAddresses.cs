@@ -6,10 +6,12 @@ namespace TkMemory.Integration.TkClient {
 
         public static class Chat {
             //public static readonly Address ChatOrBlueSpell = new Address(0x6FE788, new[] { 0x12C }); // VOld
-            public static readonly Address ChatOrBlueSpell = new Address(ProcessName, 0x0029B9F8, new[] { 0x12C }); // V751
+            //public static readonly Address ChatOrBlueSpell = new Address(ProcessName, 0x0029B9F8, new[] { 0x12C }); // V751
+            public static readonly Address ChatOrBlueSpell = new Address(ProcessName, 0x0029BA08, new[] { 0x12C }); // V752
 
             //public static readonly Address SageOrWhisper = new Address(0x5C07D4, new[] { 0x174 }); // VOld
-            public static readonly Address SageOrWhisper = new Address(ProcessName, 0x00040960, new[] { 0x1A4 }); // V751
+            //public static readonly Address SageOrWhisper = new Address(ProcessName, 0x00040960, new[] { 0x1A4 }); // V751
+            public static readonly Address SageOrWhisper = new Address(ProcessName, 0x00037AF4, new[] { 0x510 }); // V752
         }
 
         public static class Environment {
@@ -75,8 +77,10 @@ namespace TkMemory.Integration.TkClient {
             public const int PositionOffset = 0x20C; // VOld and V751
 
             //public static readonly Address Count = new Address(0x6DD4AC, new[] { 0x424, 0x38, 0xC }); // VOld
-            public static readonly Address Count = new Address(0x41A978, new[] { 0x310, 0x384, 0x20, 0x20, 0x64C }); // V751
+            //public static readonly Address Count = new Address(0x41A978, new[] { 0x310, 0x384, 0x20, 0x20, 0x64C }); // V751
+            public static readonly Address Count = new Address(ProcessName, 0x0027A764, new[] { 0x424, 0x38, 0xC }); // V752
 
+            //Currently in 752 using NexusTK.exe + 0029B89C to 8 entities, however I can't find the correct one for all of them
             public static readonly Address Direction = new Address(0x6FE61C, new[] { 0x1C9 }); // VOld
             public static readonly Address Name = new Address(0x6FE61C, new[] { 0x12E }); // VOld
 
@@ -111,7 +115,8 @@ namespace TkMemory.Integration.TkClient {
             public static readonly Address Legend = new Address(ProcessName, 0x0027A864, new[] { 0x4, 0x104, 0x134, 0x10, 0x4 }); // V751
 
             //public static readonly Address Level = new Address(0x6FDB3C, new[] { 0x280 }); // VOld
-            public static readonly Address Level = new Address(ProcessName, 0x0029ADFC, new[] { 0x280 }); // V751
+            //public static readonly Address Level = new Address(ProcessName, 0x0029ADFC, new[] { 0x280 }); // V751
+            public static readonly Address Level = new Address(ProcessName, 0x0029AE0C, new[] { 0x280 }); // V752
 
             //public static readonly Address Name = new Address(0x6DD490, new[] { 0x12A }); // VOld
             //public static readonly Address Name = new Address(ProcessName, 0x0027A738, new[] { 0x12A }); // V751
@@ -163,13 +168,13 @@ namespace TkMemory.Integration.TkClient {
 
                 //public static readonly Address DisplayName = new Address(0x6DD490, new[] { 0x16A83C }); // VOld
                 //public static readonly Address DisplayName = new Address(ProcessName, 0x0027A738, new[] { 0x13A83C }); // V751
-                public static readonly Address DisplayName = new Address(ProcessName, 0x0027A748, new[] { 0x13A83C }); // V751
+                public static readonly Address DisplayName = new Address(ProcessName, 0x0027A748, new[] { 0x13A83C }); // V752
             }
 
             public static class Status {
                 //public static readonly Address ActiveEffects = new Address(0x4C1260, new[] { 0x4A4 }); // VOld
                 //public static readonly Address ActiveEffects = new Address(ProcessName, 0x0003C050, new[] { 0xF0C }); // V751
-                public static readonly Address ActiveEffects = new Address(ProcessName, 0x0004F6B0, new[] { 0xC }); // V752
+                public static readonly Address ActiveEffects = new Address(ProcessName, 0x0004F6B0, new[] { 0x8 }); // V752 (0xC is starting 4 bytes too late)
 
                 //public static readonly Address ActiveEffectsAlt = new Address(0x4278EC, new[] { 0xA4 }); // VOld
                 //public static readonly Address[] PossibleActiveEffects = new[] {
@@ -191,7 +196,8 @@ namespace TkMemory.Integration.TkClient {
                 public static readonly Address LatestActivity = new Address(ProcessName, 0x00037AF4, new[] { 0x194 }); // V752
 
                 //public static readonly Address LatestChange = new Address(0x6FE8C8, new[] { 0xC }); // VOld
-                public static readonly Address LatestChange = new Address(0x69BB68, new[] { 0xC }); // V751
+                //public static readonly Address LatestChange = new Address(0x69BB68, new[] { 0xC }); // V751
+                public static readonly Address LatestChange = new Address(ProcessName, 0x0029BB00, new[] { 0xC }); // V752
             }
 
             public static class TargetUids {
