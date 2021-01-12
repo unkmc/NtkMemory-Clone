@@ -361,4 +361,10 @@ MigrationBackup/
 ProjectArtifacts/**/*.dmp
 
 # EXEs
-**/*.exe
+ProjectArtifacts/AutoFollow.exe
+ProjectArtifacts/Mage.exe
+ProjectArtifacts/Poet.exe
+ProjectArtifacts/Rogue.exe
+ProjectArtifacts/TkMemory.exe
+ProjectArtifacts/Warrior.exe
+
